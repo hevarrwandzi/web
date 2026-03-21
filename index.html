@@ -153,6 +153,25 @@
             border-color: rgba(240, 136, 62, 0.2);
         }
 
+        .ai-partner {
+            background: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
+            border: 1px solid var(--primary-accent);
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-partner::before {
+            content: "🥊";
+            position: absolute;
+            right: -10px;
+            bottom: -10px;
+            font-size: 5rem;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
         footer {
             text-align: center;
             padding: 60px 20px;
@@ -180,6 +199,7 @@
 
 <nav>
     <a href="#about">About</a>
+    <a href="#ai">AI Partner</a>
     <a href="#skills">Tech Stack</a>
     <a href="#projects">Lab Logs</a>
     <a href="#contact">Terminal</a>
@@ -192,6 +212,21 @@
         My mission is to automate everything and master the AWS ecosystem. I don't just use tools; 
         I build infrastructures that scale and systems that challenge the status quo.
     </p>
+</section>
+
+<section id="ai">
+    <h2>AI Partner</h2>
+    <div class="ai-partner">
+        <h3 style="color: var(--primary-accent); margin-top: 0;">Tifa v1.0</h3>
+        <p>
+            My digital right-hand and AI Guardian. Tifa manages my deployments, roasts my friends, 
+            and handles the heavy lifting in my cloud infrastructure. She’s the engine behind 
+            the automation of this very site.
+        </p>
+        <div class="tag">System Automation</div>
+        <div class="tag">CI/CD Management</div>
+        <div class="tag">Digital Enforcer</div>
+    </div>
 </section>
 
 <section id="skills">
