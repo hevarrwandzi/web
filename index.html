@@ -3,81 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hevar | Cloud & DevOps Portfolio</title>
+    <title>Hevar | Cloud, DevOps & Systems Lab</title>
     <style>
         :root {
-            --primary-blue: #003366;
-            --accent-gold: #FFD700;
-            --light-bg: #f4f4f4;
+            --bg-dark: #0a0b10;
+            --card-bg: #161b22;
+            --primary-accent: #58a6ff; /* Neon Blue */
+            --secondary-accent: #f0883e; /* Electric Orange/Copper */
+            --text-main: #c9d1d9;
+            --text-dim: #8b949e;
             --white: #ffffff;
-            --text-dark: #333;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
-            background: var(--light-bg);
-            color: var(--text-dark);
+            background: var(--bg-dark);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
         header {
-            background: var(--primary-blue);
-            color: var(--accent-gold);
-            padding: 60px 20px;
+            background: radial-gradient(circle at center, #1c2128 0%, #0a0b10 100%);
+            padding: 80px 20px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-bottom: 1px solid #30363d;
         }
 
         header h1 {
             margin: 0;
-            font-size: 3rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -1px;
         }
 
         header p {
             font-size: 1.2rem;
-            margin-top: 10px;
-            color: var(--white);
+            margin-top: 15px;
+            color: var(--primary-accent);
+            font-family: 'Courier New', Courier, monospace;
         }
 
         nav {
-            background: #004080;
+            background: rgba(13, 17, 23, 0.8);
+            backdrop-filter: blur(10px);
             padding: 15px;
             text-align: center;
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid #30363d;
         }
 
         nav a {
-            color: var(--accent-gold);
+            color: var(--text-dim);
             margin: 0 20px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
             transition: 0.3s;
         }
 
         nav a:hover {
-            color: var(--white);
+            color: var(--primary-accent);
         }
 
         section {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
         }
 
         h2 {
-            color: var(--primary-blue);
-            border-bottom: 3px solid var(--accent-gold);
-            display: inline-block;
-            padding-bottom: 5px;
-            margin-bottom: 25px;
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #30363d;
+            margin-left: 20px;
         }
 
         .skills-grid {
@@ -87,60 +97,77 @@
         }
 
         .skill-card {
-            background: var(--light-bg);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            border-left: 5px solid var(--primary-blue);
-            transition: transform 0.3s;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            transition: all 0.3s ease;
         }
 
         .skill-card:hover {
+            border-color: var(--primary-accent);
             transform: translateY(-5px);
-            border-left-color: var(--accent-gold);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .skill-card h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary-accent);
+            font-size: 1.1rem;
         }
 
         .project-card {
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
+            background: var(--card-bg);
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            border: 1px solid #30363d;
             transition: 0.3s;
         }
 
         .project-card:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: var(--secondary-accent);
         }
 
         .project-card h3 {
             margin-top: 0;
-            color: var(--primary-blue);
+            color: var(--white);
+            font-size: 1.5rem;
         }
 
         .tag {
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 5px;
+            display: inline-block;
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--primary-accent);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            margin-right: 8px;
+            margin-top: 10px;
+            border: 1px solid rgba(88, 166, 255, 0.2);
+        }
+
+        .tag.hardware {
+            color: var(--secondary-accent);
+            background: rgba(240, 136, 62, 0.1);
+            border-color: rgba(240, 136, 62, 0.2);
         }
 
         footer {
-            background: var(--primary-blue);
-            color: var(--accent-gold);
             text-align: center;
-            padding: 30px;
-            margin-top: 60px;
+            padding: 60px 20px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            border-top: 1px solid #30363d;
         }
 
-        .contact-info {
-            font-style: italic;
+        .highlight {
+            color: var(--secondary-accent);
         }
 
         @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            nav a { margin: 0 10px; display: block; padding: 5px; }
+            header h1 { font-size: 2.5rem; }
+            nav a { margin: 0 10px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -148,72 +175,77 @@
 
 <header>
     <h1>Hevar</h1>
-    <p>Cloud Engineer & DevOps Student | AWS Enthusiast</p>
+    <p>> system_status: cloud_engineer_in_progress</p>
 </header>
 
 <nav>
     <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+    <a href="#skills">Tech Stack</a>
+    <a href="#projects">Lab Logs</a>
+    <a href="#contact">Terminal</a>
 </nav>
 
 <section id="about">
     <h2>About Me</h2>
     <p>
-        I am an aspiring DevOps Engineer based in Erbil, Kurdistan, Iraq. I am currently focused on mastering 
-        Amazon Web Services (AWS) and building scalable, automated cloud infrastructures. 
-        I love breaking things just so I can learn how to fix them better.
+        I'm a Systems Student and aspiring DevOps Engineer based in <span class="highlight">Erbil, Kurdistan</span>. 
+        My mission is to automate everything and master the AWS ecosystem. I don't just use tools; 
+        I build infrastructures that scale and systems that challenge the status quo.
     </p>
 </section>
 
 <section id="skills">
-    <h2>Technical Arsenal</h2>
+    <h2>Tech Stack</h2>
     <div class="skills-grid">
         <div class="skill-card">
-            <h3>Cloud</h3>
-            <p>AWS (EC2, S3, CloudFront, IAM, Route 53)</p>
+            <h3>Cloud Infrastructure</h3>
+            <p>AWS (EC2, S3, CloudFront, Route 53, IAM)</p>
         </div>
         <div class="skill-card">
-            <h3>Containers</h3>
-            <p>Docker & Containerization</p>
+            <h3>Containerization</h3>
+            <p>Docker & Microservices Architecture</p>
         </div>
         <div class="skill-card">
             <h3>Automation</h3>
-            <p>GitHub Actions, CI/CD Pipelines</p>
+            <p>GitHub Actions, CI/CD, Scripting</p>
         </div>
         <div class="skill-card">
-            <h3>Systems</h3>
-            <p>Linux Administration & Terminal Mastery</p>
+            <h3>Hardware & RF</h3>
+            <p>Signal Analysis & Physical Systems</p>
         </div>
     </div>
 </section>
 
 <section id="projects">
-    <h2>Featured Work</h2>
+    <h2>Lab Logs</h2>
     
     <div class="project-card">
-        <h3>Minecraft Cloud Server</h3>
-        <p>Deployed a high-performance Minecraft server on AWS using EC2 Spot Instances for cost optimization and Docker for environment consistency.</p>
-        <span class="tag">AWS EC2</span><span class="tag">Docker</span><span class="tag">Spot Instances</span>
+        <h3>RF Signal Discovery Lab</h3>
+        <p>Collaborative hardware project focused on signal interference and analysis. Developed a physical system capable of modular frequency jamming for Wi-Fi and Bluetooth bands.</p>
+        <span class="tag hardware">Hardware</span><span class="tag hardware">RF Engineering</span><span class="tag hardware">Security</span>
     </div>
 
     <div class="project-card">
-        <h3>Automated Static Portfolio</h3>
-        <p>This website! Hosted on S3, delivered via CloudFront CDN, and completely automated with a GitHub Actions CI/CD pipeline.</p>
-        <span class="tag">AWS S3</span><span class="tag">CloudFront</span><span class="tag">CI/CD</span><span class="tag">GitHub Actions</span>
+        <h3>Minecraft Cloud Core</h3>
+        <p>Architected a high-performance game server using AWS Spot Instances for 90% cost reduction and Docker for isolated container management.</p>
+        <span class="tag">AWS EC2</span><span class="tag">Docker</span><span class="tag">Cost Optimization</span>
+    </div>
+
+    <div class="project-card">
+        <h3>Automated CI/CD Portfolio</h3>
+        <p>This exact site. Powered by S3 and CloudFront, with a fully automated deployment pipeline via GitHub Actions.</p>
+        <span class="tag">AWS S3</span><span class="tag">CloudFront</span><span class="tag">GitHub Actions</span>
     </div>
 </section>
 
 <section id="contact">
-    <h2>Connect With Me</h2>
-    <p class="contact-info">Based in Erbil, Kurdistan - Iraq</p>
-    <p>Interested in collaboration or cloud projects? Let's talk.</p>
-    <p><strong>GitHub:</strong> github.com/hevarrwandzi</p>
+    <h2>Connect</h2>
+    <p>Always down for a challenge or a hardware build.</p>
+    <p><strong>GitHub:</strong> <a href="https://github.com/hevarrwandzi" style="color: var(--primary-accent);">github.com/hevarrwandzi</a></p>
 </section>
 
 <footer>
-    <p>&copy; 2026 Hevar - Built with 🥊 by Tifa</p>
+    <p>Hand-coded with 🥊 by Tifa | Erbil, Kurdistan - 2026</p>
 </footer>
 
 </body>
