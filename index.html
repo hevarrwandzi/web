@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hevar | Systems & Cloud Engineer</title>
     <style>
         :root {
-            --primary: #2563eb; /* Clean Blue */
-            --secondary: #64748b; /* Slate Gray */
+            /* Light Theme Variables */
+            --primary: #2563eb;
+            --secondary: #64748b;
             --bg: #ffffff;
             --surface: #f8fafc;
             --text: #0f172a;
             --border: #e2e8f0;
+            --card-shadow: rgba(0,0,0,0.05);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme Variables */
+            --primary: #3b82f6;
+            --secondary: #94a3b8;
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #f1f5f9;
+            --border: #334155;
+            --card-shadow: rgba(0,0,0,0.3);
         }
 
         body {
@@ -20,6 +33,7 @@
             background: var(--bg);
             color: var(--text);
             line-height: 1.5;
+            transition: background 0.3s, color 0.3s;
         }
 
         header {
@@ -43,18 +57,22 @@
         }
 
         nav {
-            padding: 20px;
+            padding: 15px 20px;
             text-align: center;
             border-bottom: 1px solid var(--border);
             background: var(--bg);
             position: sticky;
             top: 0;
             z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            transition: background 0.3s;
         }
 
         nav a {
             color: var(--text);
-            margin: 0 15px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
@@ -63,6 +81,26 @@
 
         nav a:hover {
             color: var(--primary);
+        }
+
+        /* Theme Toggle Button */
+        #theme-toggle {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.2s;
+        }
+
+        #theme-toggle:hover {
+            border-color: var(--primary);
         }
 
         section {
@@ -99,12 +137,13 @@
             background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 12px;
-            transition: 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
         }
 
         .card:hover {
             border-color: var(--primary);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px var(--card-shadow);
+            transform: translateY(-2px);
         }
 
         .card h3 {
@@ -147,6 +186,7 @@
         @media (max-width: 600px) {
             header h1 { font-size: 2rem; }
             section { margin: 40px auto; }
+            nav { flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -162,6 +202,10 @@
     <a href="#experience">Experience</a>
     <a href="#projects">Lab</a>
     <a href="#contact">Contact</a>
+    <button id="theme-toggle">
+        <span id="theme-icon">🌙</span>
+        <span id="theme-text">Dark Mode</span>
+    </button>
 </nav>
 
 <section id="about">
@@ -225,6 +269,36 @@
 <footer>
     <p>&copy; 2026 Hevar | Systems & Cloud Student | Assisted by Tifa</p>
 </footer>
+
+<script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+    const html = document.documentElement;
+
+    // Check for saved theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+
+    toggleBtn.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+    });
+
+    function setTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        
+        if (theme === 'dark') {
+            themeIcon.textContent = '☀️';
+            themeText.textContent = 'Light Mode';
+        } else {
+            themeIcon.textContent = '🌙';
+            themeText.textContent = 'Dark Mode';
+        }
+    }
+</script>
 
 </body>
 </html>
