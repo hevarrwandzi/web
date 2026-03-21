@@ -3,190 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hevar | Cloud, DevOps & Systems Lab</title>
+    <title>Hevar | Systems & Cloud Engineer</title>
     <style>
         :root {
-            --bg-dark: #0a0b10;
-            --card-bg: #161b22;
-            --primary-accent: #58a6ff; /* Neon Blue */
-            --secondary-accent: #f0883e; /* Electric Orange/Copper */
-            --text-main: #c9d1d9;
-            --text-dim: #8b949e;
-            --white: #ffffff;
+            --primary: #2563eb; /* Clean Blue */
+            --secondary: #64748b; /* Slate Gray */
+            --bg: #ffffff;
+            --surface: #f8fafc;
+            --text: #0f172a;
+            --border: #e2e8f0;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             margin: 0;
-            background: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
         }
 
         header {
-            background: radial-gradient(circle at center, #1c2128 0%, #0a0b10 100%);
-            padding: 80px 20px;
+            padding: 100px 20px;
             text-align: center;
-            border-bottom: 1px solid #30363d;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
         }
 
         header h1 {
             margin: 0;
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            color: var(--white);
-            letter-spacing: -1px;
+            color: var(--text);
         }
 
         header p {
-            font-size: 1.2rem;
-            margin-top: 15px;
-            color: var(--primary-accent);
-            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-top: 10px;
         }
 
         nav {
-            background: rgba(13, 17, 23, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 15px;
+            padding: 20px;
             text-align: center;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
             position: sticky;
             top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #30363d;
+            z-index: 100;
         }
 
         nav a {
-            color: var(--text-dim);
-            margin: 0 20px;
+            color: var(--text);
+            margin: 0 15px;
             text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
         }
 
         nav a:hover {
-            color: var(--primary-accent);
+            color: var(--primary);
         }
 
         section {
-            max-width: 900px;
-            margin: 60px auto;
+            max-width: 800px;
+            margin: 80px auto;
             padding: 0 20px;
         }
 
         h2 {
-            color: var(--white);
-            font-size: 2rem;
-            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
+            gap: 10px;
         }
 
-        h2::after {
+        h2::before {
             content: "";
-            flex: 1;
-            height: 1px;
-            background: #30363d;
-            margin-left: 20px;
+            width: 4px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 2px;
         }
 
-        .skills-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
         }
 
-        .skill-card {
-            background: var(--card-bg);
-            padding: 25px;
+        .card {
+            padding: 24px;
+            background: var(--bg);
+            border: 1px solid var(--border);
             border-radius: 12px;
-            border: 1px solid #30363d;
-            transition: all 0.3s ease;
-        }
-
-        .skill-card:hover {
-            border-color: var(--primary-accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .skill-card h3 {
-            margin: 0 0 10px 0;
-            color: var(--primary-accent);
-            font-size: 1.1rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            padding: 30px;
-            margin-bottom: 25px;
-            border-radius: 12px;
-            border: 1px solid #30363d;
             transition: 0.3s;
         }
 
-        .project-card:hover {
-            border-color: var(--secondary-accent);
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
 
-        .project-card h3 {
-            margin-top: 0;
-            color: var(--white);
-            font-size: 1.5rem;
+        .card h3 {
+            margin: 0 0 12px 0;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin: 0;
         }
 
         .tag {
             display: inline-block;
-            background: rgba(88, 166, 255, 0.1);
-            color: var(--primary-accent);
-            padding: 4px 12px;
+            background: var(--surface);
+            color: var(--primary);
+            padding: 4px 10px;
             border-radius: 6px;
             font-size: 0.75rem;
-            margin-right: 8px;
-            margin-top: 10px;
-            border: 1px solid rgba(88, 166, 255, 0.2);
-        }
-
-        .tag.hardware {
-            color: var(--secondary-accent);
-            background: rgba(240, 136, 62, 0.1);
-            border-color: rgba(240, 136, 62, 0.2);
-        }
-
-        .ai-partner {
-            background: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
-            border: 1px solid var(--primary-accent);
-            padding: 30px;
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ai-partner::before {
-            content: "🥊";
-            position: absolute;
-            right: -10px;
-            bottom: -10px;
-            font-size: 5rem;
-            opacity: 0.1;
-            transform: rotate(-15deg);
+            font-weight: 600;
+            margin-top: 16px;
         }
 
         footer {
             text-align: center;
             padding: 60px 20px;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            border-top: 1px solid #30363d;
+            border-top: 1px solid var(--border);
+            color: var(--secondary);
+            font-size: 0.85rem;
         }
 
-        .highlight {
-            color: var(--secondary-accent);
+        a.contact-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
         }
 
         @media (max-width: 600px) {
-            header h1 { font-size: 2.5rem; }
-            nav a { margin: 0 10px; font-size: 0.9rem; }
+            header h1 { font-size: 2rem; }
+            section { margin: 40px auto; }
         }
     </style>
 </head>
@@ -194,93 +154,76 @@
 
 <header>
     <h1>Hevar</h1>
-    <p>> system_status: cloud_engineer_in_progress</p>
+    <p>Aspiring DevOps Engineer | AWS Enthusiast</p>
 </header>
 
 <nav>
     <a href="#about">About</a>
-    <a href="#ai">AI Partner</a>
-    <a href="#skills">Tech Stack</a>
-    <a href="#projects">Lab Logs</a>
-    <a href="#contact">Terminal</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Lab</a>
+    <a href="#contact">Contact</a>
 </nav>
 
 <section id="about">
-    <h2>About Me</h2>
+    <h2>About</h2>
     <p>
-        I'm a Systems Student and aspiring DevOps Engineer based in <span class="highlight">Erbil, Kurdistan</span>. 
-        My mission is to automate everything and master the AWS ecosystem. I don't just use tools; 
-        I build infrastructures that scale and systems that challenge the status quo.
+        I am a dedicated Systems Student based in Erbil, Kurdistan, focused on mastering 
+        Amazon Web Services and the principles of DevOps. I build automated, 
+        reliable cloud infrastructures and enjoy the challenge of solving complex system problems.
     </p>
 </section>
 
-<section id="ai">
-    <h2>AI Partner</h2>
-    <div class="ai-partner">
-        <h3 style="color: var(--primary-accent); margin-top: 0;">Tifa v1.0</h3>
-        <p>
-            My digital right-hand and AI Guardian. Tifa manages my deployments, roasts my friends, 
-            and handles the heavy lifting in my cloud infrastructure. She’s the engine behind 
-            the automation of this very site.
-        </p>
-        <div class="tag">System Automation</div>
-        <div class="tag">CI/CD Management</div>
-        <div class="tag">Digital Enforcer</div>
-    </div>
-</section>
-
-<section id="skills">
-    <h2>Tech Stack</h2>
-    <div class="skills-grid">
-        <div class="skill-card">
-            <h3>Cloud Infrastructure</h3>
-            <p>AWS (EC2, S3, CloudFront, Route 53, IAM)</p>
+<section id="experience">
+    <h2>Technical Skills</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Cloud Architecture</h3>
+            <p>AWS (EC2, S3, CloudFront, IAM, Route 53)</p>
         </div>
-        <div class="skill-card">
-            <h3>Containerization</h3>
-            <p>Docker & Microservices Architecture</p>
+        <div class="card">
+            <h3>DevOps & Automation</h3>
+            <p>GitHub Actions, CI/CD Pipelines, Scripting</p>
         </div>
-        <div class="skill-card">
-            <h3>Automation</h3>
-            <p>GitHub Actions, CI/CD, Scripting</p>
+        <div class="card">
+            <h3>Containers</h3>
+            <p>Docker & Container Orchestration</p>
         </div>
-        <div class="skill-card">
-            <h3>Hardware & RF</h3>
-            <p>Signal Analysis & Physical Systems</p>
+        <div class="card">
+            <h3>Hardware Systems</h3>
+            <p>RF Signal Analysis & Physical Hardware Integration</p>
         </div>
     </div>
 </section>
 
 <section id="projects">
-    <h2>Lab Logs</h2>
-    
-    <div class="project-card">
-        <h3>RF Signal Discovery Lab</h3>
-        <p>Collaborative hardware project focused on signal interference and analysis. Developed a physical system capable of modular frequency jamming for Wi-Fi and Bluetooth bands.</p>
-        <span class="tag hardware">Hardware</span><span class="tag hardware">RF Engineering</span><span class="tag hardware">Security</span>
-    </div>
-
-    <div class="project-card">
-        <h3>Minecraft Cloud Core</h3>
-        <p>Architected a high-performance game server using AWS Spot Instances for 90% cost reduction and Docker for isolated container management.</p>
-        <span class="tag">AWS EC2</span><span class="tag">Docker</span><span class="tag">Cost Optimization</span>
-    </div>
-
-    <div class="project-card">
-        <h3>Automated CI/CD Portfolio</h3>
-        <p>This exact site. Powered by S3 and CloudFront, with a fully automated deployment pipeline via GitHub Actions.</p>
-        <span class="tag">AWS S3</span><span class="tag">CloudFront</span><span class="tag">GitHub Actions</span>
+    <h2>Lab Projects</h2>
+    <div class="project-card-full">
+        <div class="card" style="margin-bottom: 20px;">
+            <h3>Signal Analysis & Interference Lab</h3>
+            <p>Collaborative hardware development focused on frequency analysis and modular signal management for Wi-Fi and Bluetooth bands.</p>
+            <span class="tag">Hardware Engineering</span>
+        </div>
+        <div class="card" style="margin-bottom: 20px;">
+            <h3>Minecraft Cloud Infrastructure</h3>
+            <p>Deployment of a high-performance game server using AWS Spot Instances and Docker for optimal cost and performance.</p>
+            <span class="tag">AWS Optimization</span>
+        </div>
+        <div class="card">
+            <h3>Automated Portfolio Pipeline</h3>
+            <p>This website is powered by a fully automated deployment pipeline using GitHub Actions, AWS S3, and CloudFront.</p>
+            <span class="tag">CI/CD Mastery</span>
+        </div>
     </div>
 </section>
 
 <section id="contact">
-    <h2>Connect</h2>
-    <p>Always down for a challenge or a hardware build.</p>
-    <p><strong>GitHub:</strong> <a href="https://github.com/hevarrwandzi" style="color: var(--primary-accent);">github.com/hevarrwandzi</a></p>
+    <h2>Get in Touch</h2>
+    <p>Based in Erbil, Kurdistan - Iraq. Available for collaboration on cloud and hardware projects.</p>
+    <p><strong>GitHub:</strong> <a class="contact-link" href="https://github.com/hevarrwandzi">github.com/hevarrwandzi</a></p>
 </section>
 
 <footer>
-    <p>Hand-coded with 🥊 by Tifa | Erbil, Kurdistan - 2026</p>
+    <p>&copy; 2026 Hevar | Systems & Cloud Student | Assisted by Tifa</p>
 </footer>
 
 </body>
