@@ -56,6 +56,18 @@
             margin-top: 10px;
         }
 
+        .status-badge {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            border: 1px solid var(--border);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: var(--bg);
+            font-weight: 600;
+        }
+
         nav {
             padding: 15px 20px;
             text-align: center;
@@ -83,7 +95,6 @@
             color: var(--primary);
         }
 
-        /* Theme Toggle Button */
         #theme-toggle {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -169,6 +180,15 @@
             margin-top: 16px;
         }
 
+        .ai-partner {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+            border: 1px solid var(--primary);
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
         footer {
             text-align: center;
             padding: 60px 20px;
@@ -195,11 +215,15 @@
 <header>
     <h1>Hevar</h1>
     <p>Aspiring DevOps Engineer | AWS Enthusiast</p>
+    <div class="status-badge">
+        <span style="color: #22c55e;">●</span> AWS Region: eu-north-1 (Stockholm)
+    </div>
 </header>
 
 <nav>
     <a href="#about">About</a>
-    <a href="#experience">Experience</a>
+    <a href="#ai">AI Partner</a>
+    <a href="#experience">Stack</a>
     <a href="#projects">Lab</a>
     <a href="#contact">Contact</a>
     <button id="theme-toggle">
@@ -217,8 +241,22 @@
     </p>
 </section>
 
+<section id="ai">
+    <h2>AI Partner</h2>
+    <div class="ai-partner">
+        <h3 style="color: var(--primary); margin-top: 0;">Tifa v1.0</h3>
+        <p>
+            My digital right-hand and AI Guardian. Tifa manages my deployments, 
+            handles the heavy lifting in my cloud infrastructure, and ensures 
+            this site stays updated automatically via CI/CD.
+        </p>
+        <div class="tag">Infrastructure Automation</div>
+        <div class="tag">CI/CD Management</div>
+    </div>
+</section>
+
 <section id="experience">
-    <h2>Technical Skills</h2>
+    <h2>Technical Arsenal</h2>
     <div class="grid">
         <div class="card">
             <h3>Cloud Architecture</h3>
@@ -226,7 +264,7 @@
         </div>
         <div class="card">
             <h3>DevOps & Automation</h3>
-            <p>GitHub Actions, CI/CD Pipelines, Scripting</p>
+            <p>GitHub Actions, CI/CD Pipelines, Terraform (IaC)</p>
         </div>
         <div class="card">
             <h3>Containers</h3>
@@ -234,29 +272,27 @@
         </div>
         <div class="card">
             <h3>Hardware Systems</h3>
-            <p>RF Signal Analysis & Physical Hardware Integration</p>
+            <p>RF Signal Analysis & Physical Systems</p>
         </div>
     </div>
 </section>
 
 <section id="projects">
     <h2>Lab Projects</h2>
-    <div class="project-card-full">
-        <div class="card" style="margin-bottom: 20px;">
-            <h3>Signal Analysis & Interference Lab</h3>
-            <p>Collaborative hardware development focused on frequency analysis and modular signal management for Wi-Fi and Bluetooth bands.</p>
-            <span class="tag">Hardware Engineering</span>
-        </div>
-        <div class="card" style="margin-bottom: 20px;">
-            <h3>Minecraft Cloud Infrastructure</h3>
-            <p>Deployment of a high-performance game server using AWS Spot Instances and Docker for optimal cost and performance.</p>
-            <span class="tag">AWS Optimization</span>
-        </div>
-        <div class="card">
-            <h3>Automated Portfolio Pipeline</h3>
-            <p>This website is powered by a fully automated deployment pipeline using GitHub Actions, AWS S3, and CloudFront.</p>
-            <span class="tag">CI/CD Mastery</span>
-        </div>
+    <div class="card" style="margin-bottom: 20px;">
+        <h3>Signal Analysis & Interference Lab</h3>
+        <p>Collaborative hardware development focused on frequency analysis and modular signal management for Wi-Fi and Bluetooth bands.</p>
+        <span class="tag">Hardware Engineering</span>
+    </div>
+    <div class="card" style="margin-bottom: 20px;">
+        <h3>Minecraft Cloud Infrastructure</h3>
+        <p>Deployment of a high-performance game server using AWS Spot Instances and Docker for optimal cost and performance.</p>
+        <span class="tag">AWS Optimization</span>
+    </div>
+    <div class="card">
+        <h3>Automated Portfolio Pipeline</h3>
+        <p>This website is powered by a fully automated deployment pipeline using GitHub Actions, AWS S3, and CloudFront.</p>
+        <span class="tag">CI/CD Mastery</span>
     </div>
 </section>
 
@@ -268,6 +304,7 @@
 
 <footer>
     <p>&copy; 2026 Hevar | Systems & Cloud Student | Assisted by Tifa</p>
+    <p id="last-updated" style="font-size: 0.7rem; opacity: 0.6; margin-top: 10px;"></p>
 </footer>
 
 <script>
@@ -276,7 +313,6 @@
     const themeText = document.getElementById('theme-text');
     const html = document.documentElement;
 
-    // Check for saved theme
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
 
@@ -289,7 +325,6 @@
     function setTheme(theme) {
         html.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
-        
         if (theme === 'dark') {
             themeIcon.textContent = '☀️';
             themeText.textContent = 'Light Mode';
@@ -298,6 +333,8 @@
             themeText.textContent = 'Dark Mode';
         }
     }
+
+    document.getElementById('last-updated').textContent = 'Last Automated Deployment: ' + new Date().toLocaleString();
 </script>
 
 </body>
