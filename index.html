@@ -189,6 +189,12 @@
             overflow: hidden;
         }
 
+        .visitor-count {
+            margin-top: 10px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
         footer {
             text-align: center;
             padding: 60px 20px;
@@ -217,6 +223,9 @@
     <p>Aspiring DevOps Engineer | AWS Enthusiast</p>
     <div class="status-badge">
         <span style="color: #22c55e;">●</span> AWS Region: eu-north-1 (Stockholm)
+    </div>
+    <div class="visitor-count">
+        Visitors: <span id="count">...</span>
     </div>
 </header>
 
@@ -272,11 +281,7 @@
         </div>
         <div class="card">
             <h3>Hardware Systems</h3>
-            <p>RF Signal Analysis & Physical Systems Integration</p>
-        </div>
-        <div class="card">
-            <h3>Networking & DNS</h3>
-            <p>CCNA-level Network Design, Routing, & DNS Management</p>
+            <p>RF Signal Analysis & Physical Systems</p>
         </div>
     </div>
 </section>
@@ -339,6 +344,19 @@
     }
 
     document.getElementById('last-updated').textContent = 'Last Automated Deployment: ' + new Date().toLocaleString();
+
+    // Visitor Counter Logic
+    async function updateCounter() {
+        try {
+            const response = await fetch('https://3xj7yw4m6oijiafj6lgjfe5opi0dswvz.lambda-url.eu-north-1.on.aws/');
+            const data = await response.json();
+            document.getElementById('count').textContent = data.count;
+        } catch (err) {
+            console.error('Failed to load visitor count:', err);
+            document.getElementById('count').textContent = 'Error';
+        }
+    }
+    updateCounter();
 </script>
 
 </body>
