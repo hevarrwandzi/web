@@ -281,7 +281,7 @@
         </div>
         <div class="card">
             <h3>Hardware Systems</h3>
-            <p>RF Signal Analysis & Physical Systems</p>
+            <p>RF Signal Analysis & Physical Systems Integration</p>
         </div>
     </div>
 </section>
@@ -348,7 +348,8 @@
     // Visitor Counter Logic
     async function updateCounter() {
         try {
-            const response = await fetch('https://3xj7yw4m6oijiafj6lgjfe5opi0dswvz.lambda-url.eu-north-1.on.aws/');
+            // Updated to the new Lambda URL 🥊🚀
+            const response = await fetch('https://df6325w5s7gisesv3xp2bqhdzu0bhwjg.lambda-url.eu-north-1.on.aws/');
             const data = await response.json();
             document.getElementById('count').textContent = data.count;
         } catch (err) {
