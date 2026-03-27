@@ -1,6 +1,6 @@
 # Hevar's Cloud Architecture Portfolio 🚀🏗️🥊
 
-Professional infrastructure-as-code (IaC) deployment of a high-availability, secure, and automated personal portfolio. This project serves as a technical proof-of-concept for modern DevOps workflows on Amazon Web Services (AWS).
+A cloud portfolio and DevOps lab for Hevar, built to demonstrate AWS fundamentals, infrastructure as code, and automated deployment workflows.
 
 ---
 
@@ -12,7 +12,7 @@ Professional infrastructure-as-code (IaC) deployment of a high-availability, sec
 
 ## 🏗️ The Architecture
 
-This project implements a serverless, global-scale architecture designed for low latency, maximum security, and zero-touch automation.
+This project shows a practical, production-style AWS setup focused on security, automation, and maintainability.
 
 ### 1. Frontend & Delivery 🌐
 *   **Storage:** Amazon S3 (configured for static website hosting).
@@ -31,10 +31,7 @@ This project implements a serverless, global-scale architecture designed for low
 
 ### 4. CI/CD Pipeline ⚙️🚀
 *   **Tool:** GitHub Actions.
-*   **Workflow:** Every `git push` to the `main` branch triggers an automated workflow that:
-    1. Authenticates with AWS via secure secrets.
-    2. Syncs updated frontend assets to S3.
-    3. Invalidates the CloudFront cache to push changes live globally in seconds.
+*   **Workflow:** Every push to `main` triggers deployment steps that update the frontend in S3 and refresh the CloudFront cache.
 
 ---
 
@@ -61,6 +58,6 @@ This project implements a serverless, global-scale architecture designed for low
 ---
 
 ## 🥊 Developed with Attitude
-This project is continuously maintained and monitored by **Tifa v1.0**, a custom AI digital enforcer and DevOps partner. 
+This project is maintained with automation support from **Tifa**, Hevar's AI assistant.
 
-*“I don't just use tools; I build infrastructures that scale.”* — **Hevar**
+*“I don't just use tools; I build infrastructures that work.”* — **Hevar**
