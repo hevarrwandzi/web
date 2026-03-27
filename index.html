@@ -29,7 +29,7 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            scroll-behavior: auto;
         }
 
         body {
@@ -327,12 +327,24 @@
 
 <script>
     const toggleBtn = document.getElementById('theme-toggle');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
     const themeIcon = document.getElementById('theme-icon');
     const themeText = document.getElementById('theme-text');
     const html = document.documentElement;
 
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
+
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const target = document.querySelector(link.getAttribute('href'));
+            if (!target) return;
+            const top = target.getBoundingClientRect().top + window.scrollY - 90;
+            window.scrollTo({ top, behavior: 'smooth' });
+        });
+    });
 
     toggleBtn.addEventListener('click', () => {
         const currentTheme = html.getAttribute('data-theme');
