@@ -274,6 +274,9 @@
         }
         .project h3 { margin: 0 0 8px; font-size: 22px; letter-spacing: -0.04em; }
         .project p { margin: 0; color: var(--muted); }
+        .project-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+        .project-link { color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; }
+        .project-link:hover { text-decoration: underline; }
         .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
         .tag {
             padding: 6px 10px;
@@ -462,10 +465,14 @@
                 </article>
                 <article class="project">
                     <div>
-                        <h3>Client website deployment work</h3>
-                        <p>Domain, CDN, static-site deployment, and CI/CD work for client projects, with focus on maintainability and low operational cost.</p>
+                        <h3>Dr. Dilshad ECB website</h3>
+                        <p>Client static website delivered with a custom domain, CloudFront CDN, locked S3 origin, and GitHub Actions deployment pipeline.</p>
+                        <div class="project-links">
+                            <a class="project-link" href="https://www.drdilshadecb.com/" target="_blank" rel="noreferrer">Live site ↗</a>
+                            <a class="project-link" href="https://github.com/hevarrwandzi/hama-engineering" target="_blank" rel="noreferrer">GitHub repo ↗</a>
+                        </div>
                     </div>
-                    <div class="tags"><span class="tag">Route 53</span><span class="tag">DNS</span><span class="tag">CI/CD</span></div>
+                    <div class="tags"><span class="tag">Client Work</span><span class="tag">CloudFront</span><span class="tag">CI/CD</span></div>
                 </article>
                 <article class="project">
                     <div>

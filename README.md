@@ -11,6 +11,7 @@ A professional static portfolio demonstrating AWS delivery, CI/CD, infrastructur
 - **Domain:** Route 53 / CloudFront custom domain for `hevar.cloud`
 - **CI/CD:** GitHub Actions syncs the repository to S3 and invalidates CloudFront on every push to `main`
 - **Serverless backend:** API Gateway + Lambda + DynamoDB visitor counter
+- **Client deployment proof:** Dr. Dilshad ECB site at `https://www.drdilshadecb.com/` with source at `https://github.com/hevarrwandzi/hama-engineering`
 - **IaC practice:** Terraform files for cloud infrastructure learning and repeatable setup
 
 ## Project structure
