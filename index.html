@@ -565,8 +565,8 @@
         const themeIcon = themeToggle.querySelector('.theme-icon');
         const themeText = themeToggle.querySelector('.theme-text');
         const savedTheme = localStorage.getItem('theme');
-        const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        setTheme(savedTheme || preferredTheme);
+        // New visitors should always land in light mode; keep dark mode only if they choose it.
+        setTheme(savedTheme || 'light');
 
         themeToggle.addEventListener('click', () => {
             const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
