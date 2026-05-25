@@ -201,6 +201,20 @@
             line-height: 1.65;
         }
         .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+        .hero-meta span {
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: var(--card-bg);
+            box-shadow: var(--ring);
+        }
 
         .terminal-card {
             background: var(--terminal-bg);
@@ -295,6 +309,46 @@
         }
         .card h3 { margin: 0 0 10px; font-size: 22px; line-height: 1.15; letter-spacing: -0.04em; }
         .card p { margin: 0; color: var(--muted); font-size: 15px; }
+        .service-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .service-box {
+            padding: 24px;
+            border-radius: 16px;
+            background: var(--card-bg);
+            box-shadow: var(--card);
+        }
+        .service-box h3 { margin: 0 0 14px; font-size: 24px; letter-spacing: -0.045em; }
+        .service-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+        .service-list li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            color: var(--muted);
+            font-size: 15px;
+        }
+        .service-list li::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: 700;
+            flex: 0 0 auto;
+        }
+        .contact-strip {
+            margin-top: 16px;
+            padding: 18px;
+            border-radius: 16px;
+            background: var(--soft);
+            box-shadow: var(--ring);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .contact-strip strong { letter-spacing: -0.03em; }
+        .contact-strip span { color: var(--muted); font-size: 14px; }
 
         .pipeline {
             display: grid;
@@ -352,7 +406,11 @@
             box-shadow: rgba(0,0,0,.18) 0 30px 80px;
         }
         .contact h2 { color: var(--contact-text); }
+        .contact .kicker { color: var(--contact-muted); }
         .contact p { color: var(--contact-muted); margin: 14px 0 0; font-size: 17px; }
+        .contact-details { margin-top: 18px; display: grid; gap: 8px; color: var(--contact-muted); font-size: 15px; }
+        .contact-details a { color: var(--contact-text); text-decoration: none; font-weight: 600; }
+        .contact-details a:hover { text-decoration: underline; }
         .contact-actions { display: grid; gap: 10px; }
         .contact .button.secondary { background: var(--contact-text); color: var(--contact-bg); }
         .contact .button.primary { background: transparent; color: var(--contact-text); box-shadow: color-mix(in srgb, var(--contact-text) 18%, transparent) 0 0 0 1px; }
@@ -371,7 +429,7 @@
         @media (max-width: 860px) {
             .hero, .section-head, .contact { grid-template-columns: 1fr; }
             .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .grid, .pipeline { grid-template-columns: 1fr; }
+            .grid, .pipeline, .service-panel { grid-template-columns: 1fr; }
             .project { grid-template-columns: 1fr; }
             .tags { justify-content: flex-start; }
             .nav-links { display: none; }
@@ -394,6 +452,7 @@
             </a>
             <div class="nav-links">
                 <a href="#work">Work</a>
+                <a href="#services">Services</a>
                 <a href="#systems">Systems</a>
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
@@ -414,9 +473,14 @@
                     I am Hevar — a CS student at Gasha Institute and freelance IT / web / DevOps builder in Erbil. I design, deploy, and maintain real infrastructure: static sites, CI/CD pipelines, AWS delivery, automation, and hands-on systems labs.
                 </p>
                 <div class="hero-actions">
-                    <a class="button primary" href="#contact">Contact me</a>
+                    <a class="button primary" href="mailto:hevarrwandzi@gmail.com">Email me</a>
+                    <a class="button secondary" href="https://wa.me/9647503531930?text=Hi%20Hevar%2C%20I%20saw%20your%20portfolio%20and%20need%20help%20with%20a%20technical%20project." target="_blank" rel="noreferrer">WhatsApp</a>
                     <a class="button secondary" href="#projects">View projects</a>
-                    <a class="button secondary" href="https://github.com/hevarrwandzi" target="_blank" rel="noreferrer">GitHub profile</a>
+                </div>
+                <div class="hero-meta" aria-label="Trust and contact highlights">
+                    <span>Erbil, Kurdistan</span>
+                    <span>Kurdish / Arabic / English</span>
+                    <span>Freelance IT + AWS delivery</span>
                 </div>
             </div>
             <aside class="terminal-card" aria-label="Deployment terminal summary">
@@ -468,6 +532,41 @@
             </div>
         </section>
 
+        <section id="services">
+            <div class="section-head">
+                <div>
+                    <p class="kicker mono">Services</p>
+                    <h2>Simple offers clients can understand.</h2>
+                </div>
+                <p class="section-copy">Most people do not need buzzwords. They need a website online, a domain working, deployments that do not break, and someone technical who can explain the fix clearly.</p>
+            </div>
+            <div class="service-panel">
+                <article class="service-box">
+                    <h3>Website + domain setup</h3>
+                    <ul class="service-list">
+                        <li>Business websites, portfolio pages, and landing pages.</li>
+                        <li>Domain, DNS, HTTPS, CloudFront, and S3 hosting setup.</li>
+                        <li>Clean GitHub Actions deployment so updates are repeatable.</li>
+                    </ul>
+                </article>
+                <article class="service-box">
+                    <h3>Technical fixes + cloud cleanup</h3>
+                    <ul class="service-list">
+                        <li>Website errors, broken DNS, SSL issues, and deployment problems.</li>
+                        <li>AWS basics: IAM, S3, CloudFront, Lambda, API Gateway, DynamoDB.</li>
+                        <li>Documentation and handoff notes so the system is understandable.</li>
+                    </ul>
+                </article>
+            </div>
+            <div class="contact-strip">
+                <div>
+                    <strong>Need something fixed or deployed?</strong><br>
+                    <span>Email or WhatsApp me with the problem, domain, and goal.</span>
+                </div>
+                <a class="button primary" href="#contact">Start here</a>
+            </div>
+        </section>
+
         <section id="systems">
             <div class="section-head">
                 <div>
@@ -507,21 +606,21 @@
                 <article class="project">
                     <div>
                         <h3>Production portfolio on AWS</h3>
-                        <p>This site runs through S3 and CloudFront with a GitHub Actions deployment pipeline and CloudFront invalidation on every push.</p>
+                        <p>This site runs through S3 and CloudFront with automated deploys, cache invalidation, a serverless counter, and a clean light/dark interface.</p>
                     </div>
                     <div class="tags"><span class="tag">S3</span><span class="tag">CloudFront</span><span class="tag">GitHub Actions</span></div>
                 </article>
                 <article class="project">
                     <div>
                         <h3>Serverless visitor counter</h3>
-                        <p>A small dynamic backend using API Gateway, Lambda, and DynamoDB to track visits without running a traditional server.</p>
+                        <p>A lightweight API Gateway + Lambda + DynamoDB backend that tracks visits without a traditional server or monthly VPS maintenance.</p>
                     </div>
                     <div class="tags"><span class="tag">Lambda</span><span class="tag">DynamoDB</span><span class="tag">API Gateway</span></div>
                 </article>
                 <article class="project">
                     <div>
                         <h3>Dr. Dilshad ECB website</h3>
-                        <p>Client static website delivered with a custom domain, CloudFront CDN, locked S3 origin, and GitHub Actions deployment pipeline.</p>
+                        <p>Client static website delivered with custom domain, HTTPS, CloudFront CDN, locked S3 origin, and GitHub Actions deployment pipeline.</p>
                         <div class="project-links">
                             <a class="project-link" href="https://www.drdilshadecb.com/" target="_blank" rel="noreferrer">Live site ↗</a>
                             <a class="project-link" href="https://github.com/hevarrwandzi/hama-engineering" target="_blank" rel="noreferrer">GitHub repo ↗</a>
@@ -542,13 +641,18 @@
         <section id="contact">
             <div class="contact">
                 <div>
-                    <p class="kicker mono" style="color: rgba(255,255,255,.54);">Contact</p>
+                    <p class="kicker mono">Contact</p>
                     <h2>Need a site, deployment, or technical fix?</h2>
                     <p>Based in Erbil, Kurdistan. Open to freelance IT, web, and cloud infrastructure work.</p>
+                    <div class="contact-details">
+                        <div>Email: <a href="mailto:hevarrwandzi@gmail.com">hevarrwandzi@gmail.com</a></div>
+                        <div>Phone / WhatsApp: <a href="tel:+9647503531930">0750 353 1930</a></div>
+                    </div>
                 </div>
                 <div class="contact-actions">
-                    <a class="button secondary" href="https://github.com/hevarrwandzi" target="_blank" rel="noreferrer">github.com/hevarrwandzi</a>
-                    <a class="button primary" href="https://hevar.cloud">hevar.cloud</a>
+                    <a class="button secondary" href="mailto:hevarrwandzi@gmail.com">Email Hevar</a>
+                    <a class="button primary" href="https://wa.me/9647503531930?text=Hi%20Hevar%2C%20I%20saw%20your%20portfolio%20and%20need%20help%20with%20a%20technical%20project." target="_blank" rel="noreferrer">Message on WhatsApp</a>
+                    <a class="button primary" href="https://github.com/hevarrwandzi" target="_blank" rel="noreferrer">GitHub profile</a>
                 </div>
             </div>
         </section>
