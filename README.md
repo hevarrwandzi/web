@@ -1,63 +1,39 @@
-# Hevar's Cloud Architecture Portfolio 🚀🏗️🥊
+# Hevar Kochar — Cloud & DevOps Portfolio
 
-A cloud portfolio and DevOps lab for Hevar, built to demonstrate AWS fundamentals, infrastructure as code, and automated deployment workflows.
+Live portfolio: **https://hevar.cloud**
 
----
+A professional static portfolio demonstrating AWS delivery, CI/CD, infrastructure practice, and serverless fundamentals.
 
-## 🌐 Live Project
-**URL:** [https://hevar.cloud](https://hevar.cloud)  
-**Region:** `eu-north-1` (Stockholm)
+## What this site demonstrates
 
----
+- **Static delivery:** Amazon S3 origin served through Amazon CloudFront
+- **Security:** S3 public access blocked; CloudFront Origin Access Control protects the bucket
+- **Domain:** Route 53 / CloudFront custom domain for `hevar.cloud`
+- **CI/CD:** GitHub Actions syncs the repository to S3 and invalidates CloudFront on every push to `main`
+- **Serverless backend:** API Gateway + Lambda + DynamoDB visitor counter
+- **IaC practice:** Terraform files for cloud infrastructure learning and repeatable setup
 
-## 🏗️ The Architecture
+## Project structure
 
-This project shows a practical, production-style AWS setup focused on security, automation, and maintainability.
-
-### 1. Frontend & Delivery 🌐
-*   **Storage:** Amazon S3 (configured for static website hosting).
-*   **CDN:** Amazon CloudFront (Global Content Delivery Network) provides HTTPS termination and edge caching.
-*   **Security:** CloudFront **Origin Access Control (OAC)** locks down the S3 bucket—ensuring the files are *only* accessible through the CDN.
-*   **SSL/TLS:** AWS Certificate Manager (ACM) manages the domain's security certificates.
-
-### 2. Serverless Backend 🧠⚡
-*   **Compute:** AWS Lambda (Python 3.12) handles dynamic visitor tracking.
-*   **Database:** Amazon DynamoDB (NoSQL) stores persistent visitor metrics using **On-Demand Capacity** for optimal cost efficiency.
-*   **API:** AWS API Gateway (REST) provides a secure, public-facing endpoint for the frontend to communicate with the backend.
-
-### 3. Infrastructure as Code (IaC) 🏗️🛠️
-*   **Tool:** HashiCorp **Terraform**.
-*   **Benefit:** The entire AWS environment (S3, CloudFront, Route 53, Lambda, DynamoDB) is defined in code (`main.tf`, `backend.tf`). This allows for reproducible, version-controlled deployments.
-
-### 4. CI/CD Pipeline ⚙️🚀
-*   **Tool:** GitHub Actions.
-*   **Workflow:** Every push to `main` triggers deployment steps that update the frontend in S3 and refresh the CloudFront cache.
-
----
-
-## 🛠️ Technical Arsenal
-*   **Cloud:** AWS (Certified Cloud Practitioner level + SAA in progress)
-*   **DevOps:** CI/CD Pipelines, GitHub Actions, Terraform (IaC)
-*   **Containers:** Docker
-*   **Systems:** Linux Administration, Shell Scripting, Networking (CCNA study)
-*   **Hardware:** RF Signal Analysis, Physical Systems Integration
-
----
-
-## 📂 Project Structure
 ```text
 .
-├── .github/workflows/deploy.yml   # CI/CD Pipeline configuration
+├── .github/workflows/deploy.yml   # GitHub Actions deployment workflow
 ├── terraform/
-│   ├── main.tf                    # Infrastructure definition (S3, CF, DNS)
-│   └── backend.tf                 # Serverless resources (Lambda, DynamoDB, API)
-├── index.html                     # Responsive Frontend
-└── image.webp                     # Optimized visual assets
+│   ├── main.tf                    # Static-site infrastructure practice
+│   └── monitoring.tf              # Monitoring / operational practice
+├── index.html                     # Portfolio frontend
+├── image.webp                     # Optimized visual asset
+└── README.md
 ```
 
----
+## Deployment flow
 
-## 🥊 Developed with Attitude
-This project is maintained with automation support from **Tifa**, Hevar's AI assistant.
+1. Push to `main`
+2. GitHub Actions configures AWS credentials from repository secrets
+3. Workflow syncs repository files to the S3 bucket
+4. Workflow creates a CloudFront invalidation
+5. Production is verified at `https://hevar.cloud`
 
-*“I don't just use tools; I build infrastructures that work.”* — **Hevar**
+## Maintainer
+
+Hevar Kochar — CS student at Gasha Institute, freelance IT/web/DevOps builder based in Erbil, Kurdistan.
