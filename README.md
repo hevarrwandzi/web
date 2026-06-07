@@ -43,3 +43,5 @@ Hevar Kochar — CS student at Gasha Institute, freelance IT/web/DevOps builder 
 ## Added portfolio proof
 
 - **RS Collection production shop:** Docker Compose deployment on AWS EC2 with Caddy automatic HTTPS, PostgreSQL, health checks, and GitHub Actions CI. Live: `https://rscollection.online/`; source: `https://github.com/hevarrwandzi/rscollection`
+
+- **Website Developer CV:** downloadable targeted CV at `/cv/hevar-kochar-website-developer-cv.pdf`, tailored for Website Developer / Software Engineer roles.
