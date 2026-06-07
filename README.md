@@ -38,3 +38,8 @@ A professional static portfolio demonstrating AWS delivery, CI/CD, infrastructur
 ## Maintainer
 
 Hevar Kochar — CS student at Gasha Institute, freelance IT/web/DevOps builder based in Erbil, Kurdistan.
+
+
+## Added portfolio proof
+
+- **RS Collection production shop:** Docker Compose deployment on AWS EC2 with Caddy automatic HTTPS, PostgreSQL, health checks, and GitHub Actions CI. Live: `https://rscollection.online/`; source: `https://github.com/hevarrwandzi/rscollection`
