@@ -382,6 +382,18 @@
         .project-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
         .project-link { color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; }
         .project-link:hover { text-decoration: underline; }
+        .project-proof {
+            margin: 16px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px 14px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+        .project-proof li { display: flex; gap: 8px; align-items: flex-start; }
+        .project-proof li::before { content: "✓"; color: var(--green); font-weight: 700; flex: 0 0 auto; }
         .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
         .tag {
             padding: 6px 10px;
@@ -431,6 +443,7 @@
             .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .grid, .pipeline, .service-panel { grid-template-columns: 1fr; }
             .project { grid-template-columns: 1fr; }
+            .project-proof { grid-template-columns: 1fr; }
             .tags { justify-content: flex-start; }
             .nav-links { display: none; }
             footer { flex-direction: column; }
@@ -621,14 +634,20 @@
                 </article>
                 <article class="project">
                     <div>
-                        <h3>RS Collection — ecommerce storefront + admin dashboard</h3>
-                        <p>Production online shop built with Node.js, Express, PostgreSQL, Docker Compose, Caddy HTTPS, and AWS EC2. The project now includes a customer storefront, admin login, product and image management, inventory/stock control, editable homepage content, customer order/request tracking, and WhatsApp/Instagram ordering.</p>
+                        <h3>RSCollection — production ecommerce system</h3>
+                        <p>A full-stack ecommerce project built to demonstrate both customer-facing website delivery and real shop-owner operations. It combines a polished storefront with a protected admin workspace for managing products, content, inventory, and customer order requests.</p>
+                        <ul class="project-proof" aria-label="RSCollection project capabilities">
+                            <li>Responsive storefront with product catalog, stock status, and order CTAs</li>
+                            <li>Protected admin dashboard with login/session workflow</li>
+                            <li>Product, image, inventory, and homepage content management</li>
+                            <li>Order/request tracking with owner follow-up workflow</li>
+                        </ul>
                         <div class="project-links">
                             <a class="project-link" href="https://rscollection.online/" target="_blank" rel="noreferrer">Live shop ↗</a>
                             <a class="project-link" href="https://github.com/hevarrwandzi/rscollection" target="_blank" rel="noreferrer">GitHub repo ↗</a>
                         </div>
                     </div>
-                    <div class="tags"><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Admin Dashboard</span><span class="tag">Inventory</span><span class="tag">Docker</span><span class="tag">AWS EC2</span></div>
+                    <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">Admin UX</span><span class="tag">Docker</span><span class="tag">AWS EC2</span></div>
                 </article>
                 <article class="project">
                     <div>
