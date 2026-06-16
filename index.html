@@ -379,6 +379,8 @@
         }
         .project h3 { margin: 0 0 8px; font-size: 22px; letter-spacing: -0.04em; }
         .project p { margin: 0; color: var(--muted); }
+        .project.featured { grid-template-columns: 1fr; align-items: stretch; }
+        .project.featured .tags { justify-content: flex-start; margin-top: 2px; }
         .project-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
         .project-link { color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; }
         .project-link:hover { text-decoration: underline; }
@@ -632,22 +634,23 @@
                     </div>
                     <div class="tags"><span class="tag">Lambda</span><span class="tag">DynamoDB</span><span class="tag">API Gateway</span></div>
                 </article>
-                <article class="project">
+                <article class="project featured">
                     <div>
-                        <h3>RSCollection — production ecommerce system</h3>
-                        <p>A full-stack ecommerce project built to demonstrate both customer-facing website delivery and real shop-owner operations. It combines a polished storefront with a protected admin workspace for managing products, content, inventory, and customer order requests.</p>
+                        <h3>RSCollection — production ecommerce platform</h3>
+                        <p>A live ecommerce system for an accessories shop, built as a complete web application and deployed like a real production service. It combines customer shopping, shop-owner operations, containerized infrastructure, and automated CI/CD from GitHub to AWS.</p>
                         <ul class="project-proof" aria-label="RSCollection project capabilities">
-                            <li>Responsive storefront with product catalog, stock status, and order CTAs</li>
-                            <li>Protected admin dashboard with login/session workflow</li>
-                            <li>Product, image, inventory, and homepage content management</li>
-                            <li>Order/request tracking with owner follow-up workflow</li>
+                            <li>Storefront with catalog, product details, stock status, and WhatsApp/Instagram order flow</li>
+                            <li>Protected admin dashboard for products, images, inventory, homepage content, and customer requests</li>
+                            <li>Docker Compose stack with Express, PostgreSQL 17, Caddy HTTPS, healthchecks, backups, and smoke tests</li>
+                            <li>GitHub Actions CI validates syntax, audit, Compose config, Docker build, stack health, and products API</li>
+                            <li>CD deploys to AWS EC2 through GitHub OIDC + AWS SSM, rebuilds containers, and verifies public health</li>
                         </ul>
                         <div class="project-links">
                             <a class="project-link" href="https://rscollection.online/" target="_blank" rel="noreferrer">Live shop ↗</a>
                             <a class="project-link" href="https://github.com/hevarrwandzi/rscollection" target="_blank" rel="noreferrer">GitHub repo ↗</a>
                         </div>
                     </div>
-                    <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">Admin UX</span><span class="tag">Docker</span><span class="tag">AWS EC2</span></div>
+                    <div class="tags"><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Docker Compose</span><span class="tag">Caddy HTTPS</span><span class="tag">GitHub Actions CI/CD</span><span class="tag">AWS EC2 + SSM</span></div>
                 </article>
                 <article class="project">
                     <div>
