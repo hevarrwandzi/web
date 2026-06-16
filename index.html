@@ -379,8 +379,63 @@
         }
         .project h3 { margin: 0 0 8px; font-size: 22px; letter-spacing: -0.04em; }
         .project p { margin: 0; color: var(--muted); }
-        .project.featured { grid-template-columns: 1fr; align-items: stretch; }
-        .project.featured .tags { justify-content: flex-start; margin-top: 2px; }
+        .project.featured {
+            grid-template-columns: 1fr;
+            align-items: stretch;
+            padding: 0;
+            overflow: hidden;
+        }
+        .case-study {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+            gap: 0;
+        }
+        .case-main { padding: 26px; }
+        .case-side {
+            padding: 26px;
+            background:
+                linear-gradient(135deg, color-mix(in srgb, var(--blue) 10%, transparent), transparent 38%),
+                var(--soft);
+            box-shadow: color-mix(in srgb, var(--text) 9%, transparent) 1px 0 0 inset;
+        }
+        .case-label {
+            display: inline-flex;
+            width: fit-content;
+            margin-bottom: 12px;
+            padding: 5px 9px;
+            border-radius: 999px;
+            background: var(--eyebrow-bg);
+            color: var(--eyebrow-text);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .case-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+            margin: 18px 0 0;
+        }
+        .case-metric {
+            padding: 12px;
+            border-radius: 12px;
+            background: var(--card-bg);
+            box-shadow: var(--ring);
+        }
+        .case-metric strong { display: block; font-size: 18px; line-height: 1.1; letter-spacing: -0.04em; }
+        .case-metric span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
+        .pipeline-mini { display: grid; gap: 10px; margin-top: 16px; }
+        .pipeline-mini div {
+            padding: 12px;
+            border-radius: 12px;
+            background: var(--card-bg);
+            box-shadow: var(--ring);
+            color: var(--muted);
+            font-size: 13px;
+        }
+        .pipeline-mini strong { color: var(--text); }
+        .project.featured .tags { justify-content: flex-start; margin-top: 16px; }
         .project-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
         .project-link { color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; }
         .project-link:hover { text-decoration: underline; }
@@ -441,11 +496,12 @@
         }
 
         @media (max-width: 860px) {
-            .hero, .section-head, .contact { grid-template-columns: 1fr; }
+            .hero, .section-head, .contact, .case-study { grid-template-columns: 1fr; }
             .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .grid, .pipeline, .service-panel { grid-template-columns: 1fr; }
             .project { grid-template-columns: 1fr; }
-            .project-proof { grid-template-columns: 1fr; }
+            .project-proof, .case-metrics { grid-template-columns: 1fr; }
+            .case-side { box-shadow: color-mix(in srgb, var(--text) 9%, transparent) 0 -1px 0 inset; }
             .tags { justify-content: flex-start; }
             .nav-links { display: none; }
             footer { flex-direction: column; }
@@ -635,22 +691,37 @@
                     <div class="tags"><span class="tag">Lambda</span><span class="tag">DynamoDB</span><span class="tag">API Gateway</span></div>
                 </article>
                 <article class="project featured">
-                    <div>
-                        <h3>RSCollection — production ecommerce platform</h3>
-                        <p>A live ecommerce system for an accessories shop, built as a complete web application and deployed like a real production service. It combines customer shopping, shop-owner operations, containerized infrastructure, and automated CI/CD from GitHub to AWS.</p>
-                        <ul class="project-proof" aria-label="RSCollection project capabilities">
-                            <li>Storefront with catalog, product details, stock status, and WhatsApp/Instagram order flow</li>
-                            <li>Protected admin dashboard for products, images, inventory, homepage content, and customer requests</li>
-                            <li>Docker Compose stack with Express, PostgreSQL 17, Caddy HTTPS, healthchecks, backups, and smoke tests</li>
-                            <li>GitHub Actions CI validates syntax, audit, Compose config, Docker build, stack health, and products API</li>
-                            <li>CD deploys to AWS EC2 through GitHub OIDC + AWS SSM, rebuilds containers, and verifies public health</li>
-                        </ul>
-                        <div class="project-links">
-                            <a class="project-link" href="https://rscollection.online/" target="_blank" rel="noreferrer">Live shop ↗</a>
-                            <a class="project-link" href="https://github.com/hevarrwandzi/rscollection" target="_blank" rel="noreferrer">GitHub repo ↗</a>
+                    <div class="case-study">
+                        <div class="case-main">
+                            <span class="case-label mono">Featured production build</span>
+                            <h3>RSCollection — ecommerce storefront, admin system, and CI/CD delivery</h3>
+                            <p>A live ecommerce platform for an accessories shop. The project proves more than page design: it covers the buyer experience, protected shop-owner operations, database-backed workflows, containerized runtime, and an automated GitHub-to-AWS deployment path.</p>
+                            <ul class="project-proof" aria-label="RSCollection project capabilities">
+                                <li>Customer storefront with catalog, product details, stock status, and WhatsApp/Instagram order flow</li>
+                                <li>Protected admin dashboard for products, images, inventory, homepage content, and customer requests</li>
+                                <li>Express + PostgreSQL backend with order/request APIs, analytics, image upload, auth, and health endpoints</li>
+                                <li>Docker Compose production stack using Caddy HTTPS, app/db healthchecks, backups, and smoke-test scripts</li>
+                            </ul>
+                            <div class="project-links">
+                                <a class="project-link" href="https://rscollection.online/" target="_blank" rel="noreferrer">Live shop ↗</a>
+                                <a class="project-link" href="https://github.com/hevarrwandzi/rscollection" target="_blank" rel="noreferrer">GitHub repo ↗</a>
+                            </div>
+                            <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">PostgreSQL 17</span><span class="tag">Docker Compose</span><span class="tag">Caddy HTTPS</span><span class="tag">AWS EC2</span></div>
                         </div>
+                        <aside class="case-side" aria-label="RSCollection CI/CD and operations proof">
+                            <span class="case-label mono">Delivery proof</span>
+                            <div class="case-metrics">
+                                <div class="case-metric"><strong>55</strong><span>automated tests passing</span></div>
+                                <div class="case-metric"><strong>CI</strong><span>syntax, audit, build, health</span></div>
+                                <div class="case-metric"><strong>CD</strong><span>OIDC + AWS SSM deploy</span></div>
+                            </div>
+                            <div class="pipeline-mini">
+                                <div><strong>CI:</strong> GitHub Actions checks server/frontend syntax, npm audit, Compose config, Docker build, running stack health, and products API.</div>
+                                <div><strong>CD:</strong> Successful CI triggers deployment to AWS EC2 through GitHub OIDC and AWS Systems Manager.</div>
+                                <div><strong>Runtime:</strong> Caddy terminates HTTPS, Express serves API/static assets, PostgreSQL persists products, content, and order requests.</div>
+                            </div>
+                        </aside>
                     </div>
-                    <div class="tags"><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Docker Compose</span><span class="tag">Caddy HTTPS</span><span class="tag">GitHub Actions CI/CD</span><span class="tag">AWS EC2 + SSM</span></div>
                 </article>
                 <article class="project">
                     <div>
