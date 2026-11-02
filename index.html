@@ -3,120 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Hevar Kochar — Website Developer and Cloud / DevOps Engineer in Erbil, Kurdistan. Building and operating production web systems with Node.js, PostgreSQL, Docker, AWS, and automated CI/CD.">
-    <meta name="theme-color" content="#f8f9fa">
-    <title>Hevar Kochar — Web Systems, AWS &amp; CI/CD Engineering</title>
+    <meta name="description" content="Hevar Kochar — Website Developer and Software Engineer in Erbil, Kurdistan. Building and operating production web systems with Node.js, PostgreSQL, Docker, AWS, and automated CI/CD.">
+    <meta name="theme-color" content="#fcfcfc">
+    <title>Hevar Kochar — Website Developer &amp; Cloud Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600&family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
     <style>
         :root {
             color-scheme: light;
 
-            /* Primitive palette */
-            --slate-50: #f8f9fa;
-            --slate-100: #f1f3f5;
-            --slate-200: #e2e6ea;
-            --slate-300: #cfd6dd;
-            --slate-500: #5c6470;
-            --slate-600: #495057;
-            --slate-800: #1e242c;
-            --slate-900: #10141a;
-            --slate-950: #090b0e;
+            /* jakub.kr / interfaces.dev OKLCH & neutral surface system */
+            --bg-canvas: #fcfcfc;
+            --bg-tray: #f4f4f5;
+            --bg-card: #ffffff;
+            --bg-subtle: #f4f4f5;
+            --bg-hover: #ededf0;
+            --bg-active: #e4e4e7;
 
-            --cobalt-50: #ebf2ff;
-            --cobalt-100: #d6e4ff;
-            --cobalt-400: #60a5fa;
-            --cobalt-500: #2563eb;
-            --cobalt-600: #0052cc;
-            --cobalt-700: #0043a8;
+            --text-primary: #171717;
+            --text-secondary: #52525b;
+            --text-muted: #71717a;
 
-            --emerald-50: #dcfce7;
-            --emerald-400: #4ade80;
-            --emerald-600: #15803d;
+            --accent-solid: #0090ff;
+            --accent-hover: #007be0;
+            --accent-subtle: oklch(0.95 0.03 245);
+            --accent-text: #0068d6;
 
-            /* Semantic tokens */
-            --color-bg-canvas: var(--slate-50);
-            --color-bg-surface: #ffffff;
-            --color-bg-subtle: var(--slate-100);
-            --color-bg-elevated: #ffffff;
-            --color-bg-inverse: var(--slate-900);
+            --status-ok: #16a34a;
+            --status-ok-bg: #dcfce7;
 
-            --color-text-primary: var(--slate-950);
-            --color-text-secondary: var(--slate-600);
-            --color-text-muted: var(--slate-500);
-            --color-text-inverse: var(--slate-50);
+            --line-subtle: oklch(0 0 0 / 0.07);
+            --focus-ring: #0090ff;
 
-            --color-border-grid: var(--slate-200);
-            --color-border-strong: var(--slate-300);
-
-            --color-accent-solid: var(--cobalt-600);
-            --color-accent-hover: var(--cobalt-700);
-            --color-accent-subtle: var(--cobalt-50);
-            --color-accent-border: var(--cobalt-100);
-            --color-accent-text: var(--cobalt-700);
-
-            --color-status-ok: var(--emerald-600);
-            --color-status-ok-bg: var(--emerald-50);
-
-            --color-focus-ring: var(--cobalt-600);
-
-            --shadow-surface:
+            /* Exact 3-layer shadow recipes from better-ui/surfaces.md */
+            --shadow-border:
                 0px 0px 0px 1px oklch(0 0 0 / 0.06),
                 0px 1px 2px -1px oklch(0 0 0 / 0.06),
                 0px 2px 4px 0px oklch(0 0 0 / 0.04);
-            --shadow-surface-hover:
-                0px 0px 0px 1px oklch(0 0 0 / 0.10),
+            --shadow-border-hover:
+                0px 0px 0px 1px oklch(0 0 0 / 0.09),
                 0px 2px 4px -1px oklch(0 0 0 / 0.08),
                 0px 4px 8px 0px oklch(0 0 0 / 0.05);
+            --shadow-tray:
+                0px 0px 0px 1px oklch(0 0 0 / 0.05),
+                0px 1px 2px 0px oklch(0 0 0 / 0.03) inset;
 
-            /* Type scale (rem) */
-            --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-
-            --text-xs: 0.75rem;
-            --text-sm: 0.875rem;
-            --text-base: 1rem;
-            --text-lg: 1.125rem;
-            --text-xl: 1.25rem;
-            --text-2xl: 1.625rem;
-            --text-3xl: clamp(1.75rem, 3vw, 2.375rem);
-            --text-display: clamp(2.25rem, 4.4vw, 3.5rem);
-
-            --layout-max: 72rem;
-            --header-height: 4rem;
+            --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-serif: 'Libre Baskerville', Georgia, serif;
+            --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
 
         [data-theme="dark"] {
             color-scheme: dark;
 
-            --color-bg-canvas: var(--slate-950);
-            --color-bg-surface: var(--slate-900);
-            --color-bg-subtle: #151a22;
-            --color-bg-elevated: #161c24;
-            --color-bg-inverse: var(--slate-50);
+            --bg-canvas: #101010;
+            --bg-tray: #161616;
+            --bg-card: #1c1c1c;
+            --bg-subtle: #1f1f1f;
+            --bg-hover: #262626;
+            --bg-active: #2e2e2e;
 
-            --color-text-primary: var(--slate-50);
-            --color-text-secondary: #b4bcc6;
-            --color-text-muted: #8b95a2;
-            --color-text-inverse: var(--slate-950);
+            --text-primary: #f5f5f5;
+            --text-secondary: #a1a1aa;
+            --text-muted: #86868e;
 
-            --color-border-grid: #1f2630;
-            --color-border-strong: #323c4a;
+            --accent-solid: #0090ff;
+            --accent-hover: #38a8ff;
+            --accent-subtle: oklch(0.24 0.05 245);
+            --accent-text: #70b8ff;
 
-            --color-accent-solid: var(--cobalt-500);
-            --color-accent-hover: #3b82f6;
-            --color-accent-subtle: #12223d;
-            --color-accent-border: #1e3a6d;
-            --color-accent-text: #93c5fd;
+            --status-ok: #4ade80;
+            --status-ok-bg: oklch(0.24 0.05 150);
 
-            --color-status-ok: var(--emerald-400);
-            --color-status-ok-bg: #0d2818;
+            --line-subtle: oklch(1 0 0 / 0.08);
+            --focus-ring: #38a8ff;
 
-            --color-focus-ring: var(--cobalt-400);
-
-            --shadow-surface: 0px 0px 0px 1px oklch(1 0 0 / 0.08);
-            --shadow-surface-hover: 0px 0px 0px 1px oklch(1 0 0 / 0.14);
+            /* Dark mode single white ring from better-ui/surfaces.md */
+            --shadow-border: 0px 0px 0px 1px oklch(1 0 0 / 0.08);
+            --shadow-border-hover: 0px 0px 0px 1px oklch(1 0 0 / 0.14);
+            --shadow-tray: 0px 0px 0px 1px oklch(1 0 0 / 0.07);
         }
 
         *, *::before, *::after {
@@ -126,10 +92,10 @@
         html {
             font-family: var(--font-sans);
             font-size: 100%;
-            line-height: 1.55;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            scroll-padding-block-start: calc(var(--header-height) + 1.5rem);
+            scroll-padding-block-start: 5rem;
         }
 
         @media (prefers-reduced-motion: no-preference) {
@@ -140,38 +106,36 @@
 
         body {
             margin: 0;
-            background-color: var(--color-bg-canvas);
-            color: var(--color-text-primary);
-            font-size: var(--text-base);
-            line-height: 1.55;
-            overflow-x: hidden;
+            background-color: var(--bg-canvas);
+            color: var(--text-primary);
+            font-size: 1rem;
+            line-height: 1.6;
+            letter-spacing: -0.011em;
         }
 
         ::selection {
-            background-color: var(--color-accent-subtle);
-            color: var(--color-accent-text);
+            background-color: var(--accent-subtle);
+            color: var(--accent-text);
         }
 
-        /* Focus indicator (WCAG 2.2 AA 1.4.11 / 2.4.13) */
         :focus-visible {
-            outline: 2px solid var(--color-focus-ring);
+            outline: 2px solid var(--focus-ring);
             outline-offset: 2px;
         }
 
         /* Skip link */
         .skip-link {
             position: absolute;
-            inset-block-start: 0.5rem;
+            inset-block-start: 0.75rem;
             inset-inline-start: 1rem;
             z-index: 100;
-            padding-block: 0.5rem;
-            padding-inline: 1rem;
-            background-color: var(--color-accent-solid);
-            color: #ffffff;
-            font-size: var(--text-sm);
-            font-weight: 600;
+            padding: 0.5rem 0.875rem;
+            border-radius: 999px;
+            background-color: var(--text-primary);
+            color: var(--bg-canvas);
+            font-size: 0.8125rem;
+            font-weight: 500;
             text-decoration: none;
-            border-radius: 0.375rem;
             transform: translateY(-200%);
             transition: transform 150ms ease-out;
         }
@@ -179,42 +143,26 @@
             transform: translateY(0);
         }
 
-        /* Typography utilities */
         .mono {
             font-family: var(--font-mono);
+        }
+        .serif-italic {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 400;
         }
         .tabular {
             font-variant-numeric: tabular-nums;
         }
 
-        h1, h2, h3, h4 {
+        h1, h2, h3 {
             margin: 0;
-            color: var(--color-text-primary);
+            color: var(--text-primary);
             text-wrap: balance;
         }
 
-        h1 {
-            font-size: var(--text-display);
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            font-weight: 600;
-        }
-
-        h2 {
-            font-size: var(--text-3xl);
-            line-height: 1.2;
-            letter-spacing: -0.015em;
-            font-weight: 600;
-        }
-
-        h3 {
-            font-size: var(--text-xl);
-            line-height: 1.25;
-            letter-spacing: -0.01em;
-            font-weight: 600;
-        }
-
         p, li {
+            margin: 0;
             text-wrap: pretty;
             overflow-wrap: break-word;
         }
@@ -225,226 +173,180 @@
             text-decoration-thickness: from-font;
         }
 
-        /* Architectural blueprint container */
-        .sheet {
-            max-width: var(--layout-max);
+        /* Main single-column editorial container (jakub.kr proportions) */
+        .page-shell {
+            max-width: 44rem; /* 704px */
             margin-inline: auto;
-            border-inline: 1px solid var(--color-border-grid);
-            background-color: var(--color-bg-surface);
+            padding-block: 3rem 6rem;
+            padding-inline: 1.5rem;
         }
 
-        /* Top telemetry strip */
-        .telemetry-bar {
-            border-block-end: 1px solid var(--color-border-grid);
-            background-color: var(--color-bg-subtle);
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
-            color: var(--color-text-secondary);
+        @media (min-width: 40rem) {
+            .page-shell {
+                padding-block: 5rem 7rem;
+            }
         }
-        .telemetry-inner {
-            max-width: var(--layout-max);
-            margin-inline: auto;
-            padding-block: 0.5rem;
-            padding-inline: 1.5rem;
-            border-inline: 1px solid var(--color-border-grid);
+
+        /* Staggered entrance animation (better-ui/enter-exit.md) */
+        .stagger-group {
+            animation: fade-in 220ms cubic-bezier(0.2, 0, 0, 1) both;
+        }
+        @media (prefers-reduced-motion: no-preference) {
+            .stagger-group {
+                animation-name: fade-in-up;
+            }
+        }
+        .stagger-1 { animation-delay: 0ms; }
+        .stagger-2 { animation-delay: 40ms; }
+        .stagger-3 { animation-delay: 80ms; }
+        .stagger-4 { animation-delay: 120ms; }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Top bar: Identity + floating controls */
+        .top-bar {
             display: flex;
-            flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 0.75rem 1.5rem;
+            gap: 1rem;
+            margin-block-end: 2rem;
         }
-        .telemetry-group {
+
+        .identity {
             display: flex;
-            flex-wrap: wrap;
             align-items: center;
-            gap: 0.75rem 1.25rem;
+            gap: 0.875rem;
+            text-decoration: none;
         }
-        .telemetry-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-        }
-        .status-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            padding-block: 0.125rem;
-            padding-inline: 0.5rem;
-            border-radius: 0.25rem;
-            background-color: var(--color-status-ok-bg);
-            color: var(--color-status-ok);
+
+        /* Tactile double-ring avatar mark (jakub.kr tile style) */
+        .avatar-outer {
+            width: 2.75rem;
+            height: 2.75rem;
+            padding: 3px;
+            border-radius: 0.75rem; /* 12px = 9px + 3px */
+            background-color: var(--bg-tray);
             border: 1px solid transparent;
+            box-shadow: var(--shadow-border);
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5625rem; /* 9px */
+            background-color: var(--bg-card);
+            box-shadow: var(--shadow-border);
+            display: grid;
+            place-items: center;
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
             font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .identity-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .identity-name {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--text-primary);
+        }
+        .identity-role {
+            font-size: 0.875rem;
+            line-height: 1.3;
+            color: var(--text-secondary);
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4375rem;
+            height: 2.125rem;
+            padding-inline: 0.75rem;
+            border-radius: 999px;
+            background-color: var(--bg-card);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-border);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--text-secondary);
         }
         .status-dot {
             width: 0.4375rem;
             height: 0.4375rem;
             border-radius: 50%;
-            background-color: currentColor;
+            background-color: var(--status-ok);
+            box-shadow: 0 0 0 3px var(--status-ok-bg);
             flex-shrink: 0;
         }
 
-        /* Sticky Header */
-        .site-header {
-            position: sticky;
-            inset-block-start: 0;
-            z-index: 40;
-            background-color: color-mix(in srgb, var(--color-bg-surface) 90%, transparent);
-            backdrop-filter: blur(12px);
-            border-block-end: 1px solid var(--color-border-grid);
-        }
-        .nav-inner {
-            max-width: var(--layout-max);
-            margin-inline: auto;
-            min-height: var(--header-height);
-            padding-block: 0.625rem;
-            padding-inline: 1.5rem;
-            border-inline: 1px solid var(--color-border-grid);
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.75rem 1.25rem;
-        }
-        .brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.625rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: var(--text-base);
-            min-height: 2.5rem;
-        }
-        .brand-mark {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 0.375rem;
-            background-color: var(--color-bg-inverse);
-            color: var(--color-text-inverse);
-            border: 1px solid transparent;
-            display: grid;
-            place-items: center;
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
-            font-weight: 600;
-            letter-spacing: 0.02em;
-        }
-        .brand-meta {
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
-            color: var(--color-text-muted);
-            font-weight: 400;
-        }
-
-        .nav-controls {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.375rem;
-        }
-        .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.25rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .nav-links a {
-            display: inline-flex;
-            align-items: center;
-            min-height: 2.5rem;
-            padding-inline: 0.75rem;
-            border-radius: 0.375rem;
-            font-size: var(--text-sm);
-            font-weight: 500;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            transition-property: background-color, color;
-            transition-duration: 150ms;
-            transition-timing-function: ease-out;
-        }
-        @media (hover: hover) {
-            .nav-links a:hover {
-                background-color: var(--color-bg-subtle);
-                color: var(--color-text-primary);
-            }
-        }
-
-        /* Interactive Buttons */
-        .button {
+        /* Circular / Pill icon button (jakub.kr/skills top-right button) */
+        .icon-pill-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            min-height: 2.625rem;
-            padding-block: 0.5rem;
-            padding-inline: 1rem;
-            border-radius: 0.375rem;
+            gap: 0.375rem;
+            height: 2.125rem;
+            padding-inline: 0.75rem;
+            border-radius: 999px;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
             border: 1px solid transparent;
+            box-shadow: var(--shadow-border);
             font-family: var(--font-sans);
-            font-size: var(--text-sm);
+            font-size: 0.8125rem;
             font-weight: 500;
-            line-height: 1.2;
-            text-decoration: none;
-            white-space: nowrap;
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
-            transition-property: background-color, border-color, color, box-shadow;
+            transition-property: background-color, box-shadow, color;
             transition-duration: 150ms;
             transition-timing-function: ease-out;
         }
         @media (prefers-reduced-motion: no-preference) {
-            .button {
-                transition-property: background-color, border-color, color, box-shadow, scale;
+            .icon-pill-btn {
+                transition-property: background-color, box-shadow, color, scale;
             }
-            .button:not(:disabled):active {
+            .icon-pill-btn:not(:disabled):active {
                 scale: 0.96;
             }
         }
-        .button-with-icon {
-            padding-inline-start: 1rem;
-            padding-inline-end: 0.875rem;
-        }
-        .button-icon-start {
-            padding-inline-start: 0.875rem;
-            padding-inline-end: 1rem;
-        }
-        .button svg {
-            width: 1rem;
-            height: 1rem;
-            stroke-width: 1.75;
-            flex-shrink: 0;
-        }
-
-        .button.primary {
-            background-color: var(--color-accent-solid);
-            color: #ffffff;
-        }
         @media (hover: hover) {
-            .button.primary:hover {
-                background-color: var(--color-accent-hover);
+            .icon-pill-btn:hover {
+                background-color: var(--bg-subtle);
+                box-shadow: var(--shadow-border-hover);
             }
         }
 
-        .button.secondary {
-            background-color: var(--color-bg-surface);
-            color: var(--color-text-primary);
-            border-color: var(--color-border-strong);
-        }
-        @media (hover: hover) {
-            .button.secondary:hover {
-                background-color: var(--color-bg-subtle);
-            }
-        }
-
-        /* Contextual icon cross-fade (better-ui exact recipe) */
+        /* Contextual icon cross-fade (better-ui/icon-transitions.md) */
         .icon-swap {
             display: inline-grid;
             place-items: center;
-            width: 1rem;
-            height: 1rem;
+            width: 0.9375rem;
+            height: 0.9375rem;
         }
         .icon-swap-layer {
             grid-area: 1 / 1;
@@ -478,724 +380,712 @@
                 filter: blur(0px);
             }
         }
-
-        /* Hero Blueprint Grid */
-        .hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-            border-block-end: 1px solid var(--color-border-grid);
+        .icon-swap svg {
+            width: 0.9375rem;
+            height: 0.9375rem;
+            stroke-width: 1.75;
         }
-        .hero-primary {
-            padding-block: 3.5rem;
-            padding-inline: 2rem;
-            border-inline-end: 1px solid var(--color-border-grid);
+
+        /* Intro prose with inline icon links (jakub.kr signature style) */
+        .intro-prose {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            gap: 2rem;
+            gap: 1rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.65;
+            margin-block-end: 2rem;
         }
-        .role-badge {
+        .intro-headline {
+            font-size: clamp(1.5rem, 3.2vw, 2rem);
+            line-height: 1.25;
+            letter-spacing: -0.025em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-block-end: 0.25rem;
+        }
+        .inline-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            width: fit-content;
-            padding-block: 0.3125rem;
-            padding-inline: 0.75rem;
-            border-radius: 0.25rem;
-            background-color: var(--color-accent-subtle);
-            border: 1px solid var(--color-accent-border);
-            color: var(--color-accent-text);
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
+            gap: 0.25rem;
+            color: var(--text-primary);
             font-weight: 500;
-            margin-block-end: 1.25rem;
+            text-decoration: underline;
+            text-decoration-color: oklch(0.5 0 0 / 0.3);
+            text-underline-offset: 0.2em;
+            transition: text-decoration-color 150ms ease-out, color 150ms ease-out;
         }
-        .hero-copy {
-            margin-block: 1.25rem 0;
-            max-width: 64ch;
-            color: var(--color-text-secondary);
-            font-size: var(--text-lg);
-            line-height: 1.6;
+        @media (hover: hover) {
+            .inline-link:hover {
+                text-decoration-color: var(--text-primary);
+            }
         }
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.625rem;
-            margin-block-end: 1.75rem;
-        }
-        .hero-specs {
-            margin: 0;
-            padding-block-start: 1.5rem;
-            border-block-start: 1px solid var(--color-border-grid);
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1rem;
-        }
-        .hero-spec dt {
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
-            color: var(--color-text-muted);
-        }
-        .hero-spec dd {
-            margin: 0.25rem 0 0;
-            font-size: var(--text-sm);
-            font-weight: 600;
-            color: var(--color-text-primary);
+        .inline-link svg {
+            width: 0.875rem;
+            height: 0.875rem;
+            stroke-width: 1.75;
+            color: var(--text-secondary);
+            transform: translateY(1px);
         }
 
-        /* Hero Right: Architectural Schematic Blueprint */
-        .hero-schematic {
-            background-color: var(--color-bg-subtle);
-            background-image:
-                linear-gradient(to right, var(--color-border-grid) 1px, transparent 1px),
-                linear-gradient(to bottom, var(--color-border-grid) 1px, transparent 1px);
-            background-size: 1.5rem 1.5rem;
-            padding: 1.75rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 1.25rem;
+        /* Concentric Tray Card (jakub.kr/skills command + button bar) */
+        /* Outer radius 16px (1rem) = Inner radius 12px (0.75rem) + 4px (0.25rem) padding */
+        .concentric-tray {
+            padding: 0.25rem;
+            border-radius: 1rem;
+            background-color: var(--bg-tray);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-tray);
         }
-        .schematic-frame {
-            background-color: var(--color-bg-surface);
-            border: 1px solid var(--color-border-strong);
-            border-radius: 0.5rem;
-            padding: 1.25rem;
-            box-shadow: var(--shadow-surface);
+        .concentric-card {
+            border-radius: 0.75rem;
+            background-color: var(--bg-card);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-border);
         }
-        .schematic-header {
+
+        .command-card-top {
+            padding: 0.75rem 1rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 0.75rem;
-            padding-block-end: 0.875rem;
-            margin-block-end: 1rem;
-            border-block-end: 1px solid var(--color-border-grid);
             font-family: var(--font-mono);
-            font-size: var(--text-xs);
+            font-size: 0.8125rem;
         }
-        .schematic-title {
-            font-weight: 600;
-            color: var(--color-text-primary);
+        .command-text {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            overflow-x: auto;
         }
-        .schematic-ref {
-            color: var(--color-text-muted);
+        .command-text .cmd-verb {
+            color: #a855f7;
+            font-weight: 500;
+        }
+        [data-theme="dark"] .command-text .cmd-verb {
+            color: #c084fc;
+        }
+        .command-text .cmd-arg {
+            color: var(--status-ok);
+        }
+        .command-text .cmd-meta {
+            color: var(--text-muted);
         }
 
-        .topology-svg {
+        .copy-icon-btn {
+            display: inline-grid;
+            place-items: center;
+            width: 1.875rem;
+            height: 1.875rem;
+            border-radius: 0.5rem;
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: 1px solid transparent;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition-property: background-color, color;
+            transition-duration: 150ms;
+            transition-timing-function: ease-out;
+        }
+        @media (prefers-reduced-motion: no-preference) {
+            .copy-icon-btn {
+                transition-property: background-color, color, scale;
+            }
+            .copy-icon-btn:not(:disabled):active {
+                scale: 0.96;
+            }
+        }
+        @media (hover: hover) {
+            .copy-icon-btn:hover {
+                background-color: var(--bg-subtle);
+                color: var(--text-primary);
+            }
+        }
+
+        .tray-actions-grid {
+            margin-block-start: 0.25rem;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.25rem;
+        }
+        .tray-action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4375rem;
+            min-height: 2.5rem;
+            padding-inline: 0.75rem;
+            border-radius: 0.75rem;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-border);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            text-decoration: none;
+            white-space: nowrap;
+            -webkit-tap-highlight-color: transparent;
+            transition-property: background-color, box-shadow, color;
+            transition-duration: 150ms;
+            transition-timing-function: ease-out;
+        }
+        .tray-action-btn.is-primary {
+            background-color: var(--text-primary);
+            color: var(--bg-canvas);
+            box-shadow: none;
+        }
+        @media (prefers-reduced-motion: no-preference) {
+            .tray-action-btn {
+                transition-property: background-color, box-shadow, color, scale;
+            }
+            .tray-action-btn:not(:disabled):active {
+                scale: 0.96;
+            }
+        }
+        @media (hover: hover) {
+            .tray-action-btn:hover {
+                background-color: var(--bg-subtle);
+                box-shadow: var(--shadow-border-hover);
+            }
+            .tray-action-btn.is-primary:hover {
+                background-color: var(--text-secondary);
+                color: var(--bg-canvas);
+            }
+        }
+        .tray-action-btn svg {
+            width: 0.9375rem;
+            height: 0.9375rem;
+            stroke-width: 1.75;
+            flex-shrink: 0;
+        }
+
+        /* Section Headings (jakub.kr/skills `/ section` style) */
+        .section-block {
+            margin-block-start: 3.75rem;
+        }
+        .slash-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-block-end: 1rem;
+        }
+        .slash-title {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3125rem;
+        }
+        .slash-mark {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .slash-rule {
+            flex: 1;
+            height: 1px;
+            background-color: var(--line-subtle);
+        }
+        .section-intro {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            margin-block-end: 1.25rem;
+        }
+        .section-intro strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Interactive Architecture Showcase Card (inspired by jakub.kr/skills `/ teardown` viewer) */
+        /* Outer radius 20px (1.25rem) = Inner 16px (1rem) + 4px (0.25rem) padding */
+        .viewer-tray {
+            padding: 0.25rem;
+            border-radius: 1.25rem;
+            background-color: var(--bg-tray);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-tray);
+        }
+        .viewer-canvas {
+            position: relative;
+            border-radius: 1rem;
+            background-color: var(--bg-card);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-border);
+            padding: 1.5rem;
+            overflow: hidden;
+        }
+        .viewer-top-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-block-end: 1.25rem;
+        }
+        .viewer-title-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .viewer-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .viewer-subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .viewer-pill-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3125rem;
+            height: 1.75rem;
+            padding-inline: 0.625rem;
+            border-radius: 999px;
+            background-color: var(--bg-subtle);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 150ms ease-out, color 150ms ease-out;
+        }
+        @media (hover: hover) {
+            .viewer-pill-link:hover {
+                background-color: var(--bg-hover);
+                color: var(--text-primary);
+            }
+        }
+
+        /* Architecture SVG diagram panel */
+        .arch-panel {
+            display: none;
+        }
+        .arch-panel.is-active {
+            display: block;
+            animation: fade-in 200ms ease-out both;
+        }
+        .arch-svg {
             width: 100%;
             height: auto;
             display: block;
-            margin-block-end: 1rem;
+            margin-block: 0.25rem 1rem;
         }
-
-        .telemetry-ledger {
-            margin: 0;
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.5rem;
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
-        }
-        .telemetry-cell {
-            padding: 0.625rem 0.75rem;
-            border-radius: 0.25rem;
-            background-color: var(--color-bg-subtle);
-            border: 1px solid var(--color-border-grid);
-        }
-        .telemetry-cell dt {
-            color: var(--color-text-muted);
-            font-size: 0.6875rem;
-        }
-        .telemetry-cell dd {
-            margin: 0.125rem 0 0;
-            font-weight: 600;
-            color: var(--color-text-primary);
-        }
-
-        /* Spec Strip (4-column capability matrix) */
-        .spec-matrix {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            border-block-end: 1px solid var(--color-border-grid);
-            background-color: var(--color-bg-surface);
-        }
-        .spec-cell {
-            padding: 1.5rem 2rem;
-            border-inline-end: 1px solid var(--color-border-grid);
-        }
-        .spec-cell:last-child {
-            border-inline-end: 0;
-        }
-        .spec-index {
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
-            color: var(--color-accent-text);
-            font-weight: 600;
-        }
-        .spec-title {
-            margin-block: 0.375rem 0.25rem;
-            font-size: var(--text-lg);
-            font-weight: 600;
-            color: var(--color-text-primary);
-        }
-        .spec-desc {
-            margin: 0;
-            font-size: var(--text-sm);
-            color: var(--color-text-secondary);
-        }
-
-        /* Section Layout */
-        .blueprint-section {
-            border-block-end: 1px solid var(--color-border-grid);
-        }
-        .section-header {
-            padding: 2.75rem 2rem 2rem;
-            border-block-end: 1px solid var(--color-border-grid);
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-            gap: 2rem;
-            align-items: end;
-        }
-        .section-label {
-            display: inline-block;
-            margin-block-end: 0.5rem;
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
-            font-weight: 600;
-            color: var(--color-accent-text);
-        }
-        .section-summary {
-            margin: 0;
-            max-width: 62ch;
-            color: var(--color-text-secondary);
-            font-size: var(--text-base);
-        }
-
-        /* Capabilities 3-column grid (#work) */
-        .capability-grid {
+        .arch-caption {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.5rem;
+            padding-block-start: 1rem;
+            border-block-start: 1px solid var(--line-subtle);
         }
-        .capability-col {
-            padding: 2rem;
-            border-inline-end: 1px solid var(--color-border-grid);
+        .arch-stat {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.125rem;
         }
-        .capability-col:last-child {
-            border-inline-end: 0;
+        .arch-stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            color: var(--text-muted);
         }
-        .capability-icon {
-            width: 2.25rem;
-            height: 2.25rem;
-            border-radius: 0.375rem;
-            background-color: var(--color-bg-subtle);
-            border: 1px solid var(--color-border-grid);
-            display: grid;
-            place-items: center;
-            color: var(--color-accent-text);
+        .arch-stat-value {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--text-primary);
         }
-        .capability-icon svg {
-            width: 1.25rem;
-            height: 1.25rem;
-            stroke-width: 1.5;
-        }
-        .capability-col p {
-            margin: 0;
-            color: var(--color-text-secondary);
-            font-size: var(--text-sm);
-            max-width: 60ch;
-        }
-        .capability-tags {
-            margin-block-start: auto;
-            padding-block-start: 0.75rem;
+
+        /* Viewer Bottom Switcher Bar (jakub.kr/skills Drive | CPU | GPU | Switch style) */
+        .viewer-controls {
+            margin-block-start: 0.25rem;
+            padding: 0.375rem;
+            border-radius: 1rem;
+            background-color: var(--bg-card);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-border);
             display: flex;
             flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
             gap: 0.375rem;
-            list-style: none;
-            padding-inline: 0;
-            margin-block-end: 0;
         }
-
-        .tag {
+        .viewer-tab {
             display: inline-flex;
             align-items: center;
-            padding-block: 0.1875rem;
-            padding-inline: 0.5rem;
-            border-radius: 0.25rem;
-            background-color: var(--color-bg-subtle);
-            border: 1px solid var(--color-border-grid);
-            color: var(--color-text-secondary);
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
-            white-space: nowrap;
+            justify-content: center;
+            gap: 0.375rem;
+            height: 2rem;
+            padding-inline: 0.75rem;
+            border-radius: 0.625rem;
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: 1px solid transparent;
+            font-family: var(--font-sans);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            transition-property: background-color, color, box-shadow;
+            transition-duration: 150ms;
+            transition-timing-function: ease-out;
+        }
+        @media (prefers-reduced-motion: no-preference) {
+            .viewer-tab {
+                transition-property: background-color, color, box-shadow, scale;
+            }
+            .viewer-tab:not(:disabled):active {
+                scale: 0.96;
+            }
+        }
+        @media (hover: hover) {
+            .viewer-tab:hover {
+                color: var(--text-primary);
+                background-color: var(--bg-subtle);
+            }
+        }
+        .viewer-tab[aria-selected="true"] {
+            background-color: var(--bg-subtle);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-border);
         }
 
-        /* Featured Case Study (#projects) */
-        .case-study-dossier {
-            display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-            border-block-end: 1px solid var(--color-border-grid);
+        /* Featured Case Study Card (RSCollection) */
+        .case-study-card {
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background-color: var(--bg-card);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-border);
         }
-        .dossier-main {
-            padding: 2.25rem 2rem;
-            border-inline-end: 1px solid var(--color-border-grid);
-        }
-        .dossier-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            padding-block: 0.25rem;
-            padding-inline: 0.625rem;
-            border-radius: 0.25rem;
-            background-color: var(--color-accent-subtle);
-            border: 1px solid var(--color-accent-border);
-            color: var(--color-accent-text);
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
-            font-weight: 600;
-            margin-block-end: 0.875rem;
-        }
-        .dossier-main h3 {
-            font-size: var(--text-2xl);
+        .case-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.75rem;
             margin-block-end: 0.75rem;
         }
-        .dossier-lead {
-            margin: 0 0 1.25rem;
-            color: var(--color-text-secondary);
-            max-width: 65ch;
+        .case-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            line-height: 1.3;
         }
-        .proof-checklist {
-            margin: 0 0 1.5rem;
-            padding: 0;
+        .case-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-block-start: 0.125rem;
+        }
+        .case-links {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+        .case-body {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            margin-block-end: 1.25rem;
+        }
+        .case-metrics-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.5rem;
+            margin-block-end: 1.25rem;
+        }
+        .case-metric-pill {
+            padding: 0.75rem 0.875rem;
+            border-radius: 0.75rem;
+            background-color: var(--bg-tray);
+            box-shadow: var(--shadow-tray);
+        }
+        .case-metric-pill strong {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+        .case-metric-pill span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-block-start: 0.25rem;
+        }
+        .case-features {
             list-style: none;
+            padding: 0;
+            margin: 0;
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.75rem 1.25rem;
+            gap: 0.625rem 1rem;
         }
-        .proof-checklist li {
+        .case-features li {
             display: flex;
             align-items: flex-start;
             gap: 0.5rem;
-            font-size: var(--text-sm);
-            color: var(--color-text-secondary);
+            font-size: 0.8125rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
         }
-        .proof-check {
-            width: 1rem;
-            height: 1rem;
-            color: var(--color-status-ok);
+        .case-features svg {
+            width: 0.9375rem;
+            height: 0.9375rem;
+            color: var(--status-ok);
             flex-shrink: 0;
             margin-block-start: 0.1875rem;
         }
-        .dossier-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.625rem;
-            margin-block-end: 1.25rem;
-        }
 
-        /* Case study right side: Delivery & Runtime Proof */
-        .dossier-side {
-            padding: 2.25rem 2rem;
-            background-color: var(--color-bg-subtle);
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-        .metrics-strip {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 0.625rem;
-        }
-        /* Concentric radius: outer card 12px (0.75rem) with 8px (0.5rem) padding -> inner 4px (0.25rem) */
-        .metric-box {
-            padding: 0.75rem;
-            border-radius: 0.375rem;
-            background-color: var(--color-bg-surface);
-            border: 1px solid var(--color-border-grid);
-        }
-        .metric-value {
-            display: block;
-            font-family: var(--font-mono);
-            font-size: var(--text-xl);
-            font-weight: 600;
-            line-height: 1.1;
-            color: var(--color-text-primary);
-        }
-        .metric-caption {
-            display: block;
+        .case-stack-bar {
             margin-block-start: 0.25rem;
-            font-size: var(--text-xs);
-            color: var(--color-text-muted);
-        }
-        .runtime-spec-list {
-            display: grid;
-            gap: 0.625rem;
-        }
-        .runtime-spec-item {
-            padding: 0.75rem 0.875rem;
-            border-radius: 0.375rem;
-            background-color: var(--color-bg-surface);
-            border: 1px solid var(--color-border-grid);
-            font-size: var(--text-xs);
-            color: var(--color-text-secondary);
-        }
-        .runtime-spec-item strong {
-            font-family: var(--font-mono);
-            color: var(--color-text-primary);
-        }
-
-        /* Project Ledger Rows */
-        .project-ledger {
-            display: grid;
-        }
-        .ledger-row {
-            padding: 1.75rem 2rem;
-            border-block-end: 1px solid var(--color-border-grid);
-            display: grid;
-            grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
-            gap: 1.5rem;
-            align-items: center;
-        }
-        .ledger-row:last-child {
-            border-block-end: 0;
-        }
-        .ledger-row h3 {
-            font-size: var(--text-lg);
-            margin-block-end: 0.375rem;
-        }
-        .ledger-row p {
-            margin: 0;
-            font-size: var(--text-sm);
-            color: var(--color-text-secondary);
-            max-width: 65ch;
-        }
-        .ledger-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-block-start: 0.75rem;
-        }
-        .spec-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            font-size: var(--text-sm);
-            font-weight: 600;
-            color: var(--color-accent-text);
-            text-decoration: underline;
-            text-underline-offset: 0.2em;
-        }
-        @media (hover: hover) {
-            .spec-link:hover {
-                color: var(--color-text-primary);
-            }
-        }
-        .ledger-meta {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            gap: 0.375rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Services Section (#services) */
-        .service-columns {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            border-block-end: 1px solid var(--color-border-grid);
-        }
-        .service-panel-box {
-            padding: 2rem;
-            border-inline-end: 1px solid var(--color-border-grid);
-        }
-        .service-panel-box:last-child {
-            border-inline-end: 0;
-        }
-        .service-panel-box h3 {
-            margin-block-end: 1rem;
-        }
-        .service-checklist {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: grid;
-            gap: 0.75rem;
-        }
-        .service-checklist li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.625rem;
-            font-size: var(--text-sm);
-            color: var(--color-text-secondary);
-        }
-        .service-callout {
-            padding: 1.5rem 2rem;
-            background-color: var(--color-bg-subtle);
+            padding: 0.625rem 1rem;
+            border-radius: 1rem;
+            background-color: var(--bg-card);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-border);
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 1rem;
-        }
-        .service-callout-text strong {
-            display: block;
-            font-size: var(--text-base);
-            color: var(--color-text-primary);
-        }
-        .service-callout-text span {
-            font-size: var(--text-sm);
-            color: var(--color-text-secondary);
-        }
-
-        /* Operating Model Sequence (#systems) */
-        .sequence-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-        .sequence-step {
-            padding: 2rem;
-            border-inline-end: 1px solid var(--color-border-grid);
-        }
-        .sequence-step:last-child {
-            border-inline-end: 0;
-        }
-        .step-badge {
-            display: inline-flex;
-            align-items: center;
             gap: 0.5rem;
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
-            font-weight: 600;
-            color: var(--color-accent-text);
-            margin-block-end: 0.75rem;
         }
-        .step-num {
-            display: inline-grid;
-            place-items: center;
-            width: 1.5rem;
-            height: 1.5rem;
-            border-radius: 0.25rem;
-            background-color: var(--color-accent-subtle);
-            border: 1px solid var(--color-accent-border);
-        }
-        .sequence-step h3 {
-            margin-block-end: 0.5rem;
-        }
-        .sequence-step p {
+        .stack-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.375rem;
+            list-style: none;
             margin: 0;
-            font-size: var(--text-sm);
-            color: var(--color-text-secondary);
-            max-width: 58ch;
+            padding: 0;
+        }
+        .stack-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            padding: 0.125rem 0.5rem;
+            border-radius: 0.375rem;
+            background-color: var(--bg-subtle);
         }
 
-        /* Contact Specification Block (#contact) */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-        }
-        .contact-info {
-            padding: 2.5rem 2rem;
-            border-inline-end: 1px solid var(--color-border-grid);
-        }
-        .contact-info p {
-            margin-block: 0.75rem 1.5rem;
-            color: var(--color-text-secondary);
-            max-width: 58ch;
-        }
-        .contact-table {
-            margin: 0;
-            display: grid;
-            gap: 0.75rem;
-            border-block-start: 1px solid var(--color-border-grid);
-            padding-block-start: 1.25rem;
-        }
-        .contact-row {
-            display: grid;
-            grid-template-columns: 8.5rem minmax(0, 1fr);
-            gap: 0.75rem;
-            align-items: baseline;
-            font-size: var(--text-sm);
-        }
-        .contact-row dt {
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
-            color: var(--color-text-muted);
-        }
-        .contact-row dd {
-            margin: 0;
-            font-weight: 500;
-            color: var(--color-text-primary);
-        }
-        .contact-row a {
-            color: var(--color-accent-text);
-            text-decoration: underline;
-            text-underline-offset: 0.2em;
-        }
-
-        .contact-actions-panel {
-            padding: 2.5rem 2rem;
-            background-color: var(--color-bg-subtle);
+        /* Project List with Double-Ring Icon Tiles (exact jakub.kr home list style) */
+        .project-list {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            gap: 0.375rem;
+            margin-block-start: 1.25rem;
+        }
+        .project-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.625rem 0.75rem;
+            margin-inline: -0.75rem;
+            border-radius: 1rem;
+            text-decoration: none;
+            transition-property: background-color;
+            transition-duration: 150ms;
+            transition-timing-function: ease-out;
+        }
+        @media (hover: hover) {
+            a.project-row:hover {
+                background-color: var(--bg-subtle);
+            }
+        }
+        .project-row-main {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+            min-width: 0;
+        }
+        .tile-outer {
+            width: 2.75rem;
+            height: 2.75rem;
+            padding: 3px;
+            border-radius: 0.75rem; /* 12px = 9px + 3px */
+            background-color: var(--bg-tray);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-border);
+            flex-shrink: 0;
+        }
+        .tile-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5625rem; /* 9px */
+            background-color: var(--bg-card);
+            box-shadow: var(--shadow-border);
+            display: grid;
+            place-items: center;
+            color: var(--text-primary);
+        }
+        .tile-inner svg {
+            width: 1.125rem;
+            height: 1.125rem;
+            stroke-width: 1.65;
+        }
+        .project-row-text {
+            min-width: 0;
+        }
+        .project-row-title {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.35;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+        .project-row-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        .project-row-badge {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Services & Capabilities Concentric Split Grid */
+        .services-tray-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.25rem;
+        }
+        .service-card {
+            padding: 1.25rem;
+            border-radius: 0.875rem;
+            background-color: var(--bg-card);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-border);
+            display: flex;
+            flex-direction: column;
             gap: 0.75rem;
         }
-        .contact-actions-panel .button {
-            width: 100%;
-            justify-content: flex-start;
+        .service-card h3 {
+            font-size: 0.9375rem;
+            font-weight: 600;
         }
-        .copy-status {
-            min-height: 1.25rem;
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .service-list li {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .service-list li::before {
+            content: "·";
+            color: var(--text-muted);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Operating Workflow 3-step concentric cards */
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.25rem;
+        }
+        .workflow-card {
+            padding: 1.125rem;
+            border-radius: 0.875rem;
+            background-color: var(--bg-card);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-border);
+        }
+        .workflow-step-label {
             font-family: var(--font-mono);
-            font-size: var(--text-xs);
-            color: var(--color-status-ok);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-block-end: 0.375rem;
+            display: block;
+        }
+        .workflow-card h3 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-block-end: 0.375rem;
+        }
+        .workflow-card p {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Polite live region for clipboard notification */
+        .live-toast {
+            min-height: 1.25rem;
+            margin-block-start: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--status-ok);
+            text-align: center;
         }
 
         /* Footer */
         .site-footer {
-            max-width: var(--layout-max);
-            margin-inline: auto;
-            padding: 1.5rem 2rem 2.5rem;
-            border-inline: 1px solid var(--color-border-grid);
-            border-block-end: 1px solid var(--color-border-grid);
-            background-color: var(--color-bg-surface);
+            margin-block-start: 4rem;
+            padding-block-start: 1.5rem;
+            border-block-start: 1px solid var(--line-subtle);
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
+            gap: 0.75rem;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
             gap: 1rem;
-            font-size: var(--text-xs);
-            color: var(--color-text-muted);
         }
-
-        /* Responsive breakpoints based on content fit (better-layout) */
-        @media (max-width: 62rem) {
-            .hero,
-            .section-header,
-            .case-study-dossier,
-            .contact-grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-            .hero-primary,
-            .dossier-main,
-            .contact-info {
-                border-inline-end: 0;
-                border-block-end: 1px solid var(--color-border-grid);
-            }
-            .spec-matrix {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-            .spec-cell:nth-child(2) {
-                border-inline-end: 0;
-            }
-            .spec-cell:nth-child(1),
-            .spec-cell:nth-child(2) {
-                border-block-end: 1px solid var(--color-border-grid);
-            }
-            .capability-grid,
-            .sequence-grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-            .capability-col,
-            .sequence-step {
-                border-inline-end: 0;
-                border-block-end: 1px solid var(--color-border-grid);
-            }
-            .capability-col:last-child,
-            .sequence-step:last-child {
-                border-block-end: 0;
-            }
-            .ledger-row {
-                grid-template-columns: minmax(0, 1fr);
-            }
-            .ledger-meta {
-                justify-content: flex-start;
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 150ms ease-out;
+        }
+        @media (hover: hover) {
+            .footer-links a:hover {
+                color: var(--text-primary);
             }
         }
 
-        @media (max-width: 42rem) {
-            .sheet,
-            .telemetry-inner,
-            .nav-inner,
-            .site-footer {
-                border-inline: 0;
-            }
-            .telemetry-inner,
-            .nav-inner,
-            .hero-primary,
-            .hero-schematic,
-            .section-header,
-            .capability-col,
-            .dossier-main,
-            .dossier-side,
-            .ledger-row,
-            .service-panel-box,
-            .service-callout,
-            .sequence-step,
-            .contact-info,
-            .contact-actions-panel,
-            .site-footer {
-                padding-inline: 1.125rem;
-            }
-            .telemetry-item-optional,
-            .brand-meta {
+        /* Responsive adjustments (holds down to 320px without clipping) */
+        @media (max-width: 40rem) {
+            .status-badge {
                 display: none;
             }
-            .nav-inner {
-                display: grid;
-                grid-template-columns: 1fr auto;
-                gap: 0.375rem;
+            .tray-actions-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-            .nav-controls {
-                display: contents;
-            }
-            .nav-links {
-                grid-column: 1 / -1;
-                grid-row: 2;
-                justify-content: space-between;
-                border-block-start: 1px solid var(--color-border-grid);
-                padding-block-start: 0.25rem;
-                gap: 0.125rem;
-            }
-            .nav-links a {
-                min-height: 2.25rem;
-                padding-inline: 0.375rem;
-                font-size: var(--text-xs);
-            }
-            .hero-primary {
-                padding-block: 2rem;
-            }
-            .hero-specs,
-            .spec-matrix,
-            .proof-checklist,
-            .service-columns,
-            .metrics-strip {
+            .arch-caption,
+            .case-metrics-row,
+            .case-features,
+            .services-tray-grid,
+            .workflow-grid {
                 grid-template-columns: minmax(0, 1fr);
             }
-            .spec-cell {
-                border-inline-end: 0;
-                border-block-end: 1px solid var(--color-border-grid);
-                padding-inline: 1.125rem;
+            .project-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
             }
-            .spec-cell:last-child {
-                border-block-end: 0;
-            }
-            .service-panel-box {
-                border-inline-end: 0;
-                border-block-end: 1px solid var(--color-border-grid);
-            }
-            .service-panel-box:last-child {
-                border-block-end: 0;
-            }
-            .contact-row {
-                grid-template-columns: minmax(0, 1fr);
-                gap: 0.125rem;
+            .project-row-badge {
+                padding-inline-start: 3.625rem;
             }
         }
     </style>
@@ -1203,69 +1093,38 @@
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <!-- System Telemetry Strip -->
-    <div class="telemetry-bar" role="region" aria-label="Infrastructure telemetry">
-        <div class="telemetry-inner">
-            <div class="telemetry-group">
-                <span class="status-pill">
-                    <span class="status-dot" aria-hidden="true"></span>
-                    <span>All systems operational</span>
-                </span>
-                <span class="telemetry-item telemetry-item-optional">
-                    <span>origin:</span>
-                    <strong>aws s3 + cloudfront (OAC)</strong>
-                </span>
-                <span class="telemetry-item telemetry-item-optional">
-                    <span>region:</span>
-                    <strong class="tabular"><bdi>eu-north-1</bdi></strong>
-                </span>
-            </div>
-            <div class="telemetry-group">
-                <span class="telemetry-item" role="status" aria-live="polite">
-                    <span>visitors:</span>
-                    <strong class="tabular" id="count">loading…</strong>
-                </span>
-                <span class="telemetry-item telemetry-item-optional">
-                    <span>location:</span>
-                    <strong>Erbil, Kurdistan</strong>
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sticky Primary Navigation -->
-    <header class="site-header">
-        <nav class="nav-inner" aria-label="Primary navigation">
-            <a class="brand" href="#main-content">
-                <span class="brand-mark" aria-hidden="true">HK</span>
-                <span>Hevar Kochar</span>
-                <span class="brand-meta"><bdi>hevar.cloud</bdi></span>
+    <div class="page-shell">
+        <!-- Top Identity & Theme Bar -->
+        <header class="top-bar stagger-group stagger-1">
+            <a class="identity" href="#main-content">
+                <div class="avatar-outer" aria-hidden="true">
+                    <div class="avatar-inner">HK</div>
+                </div>
+                <div class="identity-text">
+                    <span class="identity-name">Hevar Kochar</span>
+                    <span class="identity-role">Website Developer &amp; Cloud Engineer</span>
+                </div>
             </a>
 
-            <div class="nav-controls">
-                <ul class="nav-links">
-                    <li><a href="#work">Capabilities</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#systems">Workflow</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+            <div class="top-actions">
+                <div class="status-badge" role="status" aria-live="polite">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    <span><span class="status-badge-text-long">Available · </span><span class="tabular" id="count">online</span></span>
+                </div>
 
                 <button
-                    class="button secondary button-icon-start"
+                    class="icon-pill-btn"
                     id="theme-toggle"
                     type="button"
                     aria-label="Switch to dark theme"
                     aria-pressed="false"
                 >
                     <span class="icon-swap" aria-hidden="true">
-                        <!-- Moon icon (shown in light mode) -->
                         <span class="icon-swap-layer is-shown" id="icon-moon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                             </svg>
                         </span>
-                        <!-- Sun icon (shown in dark mode) -->
                         <span class="icon-swap-layer is-hidden" id="icon-sun">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="4"></circle>
@@ -1276,550 +1135,67 @@
                     <span id="theme-label">Dark</span>
                 </button>
             </div>
-        </nav>
-    </header>
+        </header>
 
-    <main class="sheet" id="main-content">
-        <!-- Hero Blueprint Section -->
-        <section class="hero" aria-labelledby="hero-heading">
-            <div class="hero-primary">
-                <div>
-                    <div class="role-badge">
-                        <span class="status-dot" aria-hidden="true"></span>
-                        <span>Available for Website Developer &amp; Software Engineer roles</span>
-                    </div>
-                    <h1 id="hero-heading">Website developer who can build, deploy, and maintain real systems.</h1>
-                    <p class="hero-copy">
-                        I am Hevar Kochar — a Website Developer and Software Engineer candidate in Erbil with hands-on e-commerce, Node.js, PostgreSQL, Docker, AWS, CI/CD, DNS, and HTTPS deployment experience. I build responsive websites and maintain the infrastructure behind them.
-                    </p>
-                </div>
+        <main id="main-content">
+            <!-- Editorial Intro with Inline Icon Links (jakub.kr style) -->
+            <section class="intro-prose stagger-group stagger-2" aria-label="Introduction">
+                <h1 class="intro-headline">
+                    Building responsive websites and the <span class="serif-italic">production</span> infrastructure behind them.
+                </h1>
 
-                <div>
-                    <!-- One primary filled action per view (better-colors / better-layout) -->
-                    <div class="hero-actions">
-                        <a class="button primary button-with-icon" href="mailto:hevarrwandzi@gmail.com">
-                            <span>Email Hevar</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M5 12h14M13 6l6 6-6 6"></path>
-                            </svg>
-                        </a>
-                        <a class="button secondary" href="https://wa.me/9647503531930?text=Hi%20Hevar%2C%20I%20saw%20your%20portfolio%20and%20need%20help%20with%20a%20technical%20project." target="_blank" rel="noreferrer">
-                            <span>Message on WhatsApp</span>
-                        </a>
-                        <a class="button secondary" href="#projects">
-                            <span>Inspect projects</span>
-                        </a>
-                        <a class="button secondary" href="cv/hevar-kochar-website-developer-cv.pdf" target="_blank" rel="noreferrer">
-                            <span>Download CV (PDF)</span>
-                        </a>
-                    </div>
-
-                    <dl class="hero-specs">
-                        <div class="hero-spec">
-                            <dt>Base location</dt>
-                            <dd>Erbil, Kurdistan</dd>
-                        </div>
-                        <div class="hero-spec">
-                            <dt>Spoken languages</dt>
-                            <dd>Kurdish · Arabic · English</dd>
-                        </div>
-                        <div class="hero-spec">
-                            <dt>Primary stack</dt>
-                            <dd>Web · Node.js · AWS · Docker</dd>
-                        </div>
-                    </dl>
-                </div>
-            </div>
-
-            <!-- Architectural System Topology Schematic -->
-            <aside class="hero-schematic" aria-label="Production architecture schematic">
-                <div class="schematic-frame">
-                    <div class="schematic-header">
-                        <span class="schematic-title">SYS-ARCH // PRODUCTION TOPOLOGY</span>
-                        <span class="schematic-ref tabular">REV 2026.11</span>
-                    </div>
-
-                    <svg class="topology-svg" viewBox="0 0 420 230" role="img" aria-labelledby="topology-title topology-desc">
-                        <title id="topology-title">AWS and EC2 deployment architecture diagram</title>
-                        <desc id="topology-desc">Diagram showing Route 53 and CloudFront routing to a locked S3 static origin, API Gateway to Lambda and DynamoDB visitor counter, and GitHub Actions OIDC deploying to AWS EC2 running Caddy, Node.js, and PostgreSQL.</desc>
-
-                        <!-- Edge Layer -->
-                        <rect x="8" y="10" width="122" height="52" rx="4" fill="var(--color-bg-subtle)" stroke="var(--color-border-strong)" stroke-width="1.25"/>
-                        <text x="18" y="30" fill="var(--color-text-primary)" font-family="var(--font-mono)" font-size="10" font-weight="600">CloudFront CDN</text>
-                        <text x="18" y="46" fill="var(--color-text-muted)" font-family="var(--font-mono)" font-size="9">Route 53 + TLS 1.3</text>
-
-                        <!-- Connector Edge -> S3 -->
-                        <path d="M130 26 H166" stroke="var(--color-accent-solid)" stroke-width="1.25"/>
-                        <polygon points="166,23 172,26 166,29" fill="var(--color-accent-solid)"/>
-
-                        <!-- S3 Static Origin -->
-                        <rect x="174" y="10" width="116" height="52" rx="4" fill="var(--color-bg-subtle)" stroke="var(--color-border-strong)" stroke-width="1.25"/>
-                        <text x="184" y="30" fill="var(--color-text-primary)" font-family="var(--font-mono)" font-size="10" font-weight="600">Amazon S3</text>
-                        <text x="184" y="46" fill="var(--color-text-muted)" font-family="var(--font-mono)" font-size="9">OAC Private Bucket</text>
-
-                        <!-- Serverless Counter Branch -->
-                        <path d="M69 62 V96 H166" stroke="var(--color-border-strong)" stroke-width="1.25" stroke-dasharray="3 3" fill="none"/>
-                        <polygon points="166,93 172,96 166,99" fill="var(--color-border-strong)"/>
-
-                        <rect x="174" y="74" width="238" height="46" rx="4" fill="var(--color-bg-subtle)" stroke="var(--color-border-strong)" stroke-width="1.25"/>
-                        <text x="184" y="94" fill="var(--color-text-primary)" font-family="var(--font-mono)" font-size="10" font-weight="600">API Gateway → Lambda → DynamoDB</text>
-                        <text x="184" y="109" fill="var(--color-text-muted)" font-family="var(--font-mono)" font-size="9">Serverless telemetry &amp; visitor state</text>
-
-                        <!-- CI/CD + EC2 Production Stack -->
-                        <rect x="8" y="140" width="122" height="78" rx="4" fill="var(--color-accent-subtle)" stroke="var(--color-accent-border)" stroke-width="1.25"/>
-                        <text x="18" y="162" fill="var(--color-accent-text)" font-family="var(--font-mono)" font-size="10" font-weight="600">GitHub Actions</text>
-                        <text x="18" y="178" fill="var(--color-text-secondary)" font-family="var(--font-mono)" font-size="9">• Syntax &amp; 55 tests</text>
-                        <text x="18" y="193" fill="var(--color-text-secondary)" font-family="var(--font-mono)" font-size="9">• S3 sync + CF purge</text>
-                        <text x="18" y="208" fill="var(--color-text-secondary)" font-family="var(--font-mono)" font-size="9">• OIDC + AWS SSM</text>
-
-                        <!-- Connector CI/CD -> S3 and EC2 -->
-                        <path d="M130 179 H166" stroke="var(--color-accent-solid)" stroke-width="1.25"/>
-                        <polygon points="166,176 172,179 166,182" fill="var(--color-accent-solid)"/>
-
-                        <rect x="174" y="140" width="238" height="78" rx="4" fill="var(--color-bg-subtle)" stroke="var(--color-border-strong)" stroke-width="1.25"/>
-                        <text x="184" y="161" fill="var(--color-text-primary)" font-family="var(--font-mono)" font-size="10" font-weight="600">AWS EC2 · Docker Compose</text>
-                        <text x="184" y="178" fill="var(--color-text-secondary)" font-family="var(--font-mono)" font-size="9">Caddy TLS → Express → PostgreSQL 17</text>
-                        <text x="184" y="194" fill="var(--color-text-muted)" font-family="var(--font-mono)" font-size="9">Healthchecks · Backups · Smoke checks</text>
-                        <text x="184" y="210" fill="var(--color-status-ok)" font-family="var(--font-mono)" font-size="9" font-weight="600">✓ Production verified</text>
-                    </svg>
-
-                    <dl class="telemetry-ledger">
-                        <div class="telemetry-cell">
-                            <dt>DOMAIN</dt>
-                            <dd><bdi>hevar.cloud</bdi></dd>
-                        </div>
-                        <div class="telemetry-cell">
-                            <dt>PIPELINE</dt>
-                            <dd>GitHub Actions passing</dd>
-                        </div>
-                        <div class="telemetry-cell">
-                            <dt>ORIGIN POLICY</dt>
-                            <dd>OAC locked S3 bucket</dd>
-                        </div>
-                        <div class="telemetry-cell">
-                            <dt>LIVE REQUESTS</dt>
-                            <dd class="tabular" id="count-card">Synchronizing…</dd>
-                        </div>
-                    </dl>
-                </div>
-            </aside>
-        </section>
-
-        <!-- Specification Matrix -->
-        <section class="spec-matrix" aria-label="Technical summary">
-            <div class="spec-cell">
-                <div class="spec-index">SPEC // 01</div>
-                <div class="spec-title">Web + AWS</div>
-                <p class="spec-desc">HTML, CSS, JavaScript, Node.js, PostgreSQL, EC2, S3, CloudFront</p>
-            </div>
-            <div class="spec-cell">
-                <div class="spec-index">SPEC // 02</div>
-                <div class="spec-title">Production Ops</div>
-                <p class="spec-desc">Docker Compose, HTTPS, Caddy, DNS, smoke checks, automated backups</p>
-            </div>
-            <div class="spec-cell">
-                <div class="spec-index">SPEC // 03</div>
-                <div class="spec-title">Automation &amp; IaC</div>
-                <p class="spec-desc">GitHub Actions CI/CD, OIDC + AWS SSM deploys, Terraform practice</p>
-            </div>
-            <div class="spec-cell">
-                <div class="spec-index">SPEC // 04</div>
-                <div class="spec-title">Communication</div>
-                <p class="spec-desc">Kurdish, Arabic, and English for clear client and engineering handoff</p>
-            </div>
-        </section>
-
-        <!-- Section 1: Capabilities (#work) -->
-        <section class="blueprint-section" id="work" aria-labelledby="work-heading">
-            <div class="section-header">
-                <div>
-                    <span class="section-label">01 // CAPABILITIES</span>
-                    <h2 id="work-heading">Useful technical work, not portfolio theater.</h2>
-                </div>
-                <p class="section-summary">
-                    I focus on the parts clients and engineering teams actually need: reliable hosting, repeatable deployments, maintainable websites, cloud cost awareness, and systems that remain understandable after they ship.
-                </p>
-            </div>
-
-            <div class="capability-grid">
-                <article class="capability-col">
-                    <div class="capability-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
-                        </svg>
-                    </div>
-                    <h3>AWS delivery &amp; edge hosting</h3>
-                    <p>
-                        Static websites, e-commerce applications, and serverless endpoints deployed through S3, CloudFront (OAC), Route 53, EC2, IAM, Lambda, API Gateway, and DynamoDB.
-                    </p>
-                    <ul class="capability-tags" aria-label="AWS technologies">
-                        <li class="tag">S3 + CloudFront</li>
-                        <li class="tag">AWS EC2</li>
-                        <li class="tag">Lambda + DynamoDB</li>
-                    </ul>
-                </article>
-
-                <article class="capability-col">
-                    <div class="capability-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="3"></circle>
-                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"></path>
-                        </svg>
-                    </div>
-                    <h3>CI/CD &amp; release automation</h3>
-                    <p>
-                        GitHub Actions pipelines that validate syntax, run test suites, audit dependencies, sync origins, invalidate CDN caches, and deploy containers via GitHub OIDC and AWS SSM.
-                    </p>
-                    <ul class="capability-tags" aria-label="Automation technologies">
-                        <li class="tag">GitHub Actions</li>
-                        <li class="tag">OIDC + SSM</li>
-                        <li class="tag">Docker Compose</li>
-                    </ul>
-                </article>
-
-                <article class="capability-col">
-                    <div class="capability-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="3" width="20" height="14" rx="2"></rect>
-                            <path d="M8 21h8M12 17v4M7 8l3 3-3 3M12 14h4"></path>
-                        </svg>
-                    </div>
-                    <h3>Web engineering &amp; IT support</h3>
-                    <p>
-                        Full-stack web development, DNS and TLS troubleshooting, Linux server administration, Caddy reverse-proxy setup, and clear technical documentation.
-                    </p>
-                    <ul class="capability-tags" aria-label="Web and systems technologies">
-                        <li class="tag">Node.js + Express</li>
-                        <li class="tag">PostgreSQL</li>
-                        <li class="tag">Linux + DNS/TLS</li>
-                    </ul>
-                </article>
-            </div>
-        </section>
-
-        <!-- Section 2: Selected Projects (#projects) -->
-        <section class="blueprint-section" id="projects" aria-labelledby="projects-heading">
-            <div class="section-header">
-                <div>
-                    <span class="section-label">02 // SELECTED SYSTEMS &amp; CASE STUDIES</span>
-                    <h2 id="projects-heading">Proof that touches real infrastructure.</h2>
-                </div>
-                <p class="section-summary">
-                    Production systems spanning e-commerce development, REST APIs, relational databases, responsive websites, automated CI/CD pipelines, security hardening, and operational backups.
-                </p>
-            </div>
-
-            <!-- Featured Case Study: RSCollection -->
-            <article class="case-study-dossier" aria-labelledby="rscollection-heading">
-                <div class="dossier-main">
-                    <span class="dossier-badge">FEATURED PRODUCTION CASE STUDY</span>
-                    <h3 id="rscollection-heading">RSCollection — E-commerce storefront, admin system, and CI/CD delivery</h3>
-                    <p class="dossier-lead">
-                        A live e-commerce platform built for an accessories shop (<bdi>rscollection.online</bdi>). The project covers the customer buying flow, protected shop-owner operations, PostgreSQL persistence, containerized runtime, and automated GitHub-to-AWS deployment.
-                    </p>
-
-                    <ul class="proof-checklist" aria-label="RSCollection capabilities">
-                        <li>
-                            <svg class="proof-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Customer storefront with catalog filtering, product details, live stock status, and WhatsApp/Instagram order flow</span>
-                        </li>
-                        <li>
-                            <svg class="proof-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Protected admin dashboard for managing products, images, inventory levels, homepage content, and customer orders</span>
-                        </li>
-                        <li>
-                            <svg class="proof-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Express + PostgreSQL 17 backend with order APIs, analytics, image uploads, authentication, and health endpoints</span>
-                        </li>
-                        <li>
-                            <svg class="proof-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Docker Compose production stack with Caddy HTTPS, container healthchecks, database backups, and smoke tests</span>
-                        </li>
-                    </ul>
-
-                    <div class="dossier-actions">
-                        <a class="button secondary button-with-icon" href="https://rscollection.online/" target="_blank" rel="noreferrer">
-                            <span>Visit rscollection.online</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M7 17L17 7M7 7h10v10"></path>
-                            </svg>
-                        </a>
-                        <a class="button secondary button-with-icon" href="https://github.com/hevarrwandzi/rscollection" target="_blank" rel="noreferrer">
-                            <span>Inspect RSCollection repository</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M7 17L17 7M7 7h10v10"></path>
-                            </svg>
-                        </a>
-                    </div>
-
-                    <ul class="capability-tags" aria-label="RSCollection technology stack">
-                        <li class="tag">Client Work</li>
-                        <li class="tag">Node.js</li>
-                        <li class="tag">Express</li>
-                        <li class="tag">PostgreSQL 17</li>
-                        <li class="tag">Docker Compose</li>
-                        <li class="tag">Caddy HTTPS</li>
-                        <li class="tag">AWS EC2</li>
-                    </ul>
-                </div>
-
-                <aside class="dossier-side" aria-label="RSCollection delivery and runtime proof">
-                    <span class="section-label">DELIVERY &amp; RUNTIME SPECIFICATION</span>
-                    <div class="metrics-strip">
-                        <div class="metric-box">
-                            <strong class="metric-value tabular">55</strong>
-                            <span class="metric-caption">Automated tests passing</span>
-                        </div>
-                        <div class="metric-box">
-                            <strong class="metric-value">CI</strong>
-                            <span class="metric-caption">Syntax, audit, build, health</span>
-                        </div>
-                        <div class="metric-box">
-                            <strong class="metric-value">CD</strong>
-                            <span class="metric-caption">OIDC + AWS SSM deploy</span>
-                        </div>
-                    </div>
-
-                    <div class="runtime-spec-list">
-                        <div class="runtime-spec-item">
-                            <strong>CI VERIFICATION:</strong> GitHub Actions validates server and frontend syntax, runs <code>npm audit</code>, verifies Compose config, builds Docker images, and probes live container health and the products API.
-                        </div>
-                        <div class="runtime-spec-item">
-                            <strong>CD PIPELINE:</strong> Passing CI triggers automated zero-SSH-key deployment to AWS EC2 via GitHub OIDC federation and AWS Systems Manager (SSM).
-                        </div>
-                        <div class="runtime-spec-item">
-                            <strong>RUNTIME TOPOLOGY:</strong> Caddy terminates TLS and enforces rate limits → Express serves REST APIs and static storefront assets → PostgreSQL 17 persists catalog, content, and customer order state.
-                        </div>
-                    </div>
-                </aside>
-            </article>
-
-            <!-- Specification Ledger of Additional Projects -->
-            <div class="project-ledger">
-                <article class="ledger-row">
-                    <div>
-                        <h3>Dr. Dilshad ECB client website (<bdi>drdilshadecb.com</bdi>)</h3>
-                        <p>
-                            Client static website delivered with custom domain configuration, TLS certificate provisioning, CloudFront CDN distribution, OAC-locked S3 origin, and automated GitHub Actions deployment pipeline.
-                        </p>
-                        <div class="ledger-links">
-                            <a class="spec-link" href="https://www.drdilshadecb.com/" target="_blank" rel="noreferrer">Visit drdilshadecb.com</a>
-                            <a class="spec-link" href="https://github.com/hevarrwandzi/hama-engineering" target="_blank" rel="noreferrer">View hama-engineering source on GitHub</a>
-                        </div>
-                    </div>
-                    <ul class="ledger-meta" aria-label="Dr. Dilshad ECB technologies">
-                        <li class="tag">Client Work</li>
-                        <li class="tag">CloudFront CDN</li>
-                        <li class="tag">S3 OAC</li>
-                        <li class="tag">GitHub Actions</li>
-                    </ul>
-                </article>
-
-                <article class="ledger-row">
-                    <div>
-                        <h3>Production cloud portfolio (<bdi>hevar.cloud</bdi>)</h3>
-                        <p>
-                            This specification site runs from a private Amazon S3 bucket behind CloudFront Origin Access Control, with automated S3 sync and CDN cache invalidation on every push to <code>main</code>.
-                        </p>
-                        <div class="ledger-links">
-                            <a class="spec-link" href="https://github.com/hevarrwandzi/web" target="_blank" rel="noreferrer">View portfolio source on GitHub</a>
-                        </div>
-                    </div>
-                    <ul class="ledger-meta" aria-label="Portfolio technologies">
-                        <li class="tag">Amazon S3</li>
-                        <li class="tag">CloudFront</li>
-                        <li class="tag">Route 53</li>
-                        <li class="tag">CI/CD</li>
-                    </ul>
-                </article>
-
-                <article class="ledger-row">
-                    <div>
-                        <h3>Serverless telemetry &amp; visitor counter</h3>
-                        <p>
-                            Lightweight API Gateway + AWS Lambda + DynamoDB backend in <bdi>eu-north-1</bdi> that records and serves real-time portfolio visit counts without idle server maintenance.
-                        </p>
-                    </div>
-                    <ul class="ledger-meta" aria-label="Visitor counter technologies">
-                        <li class="tag">API Gateway</li>
-                        <li class="tag">AWS Lambda</li>
-                        <li class="tag">DynamoDB</li>
-                    </ul>
-                </article>
-
-                <article class="ledger-row">
-                    <div>
-                        <h3>Signal &amp; systems experimentation lab</h3>
-                        <p>
-                            Hands-on hardware and RF experimentation across Wi-Fi and Bluetooth frequency bands, physical systems integration, Linux diagnostics, and practical network troubleshooting.
-                        </p>
-                    </div>
-                    <ul class="ledger-meta" aria-label="Signal lab areas">
-                        <li class="tag">Systems</li>
-                        <li class="tag">RF &amp; Wi-Fi</li>
-                        <li class="tag">Diagnostics</li>
-                    </ul>
-                </article>
-            </div>
-        </section>
-
-        <!-- Section 3: Services (#services) -->
-        <section class="blueprint-section" id="services" aria-labelledby="services-heading">
-            <div class="section-header">
-                <div>
-                    <span class="section-label">03 // CLIENT SERVICES</span>
-                    <h2 id="services-heading">Simple offers clients can understand.</h2>
-                </div>
-                <p class="section-summary">
-                    Most businesses do not need buzzwords. They need a fast website online, a domain and SSL certificate working properly, deployments that do not break, and a technical partner who explains the fix clearly.
-                </p>
-            </div>
-
-            <div class="service-columns">
-                <article class="service-panel-box">
-                    <h3>Website &amp; domain setup</h3>
-                    <ul class="service-checklist">
-                        <li>
-                            <svg class="proof-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Responsive business websites, portfolio sites, and landing pages.</span>
-                        </li>
-                        <li>
-                            <svg class="proof-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Custom domain, DNS records, HTTPS/TLS, CloudFront CDN, and S3 hosting setup.</span>
-                        </li>
-                        <li>
-                            <svg class="proof-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Repeatable GitHub Actions deployment pipeline so content updates take seconds.</span>
-                        </li>
-                    </ul>
-                </article>
-
-                <article class="service-panel-box">
-                    <h3>Web application development &amp; technical fixes</h3>
-                    <ul class="service-checklist">
-                        <li>
-                            <svg class="proof-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Full-stack e-commerce storefronts, admin dashboards, REST APIs, and database integration.</span>
-                        </li>
-                        <li>
-                            <svg class="proof-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Resolution for broken DNS, SSL/TLS errors, server downtime, and failing deployment pipelines.</span>
-                        </li>
-                        <li>
-                            <svg class="proof-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>AWS infrastructure configuration: EC2, security groups, Elastic IP, S3, CloudFront, Lambda, and DynamoDB.</span>
-                        </li>
-                        <li>
-                            <svg class="proof-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Clear runbooks and handoff documentation so your team owns the system confidently.</span>
-                        </li>
-                    </ul>
-                </article>
-            </div>
-
-            <div class="service-callout">
-                <div class="service-callout-text">
-                    <strong>Need a system deployed, debugged, or built from scratch?</strong>
-                    <span>Send your domain, current blocker, or project scope via Email or WhatsApp.</span>
-                </div>
-                <a class="button secondary button-with-icon" href="#contact">
-                    <span>Reach out in Contact</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M12 5v14M19 12l-7 7-7-7"></path>
-                    </svg>
-                </a>
-            </div>
-        </section>
-
-        <!-- Section 4: Operating Model (#systems) -->
-        <section class="blueprint-section" id="systems" aria-labelledby="systems-heading">
-            <div class="section-header">
-                <div>
-                    <span class="section-label">04 // OPERATING MODEL</span>
-                    <h2 id="systems-heading">Build, verify, then deploy.</h2>
-                </div>
-                <p class="section-summary">
-                    A reliable workflow is disciplined: write clean source changes, verify the runtime and endpoints, deploy through automation, and verify production health.
-                </p>
-            </div>
-
-            <div class="sequence-grid">
-                <article class="sequence-step">
-                    <div class="step-badge">
-                        <span class="step-num tabular">01</span>
-                        <span>DEVELOP</span>
-                    </div>
-                    <h3>Clear source control</h3>
-                    <p>
-                        Keep HTML, CSS, application logic, and infrastructure workflow definitions versioned together in Git with small, reviewable commits.
-                    </p>
-                </article>
-
-                <article class="sequence-step">
-                    <div class="step-badge">
-                        <span class="step-num tabular">02</span>
-                        <span>VERIFY</span>
-                    </div>
-                    <h3>Pre-release checks</h3>
-                    <p>
-                        Validate syntax, automated tests, container healthchecks, AWS identity permissions, and endpoint status before promoting changes.
-                    </p>
-                </article>
-
-                <article class="sequence-step">
-                    <div class="step-badge">
-                        <span class="step-num tabular">03</span>
-                        <span>SHIP</span>
-                    </div>
-                    <h3>Automated delivery</h3>
-                    <p>
-                        Push to <code>main</code>, execute GitHub Actions CI/CD, sync S3 or EC2 containers, invalidate CloudFront cache, and confirm live HTTP status.
-                    </p>
-                </article>
-            </div>
-        </section>
-
-        <!-- Section 5: Contact (#contact) -->
-        <section id="contact" aria-labelledby="contact-heading">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <span class="section-label">05 // DIRECT CONTACT</span>
-                    <h2 id="contact-heading">Need a Website Developer or Software Engineer?</h2>
-                    <p>
-                        Based in Erbil, Kurdistan. Open to full-time Website Developer, Software Engineer, Cloud/IT Support, and freelance web infrastructure projects.
-                    </p>
-
-                    <dl class="contact-table">
-                        <div class="contact-row">
-                            <dt>EMAIL</dt>
-                            <dd><a href="mailto:hevarrwandzi@gmail.com"><bdi>hevarrwandzi@gmail.com</bdi></a></dd>
-                        </div>
-                        <div class="contact-row">
-                            <dt>PHONE / WHATSAPP</dt>
-                            <dd><a class="tabular" href="tel:+9647503531930"><bdi>+964 750 353 1930</bdi></a></dd>
-                        </div>
-                        <div class="contact-row">
-                            <dt>LINKEDIN</dt>
-                            <dd><a href="https://www.linkedin.com/in/hevar-kochar-44a6b1368" target="_blank" rel="noreferrer"><bdi>linkedin.com/in/hevar-kochar-44a6b1368</bdi></a></dd>
-                        </div>
-                        <div class="contact-row">
-                            <dt>GITHUB</dt>
-                            <dd><a href="https://github.com/hevarrwandzi" target="_blank" rel="noreferrer"><bdi>github.com/hevarrwandzi</bdi></a></dd>
-                        </div>
-                    </dl>
-                </div>
-
-                <div class="contact-actions-panel">
-                    <!-- Single primary filled button in Contact view (better-colors) -->
-                    <a class="button primary button-icon-start" href="mailto:hevarrwandzi@gmail.com">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                        </svg>
-                        <span>Email Hevar (<bdi>hevarrwandzi@gmail.com</bdi>)</span>
+                <p>
+                    I’m a Website Developer and Software Engineer candidate based in Erbil, Kurdistan. I build and maintain real web systems using Node.js, PostgreSQL, Docker, and AWS — from e-commerce storefronts like
+                    <a class="inline-link" href="https://rscollection.online/" target="_blank" rel="noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        <span>RSCollection</span>
                     </a>
+                    to client deployments like
+                    <a class="inline-link" href="https://www.drdilshadecb.com/" target="_blank" rel="noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span>Dr. Dilshad ECB</span>
+                    </a>.
+                </p>
 
-                    <button class="button secondary button-icon-start" id="copy-email-btn" type="button">
+                <p>
+                    You can reach me via
+                    <a class="inline-link" href="mailto:hevarrwandzi@gmail.com">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        <span>email</span>
+                    </a>, message me on
+                    <a class="inline-link" href="https://wa.me/9647503531930?text=Hi%20Hevar%2C%20I%20saw%20your%20portfolio%20and%20need%20help%20with%20a%20technical%20project." target="_blank" rel="noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        <span>WhatsApp</span>
+                    </a>, connect on
+                    <a class="inline-link" href="https://www.linkedin.com/in/hevar-kochar-44a6b1368" target="_blank" rel="noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        <span>LinkedIn</span>
+                    </a>, inspect my code on
+                    <a class="inline-link" href="https://github.com/hevarrwandzi" target="_blank" rel="noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                        <span>GitHub</span>
+                    </a>, or download my
+                    <a class="inline-link" href="cv/hevar-kochar-website-developer-cv.pdf" target="_blank" rel="noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                        <span>CV (PDF)</span>
+                    </a>.
+                </p>
+            </section>
+
+            <!-- Concentric Command & Quick-Action Tray (jakub.kr/skills style) -->
+            <div class="concentric-tray stagger-group stagger-3">
+                <div class="concentric-card command-card-top">
+                    <div class="command-text">
+                        <span class="cmd-verb">contact</span>
+                        <span class="cmd-arg"><bdi>hevarrwandzi@gmail.com</bdi></span>
+                        <span class="cmd-meta">· <bdi>+964 750 353 1930</bdi> · Kurdish / Arabic / English</span>
+                    </div>
+                    <button
+                        class="copy-icon-btn"
+                        id="copy-email-btn"
+                        type="button"
+                        aria-label="Copy email address hevarrwandzi@gmail.com"
+                    >
                         <span class="icon-swap" aria-hidden="true">
                             <span class="icon-swap-layer is-shown" id="icon-copy">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -1833,54 +1209,452 @@
                                 </svg>
                             </span>
                         </span>
-                        <span id="copy-email-label">Copy email address</span>
                     </button>
+                </div>
 
-                    <a class="button secondary button-icon-start" href="https://wa.me/9647503531930?text=Hi%20Hevar%2C%20I%20saw%20your%20portfolio%20and%20need%20help%20with%20a%20technical%20project." target="_blank" rel="noreferrer">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                        </svg>
-                        <span>Message on WhatsApp</span>
+                <div class="tray-actions-grid">
+                    <a class="tray-action-btn is-primary" href="mailto:hevarrwandzi@gmail.com">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        <span>Email Hevar</span>
                     </a>
-
-                    <a class="button secondary button-icon-start" href="https://www.linkedin.com/in/hevar-kochar-44a6b1368" target="_blank" rel="noreferrer">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                        <span>Connect on LinkedIn</span>
+                    <a class="tray-action-btn" href="https://wa.me/9647503531930?text=Hi%20Hevar%2C%20I%20saw%20your%20portfolio%20and%20need%20help%20with%20a%20technical%20project." target="_blank" rel="noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        <span>WhatsApp</span>
                     </a>
-
-                    <a class="button secondary button-icon-start" href="https://github.com/hevarrwandzi" target="_blank" rel="noreferrer">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                            <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                        </svg>
-                        <span>View GitHub profile</span>
+                    <a class="tray-action-btn" href="https://github.com/hevarrwandzi" target="_blank" rel="noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                        <span>GitHub</span>
                     </a>
-
-                    <a class="button secondary button-icon-start" href="cv/hevar-kochar-website-developer-cv.pdf" target="_blank" rel="noreferrer">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="12" y1="18" x2="12" y2="12"></line>
-                            <polyline points="9 15 12 18 15 15"></polyline>
-                        </svg>
-                        <span>Download CV (PDF)</span>
+                    <a class="tray-action-btn" href="cv/hevar-kochar-website-developer-cv.pdf" target="_blank" rel="noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+                        <span>Download CV</span>
                     </a>
-
-                    <!-- Stable empty live region mounted before text updates (better-accessibility) -->
-                    <div class="copy-status" id="copy-status" role="status" aria-live="polite"></div>
                 </div>
             </div>
-        </section>
-    </main>
+            <div class="live-toast" id="copy-status" role="status" aria-live="polite"></div>
 
-    <footer class="site-footer">
-        <span>© 2026 Hevar Kochar. Hosted on AWS S3 &amp; CloudFront (<bdi>eu-north-1</bdi>).</span>
-        <span class="mono tabular" id="last-updated">deployment: verified</span>
-    </footer>
+            <!-- Section 1: Featured Case Study (/ rscollection) -->
+            <section class="section-block stagger-group stagger-4" id="projects" aria-labelledby="rscollection-heading">
+                <div class="slash-header">
+                    <h2 class="slash-title" id="rscollection-heading">
+                        <span class="slash-mark">/</span>
+                        <span>rscollection</span>
+                    </h2>
+                    <div class="slash-rule" aria-hidden="true"></div>
+                </div>
+
+                <p class="section-intro">
+                    A live <strong>e-commerce storefront, admin dashboard, and CI/CD pipeline</strong> built for an accessories shop. Covers the buyer experience, protected inventory and order management, PostgreSQL 17 persistence, and automated GitHub-to-AWS EC2 delivery.
+                </p>
+
+                <div class="viewer-tray">
+                    <div class="case-study-card">
+                        <div class="case-header">
+                            <div>
+                                <h3 class="case-title">RSCollection Production Platform</h3>
+                                <p class="case-subtitle"><bdi>rscollection.online</bdi> · Node.js, Express, PostgreSQL 17, Docker Compose, Caddy HTTPS</p>
+                            </div>
+                            <div class="case-links">
+                                <a class="viewer-pill-link" href="https://rscollection.online/" target="_blank" rel="noreferrer">
+                                    <span>Live shop</span>
+                                    <span aria-hidden="true">↗</span>
+                                </a>
+                                <a class="viewer-pill-link" href="https://github.com/hevarrwandzi/rscollection" target="_blank" rel="noreferrer">
+                                    <span>GitHub</span>
+                                    <span aria-hidden="true">↗</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="case-metrics-row">
+                            <div class="case-metric-pill">
+                                <strong class="tabular">55</strong>
+                                <span>Automated tests passing</span>
+                            </div>
+                            <div class="case-metric-pill">
+                                <strong>CI verified</strong>
+                                <span>Syntax, audit, Compose, health</span>
+                            </div>
+                            <div class="case-metric-pill">
+                                <strong>OIDC + SSM</strong>
+                                <span>Zero-SSH-key AWS EC2 deploy</span>
+                            </div>
+                        </div>
+
+                        <ul class="case-features" aria-label="RSCollection capabilities">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Storefront catalog, product details, stock badges, and WhatsApp/Instagram checkout flow</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Protected admin dashboard for products, image uploads, inventory, and customer requests</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Express + PostgreSQL backend with order APIs, analytics, auth, and healthcheck endpoints</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Docker Compose runtime with Caddy automatic HTTPS, automated backups, and smoke checks</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="case-stack-bar">
+                        <ul class="stack-tags" aria-label="RSCollection technologies">
+                            <li class="stack-tag">Client Work</li>
+                            <li class="stack-tag">Node.js</li>
+                            <li class="stack-tag">Express</li>
+                            <li class="stack-tag">PostgreSQL 17</li>
+                            <li class="stack-tag">Docker Compose</li>
+                            <li class="stack-tag">Caddy HTTPS</li>
+                            <li class="stack-tag">AWS EC2</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Interactive Architecture Viewer (/ architecture) -->
+            <section class="section-block" id="systems" aria-labelledby="arch-heading">
+                <div class="slash-header">
+                    <h2 class="slash-title" id="arch-heading">
+                        <span class="slash-mark">/</span>
+                        <span>architecture</span>
+                    </h2>
+                    <div class="slash-rule" aria-hidden="true"></div>
+                </div>
+
+                <p class="section-intro">
+                    Every project runs on <strong>verifiable cloud infrastructure</strong> with automated <strong>GitHub Actions CI/CD</strong>, locked origins, and health checks. Switch between the live production topologies below.
+                </p>
+
+                <div class="viewer-tray">
+                    <div class="viewer-canvas">
+                        <div class="viewer-top-bar">
+                            <div class="viewer-title-group">
+                                <span class="viewer-title" id="arch-active-title">hevar.cloud — S3 + CloudFront (OAC)</span>
+                                <span class="viewer-subtitle tabular" id="arch-active-region">eu-north-1</span>
+                            </div>
+                            <span class="viewer-pill-link tabular" id="count-card">Synchronizing…</span>
+                        </div>
+
+                        <!-- Panel 1: hevar.cloud S3 + CloudFront -->
+                        <div class="arch-panel is-active" id="panel-edge" role="tabpanel" aria-labelledby="tab-edge">
+                            <svg class="arch-svg" viewBox="0 0 560 120" role="img" aria-label="hevar.cloud CloudFront and S3 architecture">
+                                <rect x="8" y="24" width="144" height="68" rx="10" fill="var(--bg-tray)" stroke="var(--line-subtle)" stroke-width="1.25"/>
+                                <text x="24" y="52" fill="var(--text-primary)" font-family="var(--font-sans)" font-size="12" font-weight="600">Route 53 + CloudFront</text>
+                                <text x="24" y="72" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="10">TLS 1.3 · Edge cache</text>
+
+                                <path d="M152 58 H204" stroke="var(--text-muted)" stroke-width="1.25"/>
+                                <polygon points="204,55 210,58 204,61" fill="var(--text-muted)"/>
+
+                                <rect x="212" y="24" width="144" height="68" rx="10" fill="var(--bg-tray)" stroke="var(--line-subtle)" stroke-width="1.25"/>
+                                <text x="228" y="52" fill="var(--text-primary)" font-family="var(--font-sans)" font-size="12" font-weight="600">Amazon S3 Origin</text>
+                                <text x="228" y="72" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="10">OAC locked · Private</text>
+
+                                <path d="M356 58 H408" stroke="var(--text-muted)" stroke-width="1.25" stroke-dasharray="3 3"/>
+                                <polygon points="408,55 414,58 408,61" fill="var(--text-muted)"/>
+
+                                <rect x="416" y="24" width="136" height="68" rx="10" fill="var(--bg-tray)" stroke="var(--line-subtle)" stroke-width="1.25"/>
+                                <text x="432" y="52" fill="var(--text-primary)" font-family="var(--font-sans)" font-size="12" font-weight="600">GitHub Actions</text>
+                                <text x="432" y="72" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="10">S3 sync + CF purge</text>
+                            </svg>
+
+                            <div class="arch-caption">
+                                <div class="arch-stat">
+                                    <span class="arch-stat-label">Origin security</span>
+                                    <span class="arch-stat-value">Origin Access Control (OAC)</span>
+                                </div>
+                                <div class="arch-stat">
+                                    <span class="arch-stat-label">Deployment trigger</span>
+                                    <span class="arch-stat-value">Push to main → S3 + Invalidate</span>
+                                </div>
+                                <div class="arch-stat">
+                                    <span class="arch-stat-label">Domains</span>
+                                    <span class="arch-stat-value"><bdi>hevar.cloud</bdi> &amp; <bdi>drdilshadecb.com</bdi></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 2: RSCollection EC2 + Docker Compose -->
+                        <div class="arch-panel" id="panel-ec2" role="tabpanel" aria-labelledby="tab-ec2">
+                            <svg class="arch-svg" viewBox="0 0 560 120" role="img" aria-label="RSCollection EC2 Docker Compose architecture">
+                                <rect x="8" y="24" width="144" height="68" rx="10" fill="var(--bg-tray)" stroke="var(--line-subtle)" stroke-width="1.25"/>
+                                <text x="24" y="52" fill="var(--text-primary)" font-family="var(--font-sans)" font-size="12" font-weight="600">Caddy Reverse Proxy</text>
+                                <text x="24" y="72" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="10">Auto HTTPS · Rate limit</text>
+
+                                <path d="M152 58 H204" stroke="var(--text-muted)" stroke-width="1.25"/>
+                                <polygon points="204,55 210,58 204,61" fill="var(--text-muted)"/>
+
+                                <rect x="212" y="24" width="144" height="68" rx="10" fill="var(--bg-tray)" stroke="var(--line-subtle)" stroke-width="1.25"/>
+                                <text x="228" y="52" fill="var(--text-primary)" font-family="var(--font-sans)" font-size="12" font-weight="600">Node.js + Express</text>
+                                <text x="228" y="72" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="10">Storefront + Admin API</text>
+
+                                <path d="M356 58 H408" stroke="var(--text-muted)" stroke-width="1.25"/>
+                                <polygon points="408,55 414,58 408,61" fill="var(--text-muted)"/>
+
+                                <rect x="416" y="24" width="136" height="68" rx="10" fill="var(--bg-tray)" stroke="var(--line-subtle)" stroke-width="1.25"/>
+                                <text x="432" y="52" fill="var(--text-primary)" font-family="var(--font-sans)" font-size="12" font-weight="600">PostgreSQL 17</text>
+                                <text x="432" y="72" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="10">Catalog · Orders · Backups</text>
+                            </svg>
+
+                            <div class="arch-caption">
+                                <div class="arch-stat">
+                                    <span class="arch-stat-label">Container runtime</span>
+                                    <span class="arch-stat-value">Docker Compose on AWS EC2</span>
+                                </div>
+                                <div class="arch-stat">
+                                    <span class="arch-stat-label">Continuous delivery</span>
+                                    <span class="arch-stat-value">GitHub OIDC + AWS SSM</span>
+                                </div>
+                                <div class="arch-stat">
+                                    <span class="arch-stat-label">Verification</span>
+                                    <span class="arch-stat-value">55 tests + smoke healthchecks</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 3: Serverless Visitor Counter -->
+                        <div class="arch-panel" id="panel-serverless" role="tabpanel" aria-labelledby="tab-serverless">
+                            <svg class="arch-svg" viewBox="0 0 560 120" role="img" aria-label="Serverless visitor counter architecture">
+                                <rect x="8" y="24" width="144" height="68" rx="10" fill="var(--bg-tray)" stroke="var(--line-subtle)" stroke-width="1.25"/>
+                                <text x="24" y="52" fill="var(--text-primary)" font-family="var(--font-sans)" font-size="12" font-weight="600">API Gateway</text>
+                                <text x="24" y="72" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="10">HTTPS REST endpoint</text>
+
+                                <path d="M152 58 H204" stroke="var(--text-muted)" stroke-width="1.25"/>
+                                <polygon points="204,55 210,58 204,61" fill="var(--text-muted)"/>
+
+                                <rect x="212" y="24" width="144" height="68" rx="10" fill="var(--bg-tray)" stroke="var(--line-subtle)" stroke-width="1.25"/>
+                                <text x="228" y="52" fill="var(--text-primary)" font-family="var(--font-sans)" font-size="12" font-weight="600">AWS Lambda</text>
+                                <text x="228" y="72" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="10">Stateless counter handler</text>
+
+                                <path d="M356 58 H408" stroke="var(--text-muted)" stroke-width="1.25"/>
+                                <polygon points="408,55 414,58 408,61" fill="var(--text-muted)"/>
+
+                                <rect x="416" y="24" width="136" height="68" rx="10" fill="var(--bg-tray)" stroke="var(--line-subtle)" stroke-width="1.25"/>
+                                <text x="432" y="52" fill="var(--text-primary)" font-family="var(--font-sans)" font-size="12" font-weight="600">Amazon DynamoDB</text>
+                                <text x="432" y="72" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="10">Atomic visit counter</text>
+                            </svg>
+
+                            <div class="arch-caption">
+                                <div class="arch-stat">
+                                    <span class="arch-stat-label">Compute model</span>
+                                    <span class="arch-stat-value">Serverless on-demand</span>
+                                </div>
+                                <div class="arch-stat">
+                                    <span class="arch-stat-label">Persistence</span>
+                                    <span class="arch-stat-value">DynamoDB atomic increment</span>
+                                </div>
+                                <div class="arch-stat">
+                                    <span class="arch-stat-label">Maintenance</span>
+                                    <span class="arch-stat-value">Zero idle VPS overhead</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="viewer-controls" role="tablist" aria-label="Production architecture topologies">
+                        <button class="viewer-tab" id="tab-edge" role="tab" aria-selected="true" aria-controls="panel-edge" type="button" data-title="hevar.cloud — S3 + CloudFront (OAC)" data-region="eu-north-1">
+                            S3 + CloudFront
+                        </button>
+                        <button class="viewer-tab" id="tab-ec2" role="tab" aria-selected="false" aria-controls="panel-ec2" type="button" data-title="RSCollection — AWS EC2 + Docker Compose" data-region="rscollection.online">
+                            EC2 + Docker Stack
+                        </button>
+                        <button class="viewer-tab" id="tab-serverless" role="tab" aria-selected="false" aria-controls="panel-serverless" type="button" data-title="Visitor Telemetry — API Gateway + Lambda + DynamoDB" data-region="eu-north-1">
+                            Serverless API
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Selected Projects List (jakub.kr double-ring icon tiles) -->
+            <section class="section-block" aria-labelledby="projects-list-heading">
+                <div class="slash-header">
+                    <h2 class="slash-title" id="projects-list-heading">
+                        <span class="slash-mark">/</span>
+                        <span>projects</span>
+                    </h2>
+                    <div class="slash-rule" aria-hidden="true"></div>
+                </div>
+
+                <div class="project-list">
+                    <a class="project-row" href="https://rscollection.online/" target="_blank" rel="noreferrer">
+                        <div class="project-row-main">
+                            <div class="tile-outer" aria-hidden="true">
+                                <div class="tile-inner">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                                </div>
+                            </div>
+                            <div class="project-row-text">
+                                <div class="project-row-title">
+                                    <span>rscollection.online</span>
+                                </div>
+                                <p class="project-row-desc">E-commerce storefront, protected admin dashboard, Express + PostgreSQL 17, and OIDC/SSM CI/CD on AWS EC2</p>
+                            </div>
+                        </div>
+                        <span class="project-row-badge">Node.js · EC2 ↗</span>
+                    </a>
+
+                    <a class="project-row" href="https://www.drdilshadecb.com/" target="_blank" rel="noreferrer">
+                        <div class="project-row-main">
+                            <div class="tile-outer" aria-hidden="true">
+                                <div class="tile-inner">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="project-row-text">
+                                <div class="project-row-title">
+                                    <span>drdilshadecb.com</span>
+                                </div>
+                                <p class="project-row-desc">Client website delivered with custom domain, HTTPS, CloudFront CDN, OAC-locked S3 origin, and GitHub Actions</p>
+                            </div>
+                        </div>
+                        <span class="project-row-badge">CloudFront · CI/CD ↗</span>
+                    </a>
+
+                    <a class="project-row" href="https://github.com/hevarrwandzi/web" target="_blank" rel="noreferrer">
+                        <div class="project-row-main">
+                            <div class="tile-outer" aria-hidden="true">
+                                <div class="tile-inner">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="project-row-text">
+                                <div class="project-row-title">
+                                    <span>hevar.cloud</span>
+                                </div>
+                                <p class="project-row-desc">Production portfolio hosted on Amazon S3 and CloudFront with automated deployments, cache invalidation, and Terraform IaC practice</p>
+                            </div>
+                        </div>
+                        <span class="project-row-badge">S3 · CloudFront ↗</span>
+                    </a>
+
+                    <div class="project-row">
+                        <div class="project-row-main">
+                            <div class="tile-outer" aria-hidden="true">
+                                <div class="tile-inner">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                                </div>
+                            </div>
+                            <div class="project-row-text">
+                                <div class="project-row-title">
+                                    <span>Serverless visitor counter</span>
+                                </div>
+                                <p class="project-row-desc">Lightweight API Gateway, AWS Lambda, and DynamoDB backend tracking real-time visits without idle VPS maintenance</p>
+                            </div>
+                        </div>
+                        <span class="project-row-badge">Lambda · DynamoDB</span>
+                    </div>
+
+                    <div class="project-row">
+                        <div class="project-row-main">
+                            <div class="tile-outer" aria-hidden="true">
+                                <div class="tile-inner">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01"></path><path d="M7 20v-4"></path><path d="M12 20v-8"></path><path d="M17 20V8"></path><path d="M22 4v16"></path></svg>
+                                </div>
+                            </div>
+                            <div class="project-row-text">
+                                <div class="project-row-title">
+                                    <span>Signal &amp; systems lab</span>
+                                </div>
+                                <p class="project-row-desc">Hands-on hardware and RF experimentation around Wi-Fi/Bluetooth bands, physical systems integration, and network diagnostics</p>
+                            </div>
+                        </div>
+                        <span class="project-row-badge">Systems · RF</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Services & Capabilities (/ services) -->
+            <section class="section-block" id="services" aria-labelledby="services-heading">
+                <div class="slash-header">
+                    <h2 class="slash-title" id="services-heading">
+                        <span class="slash-mark">/</span>
+                        <span>services</span>
+                    </h2>
+                    <div class="slash-rule" aria-hidden="true"></div>
+                </div>
+
+                <p class="section-intro">
+                    Simple offers clients and teams can understand: <strong>reliable hosting</strong>, <strong>clean deployments</strong>, <strong>maintainable websites</strong>, and someone technical who can explain the fix clearly.
+                </p>
+
+                <div class="viewer-tray">
+                    <div class="services-tray-grid">
+                        <article class="service-card">
+                            <h3>Website &amp; domain setup</h3>
+                            <ul class="service-list">
+                                <li>Business websites, portfolio pages, and responsive landing pages.</li>
+                                <li>Custom domain, DNS records, HTTPS/TLS, CloudFront, and S3 hosting setup.</li>
+                                <li>Clean GitHub Actions deployment pipeline so updates are repeatable.</li>
+                            </ul>
+                        </article>
+
+                        <article class="service-card">
+                            <h3>Web development &amp; technical fixes</h3>
+                            <ul class="service-list">
+                                <li>Responsive e-commerce pages, REST APIs, admin flows, and database debugging.</li>
+                                <li>Fixing website errors, broken DNS, SSL issues, and deployment problems.</li>
+                                <li>AWS setup: EC2, security groups, Elastic IP, S3, CloudFront, Lambda, DynamoDB.</li>
+                                <li>Clear documentation and handoff notes so the system stays understandable.</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Operating Model (/ workflow) -->
+            <section class="section-block" id="work" aria-labelledby="workflow-heading">
+                <div class="slash-header">
+                    <h2 class="slash-title" id="workflow-heading">
+                        <span class="slash-mark">/</span>
+                        <span>workflow</span>
+                    </h2>
+                    <div class="slash-rule" aria-hidden="true"></div>
+                </div>
+
+                <p class="section-intro">
+                    A professional workflow is simple: <strong>make the change</strong>, <strong>prove it works</strong>, <strong>deploy it safely</strong>, and document the result.
+                </p>
+
+                <div class="viewer-tray">
+                    <div class="workflow-grid">
+                        <article class="workflow-card">
+                            <span class="workflow-step-label tabular">01 · Develop</span>
+                            <h3>Clear source</h3>
+                            <p>Small, readable HTML, CSS, application, and infrastructure changes in Git with the deployment workflow stored beside the code.</p>
+                        </article>
+
+                        <article class="workflow-card">
+                            <span class="workflow-step-label tabular">02 · Preview</span>
+                            <h3>Check the system</h3>
+                            <p>Validate content, automated tests, endpoint responses, AWS identity, and container health before calling work done.</p>
+                        </article>
+
+                        <article class="workflow-card">
+                            <span class="workflow-step-label tabular">03 · Ship</span>
+                            <h3>Deploy cleanly</h3>
+                            <p>Push to <code>main</code>, run CI/CD, sync S3 or EC2, invalidate CloudFront, and verify the production domain after the pipeline finishes.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer" id="contact">
+            <span>© 2026 Hevar Kochar · Erbil, Kurdistan</span>
+            <div class="footer-links">
+                <a href="mailto:hevarrwandzi@gmail.com">Email</a>
+                <a href="https://wa.me/9647503531930?text=Hi%20Hevar%2C%20I%20saw%20your%20portfolio%20and%20need%20help%20with%20a%20technical%20project." target="_blank" rel="noreferrer">WhatsApp</a>
+                <a href="https://www.linkedin.com/in/hevar-kochar-44a6b1368" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a href="https://github.com/hevarrwandzi" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="cv/hevar-kochar-website-developer-cv.pdf" target="_blank" rel="noreferrer">CV</a>
+                <span class="mono tabular" id="last-updated">deployed</span>
+            </div>
+        </footer>
+    </div>
 
     <script>
         (function () {
@@ -1891,7 +1665,7 @@
             const iconSun = document.getElementById('icon-sun');
             const themeMeta = document.querySelector('meta[name="theme-color"]');
 
-            // Suppress CSS transitions during theme flip so colors never smear (better-ui)
+            // Suppress CSS transitions during theme switch (better-ui/animations.md)
             function applyThemeWithSuppressedTransitions(theme) {
                 const style = document.createElement('style');
                 style.appendChild(
@@ -1912,7 +1686,7 @@
             function setThemeState(theme) {
                 const isDark = theme === 'dark';
                 root.setAttribute('data-theme', isDark ? 'dark' : 'light');
-                themeMeta.setAttribute('content', isDark ? '#090b0e' : '#f8f9fa');
+                themeMeta.setAttribute('content', isDark ? '#101010' : '#fcfcfc');
                 themeToggle.setAttribute('aria-pressed', String(isDark));
                 themeToggle.setAttribute(
                     'aria-label',
@@ -1926,7 +1700,6 @@
                 iconSun.classList.toggle('is-hidden', !isDark);
             }
 
-            // Initialize theme without transition smear
             const urlTheme = new URLSearchParams(window.location.search).get('theme');
             const savedTheme = urlTheme || localStorage.getItem('theme');
             setThemeState(savedTheme === 'dark' ? 'dark' : 'light');
@@ -1937,9 +1710,44 @@
                 localStorage.setItem('theme', nextTheme);
             });
 
-            // Copy email interaction with contextual icon cross-fade and polite status announcement
+            // Interactive Architecture Viewer Tabs (roving tabindex + arrow keys per better-accessibility)
+            const tabs = Array.from(document.querySelectorAll('.viewer-tab'));
+            const panels = Array.from(document.querySelectorAll('.arch-panel'));
+            const activeTitle = document.getElementById('arch-active-title');
+            const activeRegion = document.getElementById('arch-active-region');
+
+            function activateTab(selectedTab, moveFocus) {
+                tabs.forEach((tab) => {
+                    const isSelected = tab === selectedTab;
+                    tab.setAttribute('aria-selected', String(isSelected));
+                    tab.setAttribute('tabindex', isSelected ? '0' : '-1');
+                });
+                panels.forEach((panel) => {
+                    panel.classList.toggle(
+                        'is-active',
+                        panel.id === selectedTab.getAttribute('aria-controls')
+                    );
+                });
+                activeTitle.textContent = selectedTab.dataset.title;
+                activeRegion.textContent = selectedTab.dataset.region;
+                if (moveFocus) selectedTab.focus();
+            }
+
+            tabs.forEach((tab, idx) => {
+                tab.setAttribute('tabindex', idx === 0 ? '0' : '-1');
+                tab.addEventListener('click', () => activateTab(tab, false));
+                tab.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        const dir = e.key === 'ArrowRight' ? 1 : -1;
+                        const nextIdx = (idx + dir + tabs.length) % tabs.length;
+                        activateTab(tabs[nextIdx], true);
+                    }
+                });
+            });
+
+            // Copy email interaction with contextual icon cross-fade
             const copyBtn = document.getElementById('copy-email-btn');
-            const copyLabel = document.getElementById('copy-email-label');
             const copyStatus = document.getElementById('copy-status');
             const iconCopy = document.getElementById('icon-copy');
             const iconCopied = document.getElementById('icon-copied');
@@ -1951,31 +1759,29 @@
                     await navigator.clipboard.writeText(email);
                     iconCopy.classList.replace('is-shown', 'is-hidden');
                     iconCopied.classList.replace('is-hidden', 'is-shown');
-                    copyLabel.textContent = 'Email address copied';
-                    copyStatus.textContent = 'Copied hevarrwandzi@gmail.com to clipboard.';
+                    copyStatus.textContent = 'Copied hevarrwandzi@gmail.com to clipboard';
 
                     if (copyResetTimer) clearTimeout(copyResetTimer);
                     copyResetTimer = setTimeout(() => {
                         iconCopied.classList.replace('is-shown', 'is-hidden');
                         iconCopy.classList.replace('is-hidden', 'is-shown');
-                        copyLabel.textContent = 'Copy email address';
                         copyStatus.textContent = '';
-                    }, 3000);
+                    }, 2800);
                 } catch {
-                    copyStatus.textContent = 'Select hevarrwandzi@gmail.com in the Contact table to copy.';
+                    copyStatus.textContent = 'Email: hevarrwandzi@gmail.com';
                 }
             });
 
-            // Format deployment date with explicit Intl.DateTimeFormat (better-writing)
+            // Format deployment date with explicit Intl.DateTimeFormat
             const dateFormatter = new Intl.DateTimeFormat('en-US', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric'
             });
             document.getElementById('last-updated').textContent =
-                'deployment: ' + dateFormatter.format(new Date());
+                dateFormatter.format(new Date());
 
-            // Live serverless visitor counter formatted with Intl.NumberFormat
+            // Live serverless visitor counter
             const numberFormatter = new Intl.NumberFormat('en-US');
             async function updateCounter() {
                 const countTop = document.getElementById('count');
@@ -1988,11 +1794,11 @@
                     if (!response.ok) throw new Error('HTTP ' + response.status);
                     const data = await response.json();
                     const formatted = numberFormatter.format(Number(data.count || 0));
-                    countTop.textContent = formatted;
-                    countCard.textContent = formatted + ' visits recorded';
+                    countTop.textContent = formatted + ' visits';
+                    countCard.textContent = formatted + ' visits';
                 } catch {
                     countTop.textContent = 'online';
-                    countCard.textContent = 'Endpoint active';
+                    countCard.textContent = 'Active';
                 }
             }
             updateCounter();
