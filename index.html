@@ -71,16 +71,17 @@
             margin: 0;
             color: var(--text);
             background-color: var(--bg);
-            background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
             background-size: 24px 24px;
             font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-feature-settings: "liga" 1, "calt" 1;
             -webkit-font-smoothing: antialiased;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         [data-theme="light"] body {
-            background-image: radial-gradient(rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
         }
 
         a {
@@ -92,13 +93,15 @@
             font-variant-numeric: tabular-nums;
         }
 
-        /* Subtle live indicator with visible radar pulse */
+        /* ==========================================
+           KEYFRAMES & MOTION SYSTEM (better-ui)
+           ========================================== */
         @keyframes statusPing {
             0% {
                 box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.65);
             }
             70% {
-                box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+                box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
             }
             100% {
                 box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
@@ -110,21 +113,37 @@
             50%, 100% { opacity: 0; }
         }
 
-        @keyframes heroEnter {
+        @keyframes fadeInOnly {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes wordReveal {
             from {
                 opacity: 0;
-                transform: translateY(16px) scale(0.99);
+                transform: translateY(14px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroEnter {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
         @keyframes rowSlideIn {
             from {
                 opacity: 0;
-                transform: translateX(-8px);
+                transform: translateX(-10px);
             }
             to {
                 opacity: 1;
@@ -132,9 +151,38 @@
             }
         }
 
-        @keyframes archFlowPulse {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+        @keyframes dashFlow {
+            to {
+                stroke-dashoffset: -16;
+            }
+        }
+
+        @keyframes packetTravel {
+            0% {
+                transform: translateX(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(22px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes barPulse {
+            0%, 100% {
+                transform: scaleY(0.45);
+                opacity: 0.45;
+            }
+            50% {
+                transform: scaleY(1);
+                opacity: 1;
+            }
         }
 
         .status-dot {
@@ -144,7 +192,6 @@
             background: var(--accent-emerald);
             display: inline-block;
             flex-shrink: 0;
-            animation: statusPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
         }
 
         .terminal-cursor {
@@ -157,40 +204,64 @@
             animation: cursorBlink 1s steps(1) infinite;
         }
 
-        /* Hero entrance choreography */
-        .hero > div > .eyebrow {
-            animation: heroEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+        /* Hero word-by-word & staged entrance */
+        .hero-word {
+            display: inline-block;
+            animation: fadeInOnly 350ms ease-out both;
+            animation-delay: calc(var(--word-index, 0) * 55ms + 40ms);
         }
-        .hero > div > h1 {
-            animation: heroEnter 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+
+        @media (prefers-reduced-motion: no-preference) {
+            .status-dot {
+                animation: statusPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+            }
+            .hero-word {
+                animation-name: wordReveal;
+                animation-duration: 460ms;
+                animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+            }
+            .hero > div > .eyebrow {
+                animation: heroEnter 450ms cubic-bezier(0.2, 0, 0, 1) 20ms both;
+            }
+            .hero > div > .hero-copy {
+                animation: heroEnter 500ms cubic-bezier(0.2, 0, 0, 1) 420ms both;
+            }
+            .hero > div > .hero-actions {
+                animation: heroEnter 500ms cubic-bezier(0.2, 0, 0, 1) 520ms both;
+            }
+            .hero > div > .hero-meta {
+                animation: heroEnter 500ms cubic-bezier(0.2, 0, 0, 1) 600ms both;
+            }
+            .hero > .terminal-card {
+                animation: heroEnter 600ms cubic-bezier(0.2, 0, 0, 1) 180ms both;
+            }
+            .stats .stat:nth-child(1) { animation: heroEnter 500ms cubic-bezier(0.2, 0, 0, 1) 300ms both; }
+            .stats .stat:nth-child(2) { animation: heroEnter 500ms cubic-bezier(0.2, 0, 0, 1) 380ms both; }
+            .stats .stat:nth-child(3) { animation: heroEnter 500ms cubic-bezier(0.2, 0, 0, 1) 460ms both; }
+            .stats .stat:nth-child(4) { animation: heroEnter 500ms cubic-bezier(0.2, 0, 0, 1) 540ms both; }
+
+            .term-row-anim {
+                animation: rowSlideIn 280ms cubic-bezier(0.2, 0, 0, 1) both;
+            }
         }
-        .hero > div > .hero-copy {
-            animation: heroEnter 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
-        }
-        .hero > div > .hero-actions {
-            animation: heroEnter 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
-        }
-        .hero > div > .hero-meta {
-            animation: heroEnter 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.34s both;
-        }
-        .hero > .terminal-card {
-            animation: heroEnter 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
-        }
-        .stats .stat:nth-child(1) { animation: heroEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both; }
-        .stats .stat:nth-child(2) { animation: heroEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.34s both; }
-        .stats .stat:nth-child(3) { animation: heroEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.40s both; }
-        .stats .stat:nth-child(4) { animation: heroEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.46s both; }
 
         /* Scroll-reveal animation classes */
         .reveal-item {
             opacity: 0;
-            transform: translateY(20px);
-            transition:
-                opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.2s ease,
-                box-shadow 0.25s ease;
+            transition: opacity 400ms ease-out;
             transition-delay: var(--reveal-delay, 0ms);
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .reveal-item {
+                transform: translateY(18px);
+                transition:
+                    opacity 520ms cubic-bezier(0.2, 0, 0, 1),
+                    transform 520ms cubic-bezier(0.2, 0, 0, 1),
+                    border-color 200ms ease,
+                    box-shadow 250ms ease;
+                transition-delay: var(--reveal-delay, 0ms);
+            }
         }
 
         .reveal-item.is-visible {
@@ -198,7 +269,9 @@
             transform: translateY(0);
         }
 
-        /* Navbar */
+        /* ==========================================
+           NAVBAR + SCROLL PROGRESS BAR
+           ========================================== */
         .nav {
             position: sticky;
             top: 0;
@@ -207,6 +280,25 @@
             -webkit-backdrop-filter: blur(14px);
             background: var(--nav-bg);
             border-bottom: 1px solid var(--border);
+        }
+
+        .scroll-progress-track {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: transparent;
+            overflow: hidden;
+        }
+
+        .scroll-progress-bar {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, var(--accent-emerald), var(--accent-cyan));
+            transform-origin: 0 50%;
+            transform: scaleX(0);
+            transition: transform 80ms linear;
         }
 
         .nav-inner {
@@ -263,7 +355,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 6px;
             color: var(--text-secondary);
             font-size: 13.5px;
             font-weight: 500;
@@ -271,12 +363,16 @@
 
         .nav-links a {
             text-decoration: none;
-            transition: color .15s ease;
+            padding: 5px 10px;
+            border-radius: 6px;
+            transition: color 150ms ease-out, background-color 150ms ease-out;
             white-space: nowrap;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--text);
+            background-color: var(--surface-elevated);
         }
 
         .nav-actions {
@@ -299,10 +395,45 @@
             font-weight: 500;
         }
 
-        .theme-toggle {
+        /* Dual-SVG Cross-Fade Icon Button (better-ui icon-transitions.md) */
+        .icon-swap-grid {
+            display: inline-grid;
+            place-items: center;
+        }
+
+        .icon-layer {
+            grid-area: 1 / 1;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            transition-property: opacity, filter, scale;
+            transition-duration: 300ms;
+            transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .icon-layer {
+                transition-property: opacity;
+                transition-duration: 150ms;
+            }
+        }
+
+        .icon-layer.is-shown {
+            opacity: 1;
+            scale: 1;
+            filter: blur(0px);
+        }
+
+        .icon-layer.is-hidden {
+            opacity: 0;
+            scale: 0.25;
+            filter: blur(4px);
+            pointer-events: none;
+        }
+
+        .theme-toggle {
+            display: inline-grid;
+            place-items: center;
             width: 32px;
             height: 32px;
             border-radius: 6px;
@@ -310,7 +441,8 @@
             background: var(--surface);
             color: var(--text-secondary);
             cursor: pointer;
-            transition: border-color .15s ease, color .15s ease;
+            -webkit-tap-highlight-color: transparent;
+            transition: border-color 150ms ease-out, color 150ms ease-out, scale 150ms ease-out;
         }
 
         .theme-toggle:hover {
@@ -318,7 +450,13 @@
             color: var(--text);
         }
 
-        /* Buttons */
+        .theme-toggle:not(:disabled):active {
+            scale: 0.96;
+        }
+
+        /* ==========================================
+           BUTTONS (better-ui scale: 0.96 on press)
+           ========================================== */
         .button {
             display: inline-flex;
             align-items: center;
@@ -330,11 +468,17 @@
             text-decoration: none;
             font-size: 13.5px;
             font-weight: 500;
-            transition: border-color .15s ease, background .15s ease, transform .15s ease;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            transition:
+                border-color 150ms ease-out,
+                background-color 150ms ease-out,
+                opacity 150ms ease-out,
+                scale 150ms ease-out;
         }
 
-        .button:active {
-            transform: translateY(1px);
+        .button:not(:disabled):active {
+            scale: 0.96;
         }
 
         .button.primary {
@@ -358,7 +502,9 @@
             background: var(--surface-hover);
         }
 
-        /* Hero + Interactive CLI */
+        /* ==========================================
+           HERO + INTERACTIVE TERMINAL
+           ========================================== */
         .hero {
             max-width: var(--max);
             margin: 0 auto;
@@ -386,7 +532,7 @@
         h1 {
             margin: 18px 0 16px;
             font-size: clamp(38px, 5vw, 58px);
-            line-height: 1.03;
+            line-height: 1.04;
             letter-spacing: -0.045em;
             font-weight: 600;
             text-wrap: balance;
@@ -429,6 +575,13 @@
             box-shadow: 0 20px 44px -20px rgba(0, 0, 0, 0.65), 0 1px 0 0 rgba(255, 255, 255, 0.05) inset;
             display: flex;
             flex-direction: column;
+            transition: border-color 200ms ease-out, box-shadow 250ms ease-out;
+        }
+
+        .terminal-card:hover,
+        .terminal-card:focus-within {
+            border-color: #3f3f46;
+            box-shadow: 0 24px 48px -18px rgba(0, 0, 0, 0.78), 0 1px 0 0 rgba(255, 255, 255, 0.09) inset;
         }
 
         .terminal-top {
@@ -450,11 +603,19 @@
             height: 9px;
             border-radius: 50%;
             background: #3f3f46;
+            transition: background-color 200ms ease;
         }
+
+        .terminal-card:hover .dot:nth-child(1) { background: #ef4444; }
+        .terminal-card:hover .dot:nth-child(2) { background: #f59e0b; }
+        .terminal-card:hover .dot:nth-child(3) { background: #10b981; }
 
         .terminal-title {
             font-size: 11.5px;
             color: #71717a;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .terminal-quickbar {
@@ -482,7 +643,8 @@
             border-radius: 4px;
             font-size: 11px;
             cursor: pointer;
-            transition: color .15s ease, border-color .15s ease, background .15s ease;
+            -webkit-tap-highlight-color: transparent;
+            transition: color 150ms ease-out, border-color 150ms ease-out, background-color 150ms ease-out, scale 150ms ease-out;
         }
 
         .cmd-chip:hover {
@@ -491,15 +653,20 @@
             background: #18181d;
         }
 
+        .cmd-chip:not(:disabled):active {
+            scale: 0.96;
+        }
+
         .terminal-body {
             padding: 14px 16px;
             font-size: 12px;
             line-height: 1.7;
             color: #d4d4d8;
-            min-height: 245px;
+            min-height: 250px;
             max-height: 330px;
             overflow-y: auto;
             overflow-x: hidden;
+            overscroll-behavior: contain;
         }
 
         .terminal-line {
@@ -556,7 +723,9 @@
             color: #52525b;
         }
 
-        /* Stats Bento Row */
+        /* ==========================================
+           BENTO STATS + LIVE TELEMETRY SPARKLINES
+           ========================================== */
         .stats {
             max-width: var(--max);
             margin: 0 auto;
@@ -574,13 +743,15 @@
             background: var(--surface);
             border: 1px solid var(--border);
             box-shadow: var(--card-shadow);
-            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s ease, box-shadow 0.25s ease;
+            transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+            transition: transform 200ms ease-out, border-color 150ms ease-out, box-shadow 200ms ease-out;
         }
 
-        .stat:hover {
-            transform: translateY(-3px);
-            border-color: var(--border-hover);
-            box-shadow: 0 14px 28px -14px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.07) inset;
+        .stat-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
         }
 
         .stat-number {
@@ -597,7 +768,33 @@
             line-height: 1.5;
         }
 
-        /* Sections */
+        /* Mini Animated Telemetry Bars */
+        .uptime-bars {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 14px;
+        }
+
+        .uptime-bar {
+            width: 2.5px;
+            height: 100%;
+            border-radius: 2px;
+            background: var(--accent-emerald);
+            transform-origin: bottom;
+            opacity: 0.7;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .uptime-bar {
+                animation: barPulse 2.4s ease-in-out infinite;
+                animation-delay: calc(var(--bar-idx, 0) * 140ms);
+            }
+        }
+
+        /* ==========================================
+           SECTIONS & INTERACTIVE BENTO CARDS
+           ========================================== */
         section {
             max-width: var(--max);
             margin: 0 auto;
@@ -638,7 +835,6 @@
             text-wrap: pretty;
         }
 
-        /* Panels & Bento Grids */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -657,51 +853,54 @@
             background: var(--surface);
             border: 1px solid var(--border);
             box-shadow: var(--card-shadow);
+            transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
             transition:
-                transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.2s ease,
-                box-shadow 0.25s ease,
-                opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+                transform 200ms ease-out,
+                border-color 150ms ease-out,
+                box-shadow 200ms ease-out,
+                opacity 520ms cubic-bezier(0.2, 0, 0, 1);
         }
 
-        /* Interactive mouse-tracking spotlight overlay */
-        .stat::before,
-        .card::before,
-        .service-box::before,
-        .step::before,
-        .project::before,
-        .repo-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            pointer-events: none;
-            background: radial-gradient(
-                420px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
-                rgba(255, 255, 255, 0.055),
-                transparent 45%
-            );
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
+        /* Interactive mouse-tracking spotlight overlay (gated behind hover: hover) */
+        @media (hover: hover) {
+            .stat::before,
+            .card::before,
+            .service-box::before,
+            .step::before,
+            .project::before,
+            .repo-card::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                pointer-events: none;
+                background: radial-gradient(
+                    380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+                    rgba(255, 255, 255, 0.065),
+                    transparent 45%
+                );
+                opacity: 0;
+                transition: opacity 200ms ease-out;
+            }
 
-        .stat:hover::before,
-        .card:hover::before,
-        .service-box:hover::before,
-        .step:hover::before,
-        .project:hover::before,
-        .repo-card:hover::before {
-            opacity: 1;
-        }
+            .stat:hover::before,
+            .card:hover::before,
+            .service-box:hover::before,
+            .step:hover::before,
+            .project:hover::before,
+            .repo-card:hover::before {
+                opacity: 1;
+            }
 
-        .card:hover,
-        .service-box:hover,
-        .step:hover,
-        .project:hover,
-        .repo-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--border-hover);
-            box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 0.75), 0 1px 0 0 rgba(255, 255, 255, 0.08) inset;
+            .stat:hover,
+            .card:hover,
+            .service-box:hover,
+            .step:hover,
+            .project:hover,
+            .repo-card:hover {
+                border-color: var(--border-hover);
+                box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 0.72), 0 1px 0 0 rgba(255, 255, 255, 0.09) inset;
+            }
         }
 
         .card-icon {
@@ -714,6 +913,15 @@
             background: var(--surface-elevated);
             border: 1px solid var(--border-strong);
             color: var(--text-secondary);
+            transition: transform 200ms cubic-bezier(0.2, 0, 0, 1), color 150ms ease-out, border-color 150ms ease-out;
+        }
+
+        @media (hover: hover) {
+            .card:hover .card-icon {
+                transform: scale(1.06) translateY(-1px);
+                color: var(--text);
+                border-color: var(--border-hover);
+            }
         }
 
         .card h3 {
@@ -797,6 +1005,13 @@
             gap: 14px;
         }
 
+        .step-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
         .step .mono {
             font-size: 11.5px;
             color: var(--text-muted);
@@ -817,7 +1032,9 @@
             font-size: 14.5px;
         }
 
-        /* Projects */
+        /* ==========================================
+           PROJECTS + ANIMATED SVG FLOW CONNECTORS
+           ========================================== */
         .project-list {
             display: grid;
             gap: 14px;
@@ -864,44 +1081,50 @@
             max-width: 68ch;
         }
 
-        /* Subtle Architecture Flow Line with animated data shimmer */
+        /* Animated SVG Data-Flow Connector Pipeline */
         .arch-flow {
             display: inline-flex;
             flex-wrap: wrap;
             align-items: center;
             gap: 6px;
             margin-top: 12px;
-            padding: 6px 10px;
+            padding: 6px 11px;
             border-radius: 6px;
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent 0%,
-                    rgba(16, 185, 129, 0.08) 45%,
-                    rgba(56, 189, 248, 0.12) 50%,
-                    rgba(16, 185, 129, 0.08) 55%,
-                    transparent 100%
-                ),
-                var(--surface-elevated);
-            background-size: 200% 100%, 100% 100%;
-            animation: archFlowPulse 6s linear infinite;
+            background: var(--surface-elevated);
             border: 1px solid var(--border);
             font-size: 11.5px;
             color: var(--text-secondary);
         }
 
-        .arch-arrow {
-            color: var(--accent-emerald);
-            display: inline-block;
-            transition: transform 0.2s ease;
+        .flow-node {
+            color: var(--text);
+            font-weight: 500;
         }
 
-        .project:hover .arch-arrow {
-            transform: translateX(2px);
+        .flow-svg {
+            width: 28px;
+            height: 10px;
+            overflow: visible;
+            flex-shrink: 0;
         }
 
-        .term-row-anim {
-            animation: rowSlideIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+        .flow-line {
+            stroke: var(--border-hover);
+            stroke-width: 1.5;
+            stroke-dasharray: 3 3;
+        }
+
+        .flow-packet {
+            fill: var(--accent-emerald);
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .flow-line {
+                animation: dashFlow 0.9s linear infinite;
+            }
+            .flow-packet {
+                animation: packetTravel 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            }
         }
 
         /* Featured Case Study */
@@ -927,6 +1150,14 @@
             border-left: 1px solid var(--border);
         }
 
+        .case-side-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
         .case-label {
             display: inline-flex;
             align-items: center;
@@ -936,6 +1167,10 @@
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.08em;
+        }
+
+        .case-side-top .case-label {
+            margin-bottom: 0;
         }
 
         .case-metrics {
@@ -1023,7 +1258,7 @@
             text-decoration: none;
             border-bottom: 1px solid var(--border-strong);
             padding-bottom: 1px;
-            transition: border-color .15s ease;
+            transition: border-color 150ms ease-out;
         }
 
         .project-link:hover {
@@ -1080,6 +1315,19 @@
             font-weight: 600;
             color: var(--text);
             letter-spacing: -0.02em;
+        }
+
+        .repo-arrow {
+            font-size: 12px;
+            color: var(--text-muted);
+            transition: transform 150ms ease-out, color 150ms ease-out;
+        }
+
+        @media (hover: hover) {
+            .repo-card:hover .repo-arrow {
+                transform: translate(2px, -2px);
+                color: var(--text);
+            }
         }
 
         .repo-desc {
@@ -1202,7 +1450,7 @@
             .nav-links {
                 width: 100%;
                 flex-wrap: wrap;
-                gap: 12px;
+                gap: 6px;
                 padding-top: 8px;
                 border-top: 1px solid var(--border);
             }
@@ -1223,6 +1471,9 @@
 </head>
 <body>
     <nav class="nav" aria-label="Primary navigation">
+        <div class="scroll-progress-track" aria-hidden="true">
+            <div class="scroll-progress-bar" id="scroll-progress"></div>
+        </div>
         <div class="nav-inner">
             <div class="brand-group">
                 <a class="brand" href="#top" aria-label="Hevar home">
@@ -1235,7 +1486,7 @@
                 </div>
             </div>
 
-            <div class="nav-links">
+            <div class="nav-links" id="nav-links">
                 <a href="#work">Work</a>
                 <a href="#services">Services</a>
                 <a href="#systems">Systems</a>
@@ -1249,10 +1500,19 @@
                     visits <strong id="nav-count">...</strong>
                 </div>
                 <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="true">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="12" cy="12" r="4"></circle>
-                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
-                    </svg>
+                    <span class="icon-swap-grid" aria-hidden="true">
+                        <span class="icon-layer is-shown" id="icon-sun">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="4"></circle>
+                                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                            </svg>
+                        </span>
+                        <span class="icon-layer is-hidden" id="icon-moon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                            </svg>
+                        </span>
+                    </span>
                 </button>
             </div>
         </div>
@@ -1265,12 +1525,39 @@
                     <span class="status-dot"></span>
                     <span>Available for Website Developer / Software Engineer roles</span>
                 </div>
-                <h1>Website developer who can build, deploy, and maintain real systems.</h1>
+                <h1 aria-label="Website developer who can build, deploy, and maintain real systems.">
+                    <span class="hero-word" style="--word-index:0">Website</span>
+                    <span class="hero-word" style="--word-index:1">developer</span>
+                    <span class="hero-word" style="--word-index:2">who</span>
+                    <span class="hero-word" style="--word-index:3">can</span>
+                    <span class="hero-word" style="--word-index:4">build,</span>
+                    <span class="hero-word" style="--word-index:5">deploy,</span>
+                    <span class="hero-word" style="--word-index:6">and</span>
+                    <span class="hero-word" style="--word-index:7">maintain</span>
+                    <span class="hero-word" style="--word-index:8">real</span>
+                    <span class="hero-word" style="--word-index:9">systems.</span>
+                </h1>
                 <p class="hero-copy">
                     I am Hevar — a Website Developer / Software Engineer candidate in Erbil with hands-on e-commerce, Node.js, PostgreSQL, Docker, AWS, CI/CD, DNS, and HTTPS deployment experience. I build responsive websites and maintain the infrastructure behind them.
                 </p>
                 <div class="hero-actions">
                     <a class="button primary" href="mailto:hevarrwandzi@gmail.com">Email me</a>
+                    <button class="button secondary" id="copy-email-btn" type="button" data-email="hevarrwandzi@gmail.com">
+                        <span class="icon-swap-grid" aria-hidden="true">
+                            <span class="icon-layer is-shown" id="icon-copy">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </span>
+                            <span class="icon-layer is-hidden" id="icon-copied" style="color: var(--accent-emerald);">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </span>
+                        </span>
+                        <span id="copy-email-text">Copy email</span>
+                    </button>
                     <a class="button secondary" href="https://wa.me/9647503531930?text=Hi%20Hevar%2C%20I%20saw%20your%20portfolio%20and%20need%20help%20with%20a%20technical%20project." target="_blank" rel="noreferrer">WhatsApp</a>
                     <a class="button secondary" href="#projects">View projects</a>
                     <a class="button secondary" href="cv/hevar-kochar-website-developer-cv.pdf" target="_blank" rel="noreferrer">Download CV</a>
@@ -1284,14 +1571,17 @@
                 </div>
             </div>
 
-            <aside class="terminal-card" aria-label="Interactive deployment terminal">
+            <aside class="terminal-card" id="terminal-card" aria-label="Interactive deployment terminal">
                 <div class="terminal-top">
                     <div class="terminal-dots">
                         <span class="dot"></span>
                         <span class="dot"></span>
                         <span class="dot"></span>
                     </div>
-                    <div class="terminal-title mono">hevar@hevar.cloud — bash</div>
+                    <div class="terminal-title mono">
+                        <span class="status-dot" style="width:5px; height:5px;"></span>
+                        <span>hevar@hevar.cloud — bash</span>
+                    </div>
                     <div class="terminal-title mono">visits: <span id="count">...</span></div>
                 </div>
 
@@ -1307,7 +1597,7 @@
 
                 <div class="terminal-body mono" id="terminal-output" role="log" aria-live="polite">
                     <div class="terminal-line">
-                        <span class="prompt-user">hevar@cloud</span> <span class="prompt-symbol">$</span> <span class="prompt-cmd" id="boot-cmd">docker ps</span><span class="terminal-cursor" aria-hidden="true"></span>
+                        <span class="prompt-user">hevar@cloud</span> <span class="prompt-symbol">$</span> <span class="prompt-cmd">docker ps</span>
                     </div>
                     <div class="terminal-line">
                         <table class="docker-table">
@@ -1319,22 +1609,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="term-row-anim" style="animation-delay: 0.25s;">
+                                <tr class="term-row-anim" style="animation-delay: 80ms;">
                                     <td>rscollection.online</td>
                                     <td class="dim">express + pg17 + caddy</td>
                                     <td class="ok">healthy (ec2)</td>
                                 </tr>
-                                <tr class="term-row-anim" style="animation-delay: 0.38s;">
+                                <tr class="term-row-anim" style="animation-delay: 160ms;">
                                     <td>drdilshadecb.com</td>
                                     <td class="dim">cloudfront + s3 oac</td>
                                     <td class="ok">healthy (cdn)</td>
                                 </tr>
-                                <tr class="term-row-anim" style="animation-delay: 0.51s;">
+                                <tr class="term-row-anim" style="animation-delay: 240ms;">
                                     <td>hevar.cloud</td>
                                     <td class="dim">s3 + cloudfront + tf</td>
                                     <td class="ok">healthy (aws)</td>
                                 </tr>
-                                <tr class="term-row-anim" style="animation-delay: 0.64s;">
+                                <tr class="term-row-anim" style="animation-delay: 320ms;">
                                     <td>visitor-counter</td>
                                     <td class="dim">apigw + lambda + ddb</td>
                                     <td class="ok">online (aws)</td>
@@ -1342,8 +1632,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="terminal-line dim term-row-anim" style="animation-delay: 0.78s;">
-                        Type or click a command above (`whoami`, `stack`, `docker ps`, `aws`).
+                    <div class="terminal-line" id="auto-typing-line">
+                        <span class="prompt-user">hevar@cloud</span> <span class="prompt-symbol">$</span> <span class="prompt-cmd" id="live-typed-cmd"></span><span class="terminal-cursor" aria-hidden="true"></span>
                     </div>
                 </div>
 
@@ -1362,19 +1652,59 @@
 
         <div class="stats" aria-label="Portfolio facts">
             <div class="stat">
-                <div class="stat-number">Web + AWS</div>
+                <div class="stat-head">
+                    <div class="stat-number">Web + AWS</div>
+                    <div class="uptime-bars" aria-hidden="true">
+                        <span class="uptime-bar" style="--bar-idx:0"></span>
+                        <span class="uptime-bar" style="--bar-idx:1"></span>
+                        <span class="uptime-bar" style="--bar-idx:2"></span>
+                        <span class="uptime-bar" style="--bar-idx:3"></span>
+                        <span class="uptime-bar" style="--bar-idx:4"></span>
+                        <span class="uptime-bar" style="--bar-idx:5"></span>
+                    </div>
+                </div>
                 <div class="stat-label">HTML, CSS, JavaScript, Node.js, PostgreSQL, EC2, S3, CloudFront</div>
             </div>
             <div class="stat">
-                <div class="stat-number">Production</div>
+                <div class="stat-head">
+                    <div class="stat-number">Production</div>
+                    <div class="uptime-bars" aria-hidden="true">
+                        <span class="uptime-bar" style="--bar-idx:2"></span>
+                        <span class="uptime-bar" style="--bar-idx:3"></span>
+                        <span class="uptime-bar" style="--bar-idx:4"></span>
+                        <span class="uptime-bar" style="--bar-idx:5"></span>
+                        <span class="uptime-bar" style="--bar-idx:6"></span>
+                        <span class="uptime-bar" style="--bar-idx:7"></span>
+                    </div>
+                </div>
                 <div class="stat-label">Docker Compose, HTTPS, Caddy, DNS, smoke checks, backups</div>
             </div>
             <div class="stat">
-                <div class="stat-number">IaC</div>
+                <div class="stat-head">
+                    <div class="stat-number">IaC</div>
+                    <div class="uptime-bars" aria-hidden="true">
+                        <span class="uptime-bar" style="--bar-idx:1"></span>
+                        <span class="uptime-bar" style="--bar-idx:4"></span>
+                        <span class="uptime-bar" style="--bar-idx:2"></span>
+                        <span class="uptime-bar" style="--bar-idx:5"></span>
+                        <span class="uptime-bar" style="--bar-idx:3"></span>
+                        <span class="uptime-bar" style="--bar-idx:6"></span>
+                    </div>
+                </div>
                 <div class="stat-label">Terraform-based infrastructure practice</div>
             </div>
             <div class="stat">
-                <div class="stat-number">Languages</div>
+                <div class="stat-head">
+                    <div class="stat-number">Languages</div>
+                    <div class="uptime-bars" aria-hidden="true">
+                        <span class="uptime-bar" style="--bar-idx:0"></span>
+                        <span class="uptime-bar" style="--bar-idx:2"></span>
+                        <span class="uptime-bar" style="--bar-idx:4"></span>
+                        <span class="uptime-bar" style="--bar-idx:1"></span>
+                        <span class="uptime-bar" style="--bar-idx:3"></span>
+                        <span class="uptime-bar" style="--bar-idx:5"></span>
+                    </div>
+                </div>
                 <div class="stat-label">Kurdish, Arabic, and English for client communication</div>
             </div>
         </div>
@@ -1467,17 +1797,32 @@
             </div>
             <div class="pipeline">
                 <article class="step">
-                    <div class="mono">01 · Develop</div>
+                    <div class="step-header">
+                        <div class="mono">01 · Develop</div>
+                        <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true">
+                            <line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line>
+                            <circle class="flow-packet" cx="2" cy="5" r="2.2"></circle>
+                        </svg>
+                    </div>
                     <h3>Clear source</h3>
                     <p>Small, readable HTML/CSS/infra changes in Git with the deployment workflow stored beside the site.</p>
                 </article>
                 <article class="step">
-                    <div class="mono">02 · Preview</div>
+                    <div class="step-header">
+                        <div class="mono">02 · Preview</div>
+                        <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true">
+                            <line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line>
+                            <circle class="flow-packet" cx="2" cy="5" r="2.2" style="animation-delay: 0.4s;"></circle>
+                        </svg>
+                    </div>
                     <h3>Check the system</h3>
                     <p>Validate content, endpoint responses, AWS identity, bucket contents, and public HTTP status before calling work done.</p>
                 </article>
                 <article class="step">
-                    <div class="mono">03 · Ship</div>
+                    <div class="step-header">
+                        <div class="mono">03 · Ship</div>
+                        <span class="status-dot"></span>
+                    </div>
                     <h3>Deploy cleanly</h3>
                     <p>Push to main, run CI/CD, sync S3, invalidate CloudFront, and verify the production domain after the pipeline finishes.</p>
                 </article>
@@ -1503,14 +1848,14 @@
                             <h3>RSCollection — ecommerce storefront, admin system, and CI/CD delivery</h3>
                             <p>A live ecommerce platform for an accessories shop. The project proves more than page design: it covers the buyer experience, protected shop-owner operations, database-backed workflows, containerized runtime, and an automated GitHub-to-AWS deployment path.</p>
 
-                            <div class="arch-flow mono">
-                                <span>HTTPS / Caddy</span>
-                                <span class="arch-arrow">→</span>
-                                <span>Node.js / Express</span>
-                                <span class="arch-arrow">→</span>
-                                <span>PostgreSQL 17</span>
-                                <span class="arch-arrow">·</span>
-                                <span>GitHub OIDC → AWS SSM → EC2</span>
+                            <div class="arch-flow mono" aria-label="RSCollection architecture data flow">
+                                <span class="flow-node">HTTPS / Caddy</span>
+                                <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true"><line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line><circle class="flow-packet" cx="2" cy="5" r="2.2"></circle></svg>
+                                <span class="flow-node">Node.js / Express</span>
+                                <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true"><line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line><circle class="flow-packet" cx="2" cy="5" r="2.2" style="animation-delay:0.5s"></circle></svg>
+                                <span class="flow-node">PostgreSQL 17</span>
+                                <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true"><line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line><circle class="flow-packet" cx="2" cy="5" r="2.2" style="animation-delay:1s"></circle></svg>
+                                <span class="flow-node">GitHub OIDC → AWS EC2</span>
                             </div>
 
                             <ul class="project-proof" aria-label="RSCollection project capabilities">
@@ -1534,9 +1879,25 @@
                             </div>
                         </div>
                         <aside class="case-side" aria-label="RSCollection CI/CD and operations proof">
-                            <span class="case-label mono">Delivery proof</span>
+                            <div class="case-side-top">
+                                <span class="case-label mono">Delivery proof</span>
+                                <div class="uptime-bars" aria-hidden="true" title="99.9% Production Uptime">
+                                    <span class="uptime-bar" style="--bar-idx:0"></span>
+                                    <span class="uptime-bar" style="--bar-idx:1"></span>
+                                    <span class="uptime-bar" style="--bar-idx:2"></span>
+                                    <span class="uptime-bar" style="--bar-idx:3"></span>
+                                    <span class="uptime-bar" style="--bar-idx:4"></span>
+                                    <span class="uptime-bar" style="--bar-idx:5"></span>
+                                    <span class="uptime-bar" style="--bar-idx:6"></span>
+                                    <span class="uptime-bar" style="--bar-idx:7"></span>
+                                    <span class="uptime-bar" style="--bar-idx:8"></span>
+                                    <span class="uptime-bar" style="--bar-idx:9"></span>
+                                    <span class="uptime-bar" style="--bar-idx:10"></span>
+                                    <span class="uptime-bar" style="--bar-idx:11"></span>
+                                </div>
+                            </div>
                             <div class="case-metrics mono">
-                                <div class="case-metric"><strong>55</strong><span>automated tests passing</span></div>
+                                <div class="case-metric"><strong id="tests-count">55</strong><span>automated tests passing</span></div>
                                 <div class="case-metric"><strong>CI</strong><span>syntax, audit, build, health</span></div>
                                 <div class="case-metric"><strong>CD</strong><span>OIDC + AWS SSM deploy</span></div>
                             </div>
@@ -1557,13 +1918,13 @@
                         </div>
                         <p>Client static website delivered with custom domain, HTTPS, CloudFront CDN, locked S3 origin, and GitHub Actions deployment pipeline.</p>
                         <div class="arch-flow mono">
-                            <span>Custom Domain</span>
-                            <span class="arch-arrow">→</span>
-                            <span>CloudFront CDN</span>
-                            <span class="arch-arrow">→</span>
-                            <span>Private S3 (OAC)</span>
-                            <span class="arch-arrow">←</span>
-                            <span>GitHub Actions</span>
+                            <span class="flow-node">Custom Domain</span>
+                            <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true"><line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line><circle class="flow-packet" cx="2" cy="5" r="2.2"></circle></svg>
+                            <span class="flow-node">CloudFront CDN</span>
+                            <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true"><line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line><circle class="flow-packet" cx="2" cy="5" r="2.2" style="animation-delay:0.4s"></circle></svg>
+                            <span class="flow-node">Private S3 (OAC)</span>
+                            <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true"><line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line><circle class="flow-packet" cx="2" cy="5" r="2.2" style="animation-delay:0.8s"></circle></svg>
+                            <span class="flow-node">GitHub Actions</span>
                         </div>
                         <div class="project-links">
                             <a class="project-link" href="https://www.drdilshadecb.com/" target="_blank" rel="noreferrer">Live site ↗</a>
@@ -1585,13 +1946,13 @@
                         </div>
                         <p>This site runs through S3 and CloudFront with automated deploys, cache invalidation, a serverless counter, and a clean light/dark interface.</p>
                         <div class="arch-flow mono">
-                            <span>Route 53</span>
-                            <span class="arch-arrow">→</span>
-                            <span>CloudFront</span>
-                            <span class="arch-arrow">→</span>
-                            <span>S3 Origin</span>
-                            <span class="arch-arrow">·</span>
-                            <span>Terraform IaC</span>
+                            <span class="flow-node">Route 53</span>
+                            <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true"><line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line><circle class="flow-packet" cx="2" cy="5" r="2.2"></circle></svg>
+                            <span class="flow-node">CloudFront</span>
+                            <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true"><line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line><circle class="flow-packet" cx="2" cy="5" r="2.2" style="animation-delay:0.45s"></circle></svg>
+                            <span class="flow-node">S3 Origin</span>
+                            <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true"><line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line><circle class="flow-packet" cx="2" cy="5" r="2.2" style="animation-delay:0.9s"></circle></svg>
+                            <span class="flow-node">Terraform IaC</span>
                         </div>
                         <div class="project-links">
                             <a class="project-link" href="https://hevar.cloud/" target="_blank" rel="noreferrer">Live site ↗</a>
@@ -1614,11 +1975,11 @@
                         </div>
                         <p>A lightweight API Gateway + Lambda + DynamoDB backend that tracks visits without a traditional server or monthly VPS maintenance.</p>
                         <div class="arch-flow mono">
-                            <span>API Gateway</span>
-                            <span class="arch-arrow">→</span>
-                            <span>AWS Lambda</span>
-                            <span class="arch-arrow">→</span>
-                            <span>DynamoDB</span>
+                            <span class="flow-node">API Gateway</span>
+                            <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true"><line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line><circle class="flow-packet" cx="2" cy="5" r="2.2"></circle></svg>
+                            <span class="flow-node">AWS Lambda</span>
+                            <svg class="flow-svg" viewBox="0 0 28 10" aria-hidden="true"><line class="flow-line" x1="0" y1="5" x2="26" y2="5"></line><circle class="flow-packet" cx="2" cy="5" r="2.2" style="animation-delay:0.5s"></circle></svg>
+                            <span class="flow-node">DynamoDB</span>
                         </div>
                     </div>
                     <div class="tags mono">
@@ -1683,34 +2044,91 @@
     </footer>
 
     <script>
+        // 1. THEME SWITCH WITH TRANSITION SUPPRESSION & DUAL-ICON CROSS-FADE (better-ui)
         const root = document.documentElement;
         const themeToggle = document.getElementById('theme-toggle');
+        const iconSun = document.getElementById('icon-sun');
+        const iconMoon = document.getElementById('icon-moon');
         const savedTheme = localStorage.getItem('theme');
-        setTheme(savedTheme || 'dark');
+        setTheme(savedTheme || 'dark', false);
 
         themeToggle.addEventListener('click', () => {
             const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            setTheme(nextTheme);
+            setTheme(nextTheme, true);
             localStorage.setItem('theme', nextTheme);
         });
 
-        function setTheme(theme) {
+        function setTheme(theme, suppressTransitions) {
             const isDark = theme === 'dark';
+            let styleEl = null;
+            if (suppressTransitions) {
+                styleEl = document.createElement('style');
+                styleEl.appendChild(document.createTextNode('*,*::before,*::after{transition:none !important}'));
+                document.head.appendChild(styleEl);
+            }
+
             root.setAttribute('data-theme', isDark ? 'dark' : 'light');
             document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#09090b' : '#fafafa');
             themeToggle.setAttribute('aria-pressed', String(isDark));
             themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-            themeToggle.innerHTML = isDark
-                ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>'
-                : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>';
+
+            if (styleEl) {
+                void document.body.offsetHeight;
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        styleEl.remove();
+                        updateThemeIcons(isDark);
+                    });
+                });
+            } else {
+                updateThemeIcons(isDark);
+            }
+        }
+
+        function updateThemeIcons(isDark) {
+            if (!iconSun || !iconMoon) return;
+            iconSun.className = isDark ? 'icon-layer is-shown' : 'icon-layer is-hidden';
+            iconMoon.className = isDark ? 'icon-layer is-hidden' : 'icon-layer is-shown';
+        }
+
+        // 2. COPY EMAIL MICRO-INTERACTION (Dual-Icon Cross-Fade)
+        const copyEmailBtn = document.getElementById('copy-email-btn');
+        const iconCopy = document.getElementById('icon-copy');
+        const iconCopied = document.getElementById('icon-copied');
+        const copyEmailText = document.getElementById('copy-email-text');
+        let copyTimeout = null;
+
+        if (copyEmailBtn) {
+            copyEmailBtn.addEventListener('click', async () => {
+                const email = copyEmailBtn.getAttribute('data-email') || 'hevarrwandzi@gmail.com';
+                try {
+                    await navigator.clipboard.writeText(email);
+                } catch (_) {
+                    const ta = document.createElement('textarea');
+                    ta.value = email;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    ta.remove();
+                }
+                iconCopy.className = 'icon-layer is-hidden';
+                iconCopied.className = 'icon-layer is-shown';
+                copyEmailText.textContent = 'Copied!';
+                clearTimeout(copyTimeout);
+                copyTimeout = setTimeout(() => {
+                    iconCopy.className = 'icon-layer is-shown';
+                    iconCopied.className = 'icon-layer is-hidden';
+                    copyEmailText.textContent = 'Copy email';
+                }, 2000);
+            });
         }
 
         document.getElementById('last-updated').textContent =
             'deployment: ' + new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
 
-        function animateCount(el, target) {
+        // 3. ANIMATED COUNT-UP FOR METRICS
+        function animateCount(el, target, duration = 950) {
             if (!el) return;
-            const duration = 900;
             const startTime = performance.now();
             function tick(now) {
                 const progress = Math.min((now - startTime) / duration, 1);
@@ -1742,25 +2160,14 @@
         }
         updateCounter();
 
-        // Boot terminal typewriter effect
-        (function runBootTypewriter() {
-            const bootCmd = document.getElementById('boot-cmd');
-            if (!bootCmd) return;
-            const text = 'docker ps';
-            bootCmd.textContent = '';
-            let i = 0;
-            const timer = setInterval(() => {
-                i += 1;
-                bootCmd.textContent = text.slice(0, i);
-                if (i >= text.length) clearInterval(timer);
-            }, 45);
-        })();
-
-        // Interactive CLI
+        // 4. INTERACTIVE CLI + AUTO-PLAYING TERMINAL SIMULATION LOOP
+        const terminalCard = document.getElementById('terminal-card');
         const terminalOutput = document.getElementById('terminal-output');
         const terminalForm = document.getElementById('terminal-form');
         const terminalInput = document.getElementById('terminal-input');
         const cmdChips = document.querySelectorAll('.cmd-chip');
+        let autoLoopActive = true;
+        let autoTimer = null;
 
         function escapeHtml(str) {
             return String(str)
@@ -1770,78 +2177,147 @@
                 .replace(/"/g, '&quot;');
         }
 
-        function runCommand(rawCmd) {
-            const cmd = rawCmd.trim().toLowerCase();
-            if (!cmd) return;
-
-            if (cmd === 'clear') {
-                terminalOutput.innerHTML = '';
-                return;
-            }
-
-            const entry = document.createElement('div');
-            entry.className = 'terminal-line term-row-anim';
-
-            let responseHtml = '';
+        function getCommandOutput(cmd) {
             if (cmd === 'help') {
-                responseHtml = `
-                    <div>Available commands: <strong>whoami</strong>, <strong>stack</strong>, <strong>docker ps</strong>, <strong>aws</strong>, <strong>clear</strong></div>
-                `;
+                return `<div>Available commands: <strong>whoami</strong>, <strong>stack</strong>, <strong>docker ps</strong>, <strong>aws</strong>, <strong>clear</strong></div>`;
             } else if (cmd === 'whoami') {
-                responseHtml = `
+                return `
                     <div>Hevar Kochar — Website Developer &amp; Cloud/DevOps Operator</div>
                     <div class="dim">Erbil, Kurdistan · Kurdish / Arabic / English · CS @ Gasha Institute</div>
                 `;
             } else if (cmd === 'stack') {
-                responseHtml = `
+                return `
                     <div><strong>Cloud:</strong> AWS S3, CloudFront (OAC), EC2, Route 53, Lambda, API Gateway, DynamoDB, Terraform</div>
                     <div><strong>Ops:</strong> Docker Compose, Caddy HTTPS, GitHub Actions CI/CD, OIDC, AWS SSM</div>
                     <div><strong>Web:</strong> HTML/CSS, JavaScript, Node.js, Express, PostgreSQL 17</div>
                 `;
             } else if (cmd === 'docker ps') {
-                responseHtml = `
+                return `
                     <table class="docker-table">
                         <thead>
                             <tr><th>NAME</th><th>STACK</th><th>STATUS</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>rscollection.online</td><td class="dim">express + pg17 + caddy</td><td class="ok">healthy (ec2)</td></tr>
-                            <tr><td>drdilshadecb.com</td><td class="dim">cloudfront + s3 oac</td><td class="ok">healthy (cdn)</td></tr>
-                            <tr><td>hevar.cloud</td><td class="dim">s3 + cloudfront + tf</td><td class="ok">healthy (eu-north-1)</td></tr>
-                            <tr><td>visitor-counter</td><td class="dim">apigw + lambda + ddb</td><td class="ok">online (serverless)</td></tr>
+                            <tr class="term-row-anim" style="animation-delay: 40ms;"><td>rscollection.online</td><td class="dim">express + pg17 + caddy</td><td class="ok">healthy (ec2)</td></tr>
+                            <tr class="term-row-anim" style="animation-delay: 110ms;"><td>drdilshadecb.com</td><td class="dim">cloudfront + s3 oac</td><td class="ok">healthy (cdn)</td></tr>
+                            <tr class="term-row-anim" style="animation-delay: 180ms;"><td>hevar.cloud</td><td class="dim">s3 + cloudfront + tf</td><td class="ok">healthy (aws)</td></tr>
+                            <tr class="term-row-anim" style="animation-delay: 250ms;"><td>visitor-counter</td><td class="dim">apigw + lambda + ddb</td><td class="ok">online (aws)</td></tr>
                         </tbody>
                     </table>
                 `;
             } else if (cmd === 'aws' || cmd === 'aws status') {
                 const currentCount = document.getElementById('count')?.textContent || 'online';
-                responseHtml = `
+                return `
                     <div>origin: <strong>s3 + cloudfront (OAC)</strong> · region: <strong>eu-north-1</strong></div>
                     <div>pipeline: <span class="ok">GitHub Actions passing</span> · visits: <strong>${escapeHtml(currentCount)}</strong></div>
                 `;
-            } else {
-                responseHtml = `<div class="dim">command not found: ${escapeHtml(rawCmd)} (try: help, whoami, stack, docker ps)</div>`;
             }
+            return `<div class="dim">command not found: ${escapeHtml(cmd)} (try: help, whoami, stack, docker ps)</div>`;
+        }
 
-            entry.innerHTML = `
-                <div><span class="prompt-user">hevar@cloud</span> <span class="prompt-symbol">$</span> <span class="prompt-cmd">${escapeHtml(rawCmd)}</span></div>
-                <div style="margin-top: 3px;">${responseHtml}</div>
-            `;
-            terminalOutput.appendChild(entry);
+        function appendPromptLine() {
+            const existing = document.getElementById('auto-typing-line');
+            if (existing) existing.remove();
+            const promptLine = document.createElement('div');
+            promptLine.className = 'terminal-line';
+            promptLine.id = 'auto-typing-line';
+            promptLine.innerHTML = `<span class="prompt-user">hevar@cloud</span> <span class="prompt-symbol">$</span> <span class="prompt-cmd" id="live-typed-cmd"></span><span class="terminal-cursor" aria-hidden="true"></span>`;
+            terminalOutput.appendChild(promptLine);
             terminalOutput.scrollTop = terminalOutput.scrollHeight;
         }
 
+        function runCommand(rawCmd) {
+            const cmd = rawCmd.trim().toLowerCase();
+            if (!cmd) return;
+
+            const existingPrompt = document.getElementById('auto-typing-line');
+            if (existingPrompt) existingPrompt.remove();
+
+            if (cmd === 'clear') {
+                terminalOutput.innerHTML = '';
+                appendPromptLine();
+                return;
+            }
+
+            // Keep terminal history tidy so it never overflows endlessly
+            while (terminalOutput.children.length > 6) {
+                terminalOutput.removeChild(terminalOutput.firstElementChild);
+            }
+
+            const entry = document.createElement('div');
+            entry.className = 'terminal-line term-row-anim';
+            entry.innerHTML = `
+                <div><span class="prompt-user">hevar@cloud</span> <span class="prompt-symbol">$</span> <span class="prompt-cmd">${escapeHtml(rawCmd)}</span></div>
+                <div style="margin-top: 3px;">${getCommandOutput(cmd)}</div>
+            `;
+            terminalOutput.appendChild(entry);
+            appendPromptLine();
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+
+        function stopAutoLoop() {
+            if (!autoLoopActive) return;
+            autoLoopActive = false;
+            clearTimeout(autoTimer);
+        }
+
         cmdChips.forEach((chip) => {
-            chip.addEventListener('click', () => runCommand(chip.getAttribute('data-cmd')));
+            chip.addEventListener('click', () => {
+                stopAutoLoop();
+                runCommand(chip.getAttribute('data-cmd'));
+            });
         });
 
+        terminalInput.addEventListener('focus', stopAutoLoop);
         terminalForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            stopAutoLoop();
             if (!terminalInput.value.trim()) return;
             runCommand(terminalInput.value);
             terminalInput.value = '';
         });
 
-        // GitHub Repositories
+        // Continuous Auto-Typing CLI Demo Loop (until user interacts)
+        const demoCommands = ['whoami', 'aws status', 'stack', 'docker ps'];
+        let demoIdx = 0;
+
+        function scheduleNextDemoCommand(delayMs = 2200) {
+            if (!autoLoopActive) return;
+            autoTimer = setTimeout(() => {
+                if (!autoLoopActive) return;
+                const cmd = demoCommands[demoIdx % demoCommands.length];
+                demoIdx += 1;
+                typeAndExecuteDemo(cmd);
+            }, delayMs);
+        }
+
+        function typeAndExecuteDemo(cmd) {
+            if (!autoLoopActive) return;
+            let charIdx = 0;
+            function typeStep() {
+                if (!autoLoopActive) return;
+                const liveCmdEl = document.getElementById('live-typed-cmd');
+                if (!liveCmdEl) return;
+                charIdx += 1;
+                liveCmdEl.textContent = cmd.slice(0, charIdx);
+                if (charIdx < cmd.length) {
+                    autoTimer = setTimeout(typeStep, 55);
+                } else {
+                    autoTimer = setTimeout(() => {
+                        if (!autoLoopActive) return;
+                        runCommand(cmd);
+                        scheduleNextDemoCommand(2600);
+                    }, 380);
+                }
+            }
+            typeStep();
+        }
+
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            scheduleNextDemoCommand(1100);
+        }
+
+        // 5. LIVE GITHUB REPOSITORIES
         const repoFallbackDescriptions = {
             'web': 'Cloud portfolio deployed to AWS S3 and CloudFront with GitHub Actions CI/CD and Terraform.',
             'hama-engineering': 'Client website for Dr. Dilshad ECB delivered with CloudFront CDN, private S3 origin, and CI/CD.',
@@ -1878,11 +2354,11 @@
                     : 'Recent';
 
                 return `
-                    <a class="repo-card" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer" style="animation: heroEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) ${idx * 70}ms both;">
+                    <a class="repo-card" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer" style="animation: heroEnter 500ms cubic-bezier(0.2, 0, 0, 1) ${idx * 75}ms both;">
                         <div>
                             <div class="repo-top">
                                 <span class="repo-name">${name}</span>
-                                <span class="mono" style="font-size: 11px; color: var(--text-muted);">↗</span>
+                                <span class="mono repo-arrow">↗</span>
                             </div>
                             <p class="repo-desc">${desc}</p>
                         </div>
@@ -1899,11 +2375,11 @@
 
             if (repos.length < 6) {
                 cards.push(`
-                    <a class="repo-card" href="https://github.com/hevarrwandzi" target="_blank" rel="noreferrer" style="animation: heroEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) ${repos.length * 70}ms both;">
+                    <a class="repo-card" href="https://github.com/hevarrwandzi" target="_blank" rel="noreferrer" style="animation: heroEnter 500ms cubic-bezier(0.2, 0, 0, 1) ${repos.length * 75}ms both;">
                         <div>
                             <div class="repo-top">
                                 <span class="repo-name">@hevarrwandzi</span>
-                                <span class="mono" style="font-size: 11px; color: var(--text-muted);">↗</span>
+                                <span class="mono repo-arrow">↗</span>
                             </div>
                             <p class="repo-desc">View all public repositories, GitHub Actions workflows, and infrastructure code on GitHub.</p>
                         </div>
@@ -1916,6 +2392,7 @@
             }
 
             grid.innerHTML = cards.join('');
+            bindTiltCards();
         }
 
         async function loadGitHubRepos() {
@@ -1933,8 +2410,39 @@
         }
         loadGitHubRepos();
 
-        // Scroll-triggered reveal + mouse spotlight choreography
-        function initRevealAndSpotlight() {
+        // 6. SCROLL REVEALS, 3D TILT + SPOTLIGHT, AND TOP SCROLL PROGRESS
+        function bindTiltCards() {
+            if (!window.matchMedia('(hover: hover)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                return;
+            }
+            const cards = document.querySelectorAll('.stat, .card, .service-box, .step, .project, .repo-card');
+            cards.forEach((card) => {
+                if (card.dataset.tiltBound) return;
+                card.dataset.tiltBound = '1';
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+
+                    const cx = rect.width / 2;
+                    const cy = rect.height / 2;
+                    const maxDeg = card.classList.contains('project') ? 1.2 : 2.4;
+                    const ry = ((x - cx) / cx) * maxDeg;
+                    const rx = -((y - cy) / cy) * maxDeg;
+                    card.style.setProperty('--rx', `${rx.toFixed(2)}deg`);
+                    card.style.setProperty('--ry', `${ry.toFixed(2)}deg`);
+                }, { passive: true });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.setProperty('--rx', '0deg');
+                    card.style.setProperty('--ry', '0deg');
+                });
+            });
+        }
+
+        function initScrollAnimations() {
             const groups = [
                 document.querySelectorAll('.section-head'),
                 document.querySelectorAll('#work .card'),
@@ -1944,40 +2452,59 @@
                 document.querySelectorAll('#contact .contact')
             ];
 
+            const testsEl = document.getElementById('tests-count');
+            let testsAnimated = false;
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                        if (!testsAnimated && testsEl && entry.target.contains(testsEl)) {
+                            testsAnimated = true;
+                            animateCount(testsEl, 55, 1100);
+                        }
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+            }, { threshold: 0.1, rootMargin: '0px 0px -24px 0px' });
 
             groups.forEach((nodeList) => {
                 nodeList.forEach((el, idx) => {
                     el.classList.add('reveal-item');
-                    el.style.setProperty('--reveal-delay', `${idx * 70}ms`);
+                    el.style.setProperty('--reveal-delay', `${idx * 80}ms`);
                     observer.observe(el);
                 });
             });
 
-            document.addEventListener('mousemove', (e) => {
-                const targets = document.querySelectorAll('.stat, .card, .service-box, .step, .project, .repo-card');
-                targets.forEach((card) => {
-                    const rect = card.getBoundingClientRect();
-                    if (
-                        e.clientX >= rect.left - 120 &&
-                        e.clientX <= rect.right + 120 &&
-                        e.clientY >= rect.top - 120 &&
-                        e.clientY <= rect.bottom + 120
-                    ) {
-                        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-                        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+            // Scroll progress bar & active nav link
+            const progressBar = document.getElementById('scroll-progress');
+            const sections = document.querySelectorAll('main section[id]');
+            const navLinks = document.querySelectorAll('#nav-links a');
+
+            function onScroll() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if (progressBar && docHeight > 0) {
+                    const ratio = Math.min(Math.max(scrollTop / docHeight, 0), 1);
+                    progressBar.style.transform = `scaleX(${ratio.toFixed(4)})`;
+                }
+
+                let currentId = '';
+                sections.forEach((sec) => {
+                    if (scrollTop >= sec.offsetTop - 220) {
+                        currentId = sec.id;
                     }
                 });
-            }, { passive: true });
+                navLinks.forEach((link) => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+            bindTiltCards();
         }
-        initRevealAndSpotlight();
+        initScrollAnimations();
     </script>
 </body>
 </html>
